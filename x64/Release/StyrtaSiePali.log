@@ -1,0 +1,22 @@
+﻿  AuxiliaryVariables.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\Headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Button.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Creature.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Game.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  GameResources.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  GameState.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  Headers.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\Headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  main.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\Headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  MainMenuState.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  PauseMenu.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory
+  State.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\headers.h(5,10): fatal error C1083: Nie można otworzyć pliku dołącz: 'SFML/Graphics.hpp': No such file or directory

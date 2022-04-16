@@ -9,9 +9,17 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Pliki zasobów">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Auxiliary Resources">
+      <UniqueIdentifier>{bda4d281-2984-42d7-a139-003acf645b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{acd262e0-9cf2-4984-a2ee-cfafbb562825}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{70177299-03cc-42fe-ab33-4b5e94239dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Creatures">
+      <UniqueIdentifier>{d4e8a210-f05e-4efa-a8e2-2a1da6706a6d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -21,10 +29,70 @@
     <ClCompile Include="Headers.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
+    <ClCompile Include="AuxiliaryVariables.cpp">
+      <Filter>Auxiliary Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameResources.cpp">
+      <Filter>Auxiliary Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Creature.cpp">
+      <Filter>Creatures</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Creatures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Headers.h">
       <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="AuxiliaryVariables.h">
+      <Filter>Auxiliary Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameResources.h">
+      <Filter>Auxiliary Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Creature.h">
+      <Filter>Creatures</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Creatures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

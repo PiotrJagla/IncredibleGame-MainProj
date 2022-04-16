@@ -1,4 +1,21 @@
-﻿  Headers.cpp
-  main.cpp
-  Generowanie kodu...
-  StyrtaSiePali.vcxproj -> D:\VisualStudio\SFML\StyrtaSiePali\Debug\StyrtaSiePali.exe
+﻿Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QAE@PBDABVlocale@std@@@Z) przywołany w funkcji "private: void __thiscall Game::initWindow(void)" (?initWindow@Game@@AAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::String::~String(void)" (__imp_??1String@sf@@QAE@XZ) przywołany w funkcji "private: void __thiscall Game::initWindow(void)" (?initWindow@Game@@AAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QAE@III@Z) przywołany w funkcji "private: void __thiscall Game::initWindow(void)" (?initWindow@Game@@AAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: void __thiscall sf::Window::close(void)" (__imp_?close@Window@sf@@QAEXXZ) przywołany w funkcji "public: void __thiscall Game::updateEvents(void)" (?updateEvents@Game@@QAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: bool __thiscall sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QBE_NXZ) przywołany w funkcji "public: void __thiscall Game::gameLoop(void)" (?gameLoop@Game@@QAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: bool __thiscall sf::Window::pollEvent(class sf::Event &)" (__imp_?pollEvent@Window@sf@@QAE_NAAVEvent@2@@Z) przywołany w funkcji "public: void __thiscall Game::updateEvents(void)" (?updateEvents@Game@@QAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: void __thiscall sf::Window::display(void)" (__imp_?display@Window@sf@@QAEXXZ) przywołany w funkcji "public: void __thiscall Game::render(void)" (?render@Game@@QAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z) przywołany w funkcji "public: void __thiscall Game::render(void)" (?render@Game@@QAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: void __thiscall sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QAEXABVColor@2@@Z) przywołany w funkcji "public: void __thiscall Game::render(void)" (?render@Game@@QAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: __thiscall sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QAE@VVideoMode@1@ABVString@1@IABUContextSettings@1@@Z) przywołany w funkcji "private: void __thiscall Game::initWindow(void)" (?initWindow@Game@@AAEXXZ)
+Game.obj : error LNK2019: nierozpoznany symbol zewnętrzny "__declspec(dllimport) public: virtual __thiscall sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UAE@XZ) przywołany w funkcji "public: virtual void * __thiscall sf::RenderWindow::`scalar deleting destructor'(unsigned int)" (??_GRenderWindow@sf@@UAEPAXI@Z)
+Game.obj : error LNK2001: nierozpoznany symbol zewnętrzny "public: virtual class sf::Vector2<unsigned int> __thiscall sf::RenderWindow::getSize(void)const " (?getSize@RenderWindow@sf@@UBE?AV?$Vector2@I@2@XZ)
+Game.obj : error LNK2001: nierozpoznany symbol zewnętrzny "protected: virtual void __thiscall sf::RenderWindow::onCreate(void)" (?onCreate@RenderWindow@sf@@MAEXXZ)
+Game.obj : error LNK2001: nierozpoznany symbol zewnętrzny "protected: virtual void __thiscall sf::RenderWindow::onResize(void)" (?onResize@RenderWindow@sf@@MAEXXZ)
+Game.obj : error LNK2001: nierozpoznany symbol zewnętrzny "public: virtual bool __thiscall sf::RenderWindow::setActive(bool)" (?setActive@RenderWindow@sf@@UAE_N_N@Z)
+D:\SFML\SFML-2.5.1\lib\sfml-system-d.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\SFML\SFML-2.5.1\lib\sfml-window-d.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\SFML\SFML-2.5.1\lib\sfml-graphics-d.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\SFML\SFML-2.5.1\lib\sfml-network-d.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\SFML\SFML-2.5.1\lib\sfml-audio-d.lib : warning LNK4272: wystąpił konflikt typu maszyny biblioteki „x64” z typem maszyny docelowej „x86”
+D:\Program Files (x86)\GitHub\IncredibleGame\Debug\StyrtaSiePali.exe : fatal error LNK1120: liczba nierozpoznanych elementów zewnętrznych: 15
