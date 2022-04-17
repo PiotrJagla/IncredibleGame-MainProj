@@ -7,9 +7,7 @@ void Creature::initSprite(sf::IntRect frameBounds, sf::Vector2f scale)
 {
 	m_sprite = new sf::Sprite{};
 	m_sprite->setTexture(*m_texture);
-	m_currentFrame = sf::IntRect(
-		frameBounds.left, frameBounds.top, frameBounds.width, frameBounds.height
-	);
+	m_currentFrame = sf::IntRect(frameBounds);
 
 	m_sprite->setTextureRect(m_currentFrame);
 	m_sprite->setScale(scale);
@@ -29,7 +27,7 @@ void Creature::initTexture(std::string textureDirectory)
 //Constructors / Descructors
 Creature::Creature()
 {
-	m_movementSpeed = 400.0f;
+	
 }
 
 Creature::~Creature()

@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Pliki źródłowe">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Pliki nagłówkowe">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Auxiliary Resources">
       <UniqueIdentifier>{bda4d281-2984-42d7-a139-003acf645b7e}</UniqueIdentifier>
     </Filter>
@@ -21,19 +13,16 @@
     <Filter Include="Creatures">
       <UniqueIdentifier>{d4e8a210-f05e-4efa-a8e2-2a1da6706a6d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{72191727-6a50-4f4e-b9cf-693e2d781dca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other stuff">
+      <UniqueIdentifier>{6cb124c7-22d7-4c94-8ff9-c3069a5bdba5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
-    <ClCompile Include="Headers.cpp">
-      <Filter>Pliki źródłowe</Filter>
-    </ClCompile>
     <ClCompile Include="AuxiliaryVariables.cpp">
       <Filter>Auxiliary Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>States</Filter>
@@ -59,16 +48,25 @@
     <ClCompile Include="Player.cpp">
       <Filter>Creatures</Filter>
     </ClCompile>
+    <ClCompile Include="MovementComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Other stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Headers.cpp">
+      <Filter>Other stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Other stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers.h">
-      <Filter>Pliki nagłówkowe</Filter>
-    </ClInclude>
     <ClInclude Include="AuxiliaryVariables.h">
       <Filter>Auxiliary Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
       <Filter>States</Filter>
@@ -93,6 +91,18 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Creatures</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Other stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers.h">
+      <Filter>Other stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
