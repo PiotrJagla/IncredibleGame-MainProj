@@ -4,15 +4,16 @@
 //Initialization functions
 void MovementComponent::initPhysicsComponent()
 {
-	m_physicsComponent = new PhysicsComponent{ m_movementSpeed, 1300.0f, -500.0f, 9000.0f };
+	m_physicsComponent = new PhysicsComponent{ m_velocity, m_direction,
+		1000.0f, -500.0f, 1500.0f ,sf::Vector2f{900.0f, 900.0f} };
 }
 
 //Constructors / Descructors
-MovementComponent::MovementComponent(sf::Sprite& sprite, float movementSpeed) 
-	: m_sprite{sprite}
+MovementComponent::MovementComponent(sf::Vector2f& direction, sf::Vector2f& velocity,
+	sf::Sprite& sprite, float movementSpeed)
+	:m_velocity{ velocity }, m_direction{ direction }, m_sprite{ sprite }
 {
-	m_movementSpeed = 0.0f;
-	m_movingDirection = sf::Vector2f{ 0.0f,0.0f };
+	m_direction = sf::Vector2f{ 0.0f,1.0f };
 	this->initPhysicsComponent();
 }
 
@@ -24,48 +25,20 @@ MovementComponent::~MovementComponent()
 //Public functions
 void MovementComponent::update(const float& timePerFrame)
 {
-	std::cout << m_movementSpeed << '\n';
-	m_physicsComponent->update(timePerFrame);
+	std::cout << "X: " << m_velocity.x << " Y: " << m_velocity.y << '\n';
 	this->updateMovement(timePerFrame);
+	m_physicsComponent->update(timePerFrame);
 }
 
 void MovementComponent::updateMovement(const float& timePerFrame)
 {
-	m_movingDirection.x = 0.0f;
-	m_movingDirection.y = 0.0f;
+	m_physicsComponent->updateVelocity(timePerFrame);
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		//this->moveInDirection(timePerFrame, -1.0f, 0.0f);
-		m_movingDirection.x = -1.0f;
-		//m_movingDirection.y = 0.0f;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		//this->moveInDirection(timePerFrame, 1.0f, 0.0f);
-		m_movingDirection.x = 1.0f;
-		//m_movingDirection.y = 0.0f;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		//this->moveInDirection(timePerFrame, 0.0f, -1.0f);
-		//m_movingDirection.x = 0.0f;
-		m_movingDirection.y = -1.0f;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		//this->moveInDirection(timePerFrame, 0.0f, 1.0f);
-		//m_movingDirection.x = 0.0f;
-		m_movingDirection.y = 1.0f;
-
-	}
-
-	this->moveInDirection(timePerFrame, m_movingDirection.x, m_movingDirection.y);
-	//this->moveInDirection(timePerFrame, m_movingDirection.x, m_movingDirection.y);
+	this->moveSprite(timePerFrame);
 }
 
-void MovementComponent::moveInDirection(const float& timePerFrame, float Xdirection, float Ydirection)
+void MovementComponent::moveSprite(const float& timePerFrame)
 {
-	m_sprite.move(Xdirection * m_movementSpeed * timePerFrame, Ydirection * m_movementSpeed * timePerFrame);
+	m_sprite.move(m_velocity.x * timePerFrame,m_velocity.y * timePerFrame);
 }
+

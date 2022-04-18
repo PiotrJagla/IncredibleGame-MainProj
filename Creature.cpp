@@ -23,6 +23,11 @@ void Creature::initTexture(std::string textureDirectory)
 	}
 }
 
+void Creature::initHitboxComponent(sf::Vector2f hitboxSize)
+{
+	m_cretureHitbox = new HitboxComponent{ *m_sprite, m_velocity};
+}
+
 
 //Constructors / Descructors
 Creature::Creature()
@@ -34,6 +39,7 @@ Creature::~Creature()
 {
 	delete m_texture;
 	delete m_sprite;
+	delete m_cretureHitbox;
 }
 
 //Public functions

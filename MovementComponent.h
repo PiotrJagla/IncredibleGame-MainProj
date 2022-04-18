@@ -7,19 +7,21 @@ class MovementComponent
 private:
 	sf::Sprite& m_sprite;
 
-	float m_movementSpeed;
-	sf::Vector2f m_movingDirection;
+	sf::Vector2f& m_direction;
+	sf::Vector2f& m_velocity;
 
 	PhysicsComponent* m_physicsComponent;
 
 	void initPhysicsComponent();
 
 public:
-	MovementComponent(sf::Sprite& sprite, float movementSpeed);
+	MovementComponent(sf::Vector2f& direction, sf::Vector2f& velocity,
+		sf::Sprite& sprite, float movementSpeed);
 	~MovementComponent();
 
 	void update(const float& timePerFrame);
 	void updateMovement(const float& timePerFrame);
-	void moveInDirection(const float& timePerFrame, float Xdirection, float Ydirection);
+	void moveSprite(const float& timePerFrame);
+
 };
 

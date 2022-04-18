@@ -3,17 +3,20 @@ class PhysicsComponent
 {
 private:
 	float m_acceleration;
-	float m_movementSpeecMAX;
 	float m_deceleration;
-	float& m_movementSpeed;
+	float m_gravity;
+	sf::Vector2f m_maxVelocity;
+	sf::Vector2f& m_velocity;
+	sf::Vector2f& m_direction;
 public:
-	PhysicsComponent(float& movementSpeed, float acceleration, float deceleration, float movementspeedMAX);
+	PhysicsComponent(sf::Vector2f& velocity, sf::Vector2f& direction,
+		float acceleration, float deceleration,
+		float gravity ,sf::Vector2f maxVelocity);
 	~PhysicsComponent();
 
 	void update(const float& timePerFrame);
 	void gravity(const float& timePerFrame);
-	void accelerate(const float& timePerFrame);
 	void decelerate(const float& timePerFrame);
-	void updateMovementSpeed(const float& timePerFrame);
+	void updateVelocity(const float& timePerFrame);
 };
 

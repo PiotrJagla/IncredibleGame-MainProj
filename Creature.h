@@ -1,5 +1,7 @@
 #pragma once
 
+#include "HitboxComponent.h"
+
 class Creature
 {
 private:
@@ -11,10 +13,15 @@ protected:
 	sf::IntRect m_currentFrame;
 	int m_HP;
 
+	sf::Vector2f m_direction;
+	sf::Vector2f m_velocity;
 
+	HitboxComponent* m_cretureHitbox;
+	
 	//Initialize protected functions
 	void initSprite(sf::IntRect frameBounds, sf::Vector2f scale);
 	void initTexture(std::string textureDirectory);
+	void initHitboxComponent(sf::Vector2f hitboxSize);
 
 public:
 	//Constructors / Descructors

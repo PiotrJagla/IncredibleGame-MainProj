@@ -168,6 +168,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">headers.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="GameResources.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Headers.h" />
+    <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="PauseMenu.h" />
