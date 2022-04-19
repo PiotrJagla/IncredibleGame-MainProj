@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AuxiliaryVariables.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Creature.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AuxiliaryVariables.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Creature.h" />

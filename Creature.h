@@ -1,6 +1,8 @@
 #pragma once
 
 #include "HitboxComponent.h"
+#include "MovementComponent.h"
+#include "AnimationComponent.h"
 
 class Creature
 {
@@ -13,15 +15,22 @@ protected:
 	sf::IntRect m_currentFrame;
 	int m_HP;
 
+	bool m_isGrounded;
+
 	sf::Vector2f m_direction;
 	sf::Vector2f m_velocity;
 
 	HitboxComponent* m_cretureHitbox;
+	MovementComponent* m_playerMovementComponent;
+	AnimationComponent* m_animationComponent;
+	
 	
 	//Initialize protected functions
 	void initSprite(sf::IntRect frameBounds, sf::Vector2f scale);
 	void initTexture(std::string textureDirectory);
 	void initHitboxComponent(sf::Vector2f hitboxSize);
+	void initMovementComponent();
+	void initAnimationComponent();
 
 public:
 	//Constructors / Descructors

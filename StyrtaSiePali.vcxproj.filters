@@ -66,6 +66,9 @@
     <ClCompile Include="HitboxComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuxiliaryVariables.h">
@@ -108,6 +111,9 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="HitboxComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

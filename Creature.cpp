@@ -3,6 +3,16 @@
 
 
 //Initialize private functions
+void Creature::initMovementComponent()
+{
+	m_playerMovementComponent = new MovementComponent{ m_direction, m_velocity, *m_sprite, 400.0f, m_isGrounded };
+}
+
+void Creature::initAnimationComponent()
+{
+	m_animationComponent = new AnimationComponent{ *m_sprite, m_velocity };
+}
+
 void Creature::initSprite(sf::IntRect frameBounds, sf::Vector2f scale)
 {
 	m_sprite = new sf::Sprite{};
@@ -25,7 +35,7 @@ void Creature::initTexture(std::string textureDirectory)
 
 void Creature::initHitboxComponent(sf::Vector2f hitboxSize)
 {
-	m_cretureHitbox = new HitboxComponent{ *m_sprite, m_velocity};
+	m_cretureHitbox = new HitboxComponent{ *m_sprite, m_velocity, m_isGrounded};
 }
 
 

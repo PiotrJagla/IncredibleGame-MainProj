@@ -4,10 +4,7 @@
 
 
 //initialize private functions
-void Player::initMovementComponent()
-{
-	m_playerMovementComponent = new MovementComponent{ m_direction, m_velocity, *m_sprite, 400.0f };
-}
+
 
 //Constructors / Descructors
 Player::Player()
@@ -34,6 +31,7 @@ void Player::update(const float& timePerFrame)
 {
 	m_playerMovementComponent->update(timePerFrame);
 	m_cretureHitbox->update();
+	m_animationComponent->update();
 }
 
 //Render

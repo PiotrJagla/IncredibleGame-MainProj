@@ -4,11 +4,12 @@
 
 //Constructors / Descructors
 PhysicsComponent::PhysicsComponent(sf::Vector2f& velocity, sf::Vector2f& direction,
-	float acceleration, float deceleration, float gravity,sf::Vector2f maxVelocity)
+	float acceleration, float deceleration, float gravity,sf::Vector2f maxVelocity, bool& isGrounded)
 	: m_velocity{ velocity }, m_direction{ direction },  m_acceleration{acceleration},
-	m_deceleration{ deceleration }, m_gravity{ gravity }, m_maxVelocity{ maxVelocity }
+	m_deceleration{ deceleration }, m_gravity{ gravity }, m_maxVelocity{ maxVelocity }, m_isGrounded{isGrounded}
 {
-
+	m_jumpTimerMax = 100.0f;
+	m_jumpTimer = m_jumpTimerMax;
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -71,12 +72,20 @@ void PhysicsComponent::updateVelocity(const float& timePerFrame)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
+		m_isGrounded = false;
 		m_direction.y = -1.0f;
 
-		if(m_velocity.y < m_maxVelocity.y)
-			m_velocity.y += m_acceleration * m_direction.y * timePerFrame * 10.0f;
+		if (this->jumpKeyTime(timePerFrame) == true)
+		{
+			if (m_velocity.y > -m_maxVelocity.y)
+				m_velocity.y += m_acceleration * m_direction.y * timePerFrame * 10.0f;
+		}
 		/*if (m_velocity.y > -m_maxVelocity.y)
 			m_velocity.y += m_acceleration * m_direction.y * timePerFrame;*/
+	}
+	else if(m_isGrounded == true)
+	{
+		this->resetJumpKeyTime();
 	}
 
 	/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -87,4 +96,20 @@ void PhysicsComponent::updateVelocity(const float& timePerFrame)
 			m_velocity.y += m_acceleration * m_direction.y * timePerFrame;
 	}*/
 	
+}
+
+bool PhysicsComponent::jumpKeyTime(const float& timePerFrame)
+{
+	if (m_jumpTimer < m_jumpTimerMax)
+	{
+		m_jumpTimer += 600.0f * timePerFrame;
+		return true;
+	}
+	else
+		return false;
+}
+
+void PhysicsComponent::resetJumpKeyTime()
+{
+	m_jumpTimer = 0.0f;
 }

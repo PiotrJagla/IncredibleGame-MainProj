@@ -1,8 +1,8 @@
 #include "headers.h"
 #include "HitboxComponent.h"
 
-HitboxComponent::HitboxComponent(sf::Sprite& sprite, sf::Vector2f& velocity)
-	: m_sprite{sprite}, m_velocity{velocity}
+HitboxComponent::HitboxComponent(sf::Sprite& sprite, sf::Vector2f& velocity, bool& isGrounded)
+	: m_sprite{sprite}, m_velocity{velocity}, m_isGrounded{isGrounded}
 {
 	m_hitbox.setSize(sf::Vector2f{
 		m_sprite.getGlobalBounds().width,
@@ -66,6 +66,7 @@ void HitboxComponent::checkSceenBoundsCollision()
 			Constants::WindowHeigth - m_hitbox.getGlobalBounds().height
 		);
 		m_velocity.y = 0.0f;
+		m_isGrounded = true;
 	}
 }
 

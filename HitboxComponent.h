@@ -9,8 +9,11 @@ private:
 	sf::Sprite& m_sprite;
 	sf::Vector2f& m_velocity;
 
+	bool& m_isGrounded;
+
 public:
-	HitboxComponent(sf::Sprite& sprite, sf::Vector2f& velocity);
+	HitboxComponent(sf::Sprite& sprite, sf::Vector2f& velocity,
+		bool& isGrounded);
 	~HitboxComponent();
 
 	void update();

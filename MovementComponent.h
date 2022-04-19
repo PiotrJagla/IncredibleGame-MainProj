@@ -12,11 +12,13 @@ private:
 
 	PhysicsComponent* m_physicsComponent;
 
+	bool& m_isGrounded;
+
 	void initPhysicsComponent();
 
 public:
 	MovementComponent(sf::Vector2f& direction, sf::Vector2f& velocity,
-		sf::Sprite& sprite, float movementSpeed);
+		sf::Sprite& sprite, float movementSpeed, bool& isGrounded);
 	~MovementComponent();
 
 	void update(const float& timePerFrame);

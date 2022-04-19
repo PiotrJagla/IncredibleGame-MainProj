@@ -1,2 +1,9 @@
-﻿  PhysicsComponent.cpp
+﻿  Creature.cpp
+  Game.cpp
+  GameState.cpp
+  main.cpp
+  MainMenuState.cpp
+  MovementComponent.cpp
+  Player.cpp
+  Generowanie kodu...
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSiePali.exe
