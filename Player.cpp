@@ -17,6 +17,7 @@ Player::Player()
 		m_sprite->getGlobalBounds().height
 		}
 	);
+	this->initAnimationComponent();
 }
 
 Player::~Player()

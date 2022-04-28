@@ -6,6 +6,10 @@ AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Vector2f& velocit
 {
 	m_animationState = MaxAnimations;
 	m_animationTimer.restart();
+	this->setFrame(sf::IntRect{ 5,5,50,60 });
+	m_animationSwitch = false;
+	m_spriteScale.x = m_sprite.getScale().x;
+	m_spriteScale.y = m_sprite.getScale().y;
 }
 
 AnimationComponent::~AnimationComponent()
@@ -18,20 +22,23 @@ AnimationComponent::~AnimationComponent()
 void AnimationComponent::update()
 {
 	this->updateAnimationState();
+	this->updateAnimation();
 }
 
 void AnimationComponent::updateAnimationState()
 {
+	m_animationState = Idle;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		m_animationState = MovingLeft;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (m_velocity.x > 0.0f)
 	{
 		m_animationState = MovingRight;
 	}
-	else if (m_velocity.y < 0.0f)
+	else if (m_velocity.x < 0.0f)
+	{
+		m_animationState = MovingLeft;
+	}
+
+	if (m_velocity.y < 0.0f)
 	{
 		m_animationState = Jumping;
 	}
@@ -39,18 +46,39 @@ void AnimationComponent::updateAnimationState()
 	{
 		m_animationState = Falling;
 	}
-	else
-	{
-		m_animationState = Idle;
-	}
+
 }
 
 void AnimationComponent::updateAnimation()
 {
+
 	if (m_animationState == Idle)
 	{
-		this->setFirstFrame(sf::IntRect{ 5,5,50,60 });
-		this->playAnimation(65.0f, 125.0f);
+		m_currentFrame.top = 5.0f;
+		this->playAnimation(65.0f, 125.0f, 1000.0f);
+	}
+	else if (m_animationState == Jumping)
+	{
+		this->setFrame(sf::IntRect{ 5,136,50,60 });
+		this->setSpriteRotation();
+	}
+	else if (m_animationState == Falling)
+	{
+		this->setFrame(sf::IntRect{ 5,200,50,60 });
+		this->setSpriteRotation();
+	}
+	else if (m_animationState == MovingRight)
+	{
+		m_currentFrame.top = 72.0f;
+		this->playAnimation(65.0f, 210.0f, 70.0f);
+		this->setSpriteRotation();
+
+	}
+	else if (m_animationState == MovingLeft)
+	{
+		m_currentFrame.top = 72.0f;
+		this->playAnimation(65.0f, 210.0f, 70.0f);
+		this->setSpriteRotation();
 	}
 	else
 	{
@@ -58,23 +86,41 @@ void AnimationComponent::updateAnimation()
 	}
 }
 
-void AnimationComponent::playAnimation(float nextFrameDistance, float maxBound)
+void AnimationComponent::playAnimation(float nextFrameDistance, float maxBound, float delay)
 {
-	if (m_animationTimer.getElapsedTime().asMilliseconds() >= 20.0f)
+
+	if (m_animationTimer.getElapsedTime().asMilliseconds() >= delay)
 	{
+		m_animationSwitch = false;
 		m_currentFrame.left += nextFrameDistance;
 
 		if (m_currentFrame.left >= maxBound)
 		{
-			m_currentFrame.left = 0.0f;
+			m_currentFrame.left = 5.0f;
 		}
 
 		m_animationTimer.restart();
 		m_sprite.setTextureRect(m_currentFrame);
 	}
+
 }
 
-void AnimationComponent::setFirstFrame(sf::IntRect firstFrameBounds)
+void AnimationComponent::setFrame(sf::IntRect firstFrameBounds)
 {
 	m_currentFrame = firstFrameBounds;
+	m_sprite.setTextureRect(m_currentFrame);
+}
+
+void AnimationComponent::setSpriteRotation()
+{
+	if (m_velocity.x > 0.0f)
+	{
+		m_sprite.setScale(m_spriteScale);
+		m_sprite.setOrigin(0.0f, 0.0f);
+	}
+	else if (m_velocity.x < 0.0f)
+	{
+		m_sprite.setScale(-m_spriteScale.x, m_spriteScale.y);
+		m_sprite.setOrigin(m_sprite.getGlobalBounds().width / m_spriteScale.x, 0.0f);
+	}
 }

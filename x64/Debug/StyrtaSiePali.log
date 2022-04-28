@@ -1,9 +1,27 @@
-﻿  Creature.cpp
-  Game.cpp
-  GameState.cpp
-  main.cpp
-  MainMenuState.cpp
-  MovementComponent.cpp
-  Player.cpp
-  Generowanie kodu...
+﻿  AnimationComponent.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(57,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(72,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(79,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(95,43): warning C4244: "+=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(99,26): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSiePali.exe
