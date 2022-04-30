@@ -5,7 +5,7 @@
 //Initialize private functions
 void Creature::initMovementComponent()
 {
-	m_playerMovementComponent = new MovementComponent{ m_direction, m_velocity, *m_sprite, 400.0f, m_isGrounded };
+	m_movementComponent = new MovementComponent{ m_direction, m_velocity, *m_sprite, 400.0f, m_isGrounded };
 }
 
 void Creature::initAnimationComponent()
@@ -13,14 +13,10 @@ void Creature::initAnimationComponent()
 	m_animationComponent = new AnimationComponent{ *m_sprite, m_velocity };
 }
 
-void Creature::initSprite(sf::IntRect frameBounds, sf::Vector2f scale)
+void Creature::initSprite()
 {
 	m_sprite = new sf::Sprite{};
 	m_sprite->setTexture(*m_texture);
-	m_currentFrame = sf::IntRect(frameBounds);
-
-	m_sprite->setTextureRect(m_currentFrame);
-	m_sprite->setScale(scale);
 }
 
 void Creature::initTexture(std::string textureDirectory)
@@ -33,24 +29,35 @@ void Creature::initTexture(std::string textureDirectory)
 	}
 }
 
-void Creature::initHitboxComponent(sf::Vector2f hitboxSize)
+void Creature::initHitboxComponent()
 {
-	m_cretureHitbox = new HitboxComponent{ *m_sprite, m_velocity, m_isGrounded};
+	m_hitboxComponent = new HitboxComponent{ *m_sprite, m_velocity, m_isGrounded};
 }
 
 
 //Constructors / Descructors
-Creature::Creature()
+Creature::Creature(std::string textureDirectory)
 {
-	
+	this->initTexture(textureDirectory);
+	this->initSprite();
+	this->initMovementComponent();
+	this->initHitboxComponent();
+	this->initAnimationComponent();
+
 }
 
 Creature::~Creature()
 {
 	delete m_texture;
 	delete m_sprite;
-	delete m_cretureHitbox;
+	delete m_hitboxComponent;
+	delete m_animationComponent;
+	delete m_movementComponent;
 }
 
 //Public functions
-
+void Creature::setScale(sf::Vector2f scale)
+{
+	m_sprite->setScale(scale);
+	m_hitboxComponent->scaleHitboxSize(scale);
+}

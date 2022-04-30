@@ -8,7 +8,7 @@ private:
 
 	//initialize private functions
 public:
-	Player();
+	Player(std::string textureDirectory);
 	virtual ~Player();
 
 	void update(const float& timePerFrame) override;

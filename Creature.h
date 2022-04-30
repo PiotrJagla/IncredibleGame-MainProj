@@ -20,21 +20,21 @@ protected:
 	sf::Vector2f m_direction;
 	sf::Vector2f m_velocity;
 
-	HitboxComponent* m_cretureHitbox;
-	MovementComponent* m_playerMovementComponent;
+	HitboxComponent* m_hitboxComponent;
+	MovementComponent* m_movementComponent;
 	AnimationComponent* m_animationComponent;
 	
 	
 	//Initialize protected functions
-	void initSprite(sf::IntRect frameBounds, sf::Vector2f scale);
+	void initSprite();
 	void initTexture(std::string textureDirectory);
-	void initHitboxComponent(sf::Vector2f hitboxSize);
+	void initHitboxComponent();
 	void initMovementComponent();
 	void initAnimationComponent();
 
 public:
 	//Constructors / Descructors
-	Creature();
+	Creature(std::string textureDirectory);
 	virtual ~Creature();
 
 
@@ -47,5 +47,5 @@ public:
 	//Accesors
 
 	//Modifiers
-
+	void setScale(sf::Vector2f scale);
 };

@@ -5,7 +5,8 @@ AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Vector2f& velocit
 	: m_sprite{ sprite }, m_velocity{ velocity }
 {
 	m_animationState = MaxAnimations;
-	m_animationTimer.restart();
+	m_idleAnimationTimer.restart();
+	m_runningAnimationTimer.restart();
 	this->setFrame(sf::IntRect{ 5,5,50,60 });
 	m_animationSwitch = false;
 	m_spriteScale.x = m_sprite.getScale().x;
@@ -55,7 +56,7 @@ void AnimationComponent::updateAnimation()
 	if (m_animationState == Idle)
 	{
 		m_currentFrame.top = 5.0f;
-		this->playAnimation(65.0f, 125.0f, 1000.0f);
+		this->playAnimation(m_idleAnimationTimer, 65.0f, 125.0f, 1000.0f);
 	}
 	else if (m_animationState == Jumping)
 	{
@@ -70,26 +71,24 @@ void AnimationComponent::updateAnimation()
 	else if (m_animationState == MovingRight)
 	{
 		m_currentFrame.top = 72.0f;
-		this->playAnimation(65.0f, 210.0f, 70.0f);
+		this->playAnimation(m_runningAnimationTimer, 65.0f, 210.0f, 70.0f);
 		this->setSpriteRotation();
 
 	}
 	else if (m_animationState == MovingLeft)
 	{
 		m_currentFrame.top = 72.0f;
-		this->playAnimation(65.0f, 210.0f, 70.0f);
+		this->playAnimation(m_runningAnimationTimer, 65.0f, 210.0f, 70.0f);
 		this->setSpriteRotation();
 	}
-	else
-	{
-		m_animationTimer.restart();
-	}
+
 }
 
-void AnimationComponent::playAnimation(float nextFrameDistance, float maxBound, float delay)
+void AnimationComponent::playAnimation(sf::Clock& animationTimer,
+	float nextFrameDistance, float maxBound, float delay)
 {
 
-	if (m_animationTimer.getElapsedTime().asMilliseconds() >= delay)
+	if (animationTimer.getElapsedTime().asMilliseconds() >= delay)
 	{
 		m_animationSwitch = false;
 		m_currentFrame.left += nextFrameDistance;
@@ -99,7 +98,7 @@ void AnimationComponent::playAnimation(float nextFrameDistance, float maxBound, 
 			m_currentFrame.left = 5.0f;
 		}
 
-		m_animationTimer.restart();
+		animationTimer.restart();
 		m_sprite.setTextureRect(m_currentFrame);
 	}
 

@@ -16,7 +16,8 @@ private:
 
 	sf::Vector2f& m_velocity;
 	sf::Sprite& m_sprite;
-	sf::Clock m_animationTimer;
+	sf::Clock m_runningAnimationTimer;
+	sf::Clock m_idleAnimationTimer;
 	AnimationState m_animationState;
 	sf::IntRect m_currentFrame;
 	sf::Vector2f m_spriteScale;
@@ -30,7 +31,8 @@ public:
 	void update();
 	void updateAnimationState();
 	void updateAnimation();
-	void playAnimation(float nextFrameDistance, float maxBound, float delay);
+	void playAnimation(sf::Clock& animationTimer,
+		float nextFrameDistance, float maxBound, float delay);
 
 	void setFrame(sf::IntRect firstFrameBounds);
 	void setSpriteRotation();

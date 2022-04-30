@@ -14,7 +14,8 @@ void GameState::initPauseMenu()
 
 void GameState::initPlayer()
 {
-	m_player = new Player{};
+	m_player = new Player{"Textures/playerTextureSheet.png"};
+	m_player->setScale(sf::Vector2f{ 2.0f, 2.0f });
 	m_creatures.push_back(m_player);
 }
 

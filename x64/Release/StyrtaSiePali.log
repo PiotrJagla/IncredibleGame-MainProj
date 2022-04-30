@@ -1,38 +1,7 @@
-﻿  AnimationComponent.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(57,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(72,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(79,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(95,43): warning C4244: "+=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(99,26): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-  Creature.cpp
-  Game.cpp
-  GameState.cpp
-  MainMenuState.cpp
-  Player.cpp
-  main.cpp
+﻿  HitboxComponent.cpp
   Trwa generowanie kodu
-  15 of 542 functions ( 2.8%) were compiled, the rest were copied from previous compilation.
-    3 functions were new in current compilation
-    13 functions had inline decision re-evaluated but remain unchanged
+  5 of 548 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Release\StyrtaSiePali.exe

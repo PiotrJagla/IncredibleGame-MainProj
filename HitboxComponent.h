@@ -22,5 +22,7 @@ public:
 	void checkSceenBoundsCollision();
 
 	void drawHitbx(sf::RenderTarget* target);
+
+	void scaleHitboxSize(sf::Vector2f scale);
 };
 
