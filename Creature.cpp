@@ -17,6 +17,7 @@ void Creature::initSprite()
 {
 	m_sprite = new sf::Sprite{};
 	m_sprite->setTexture(*m_texture);
+	m_sprite->setTextureRect(sf::IntRect{ 5,5,50,60 });
 }
 
 void Creature::initTexture(std::string textureDirectory)
@@ -60,4 +61,5 @@ void Creature::setScale(sf::Vector2f scale)
 {
 	m_sprite->setScale(scale);
 	m_hitboxComponent->scaleHitboxSize(scale);
+	m_animationComponent->setScale(scale);
 }

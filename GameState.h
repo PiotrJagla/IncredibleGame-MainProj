@@ -4,6 +4,7 @@
 #include "PauseMenu.h"
 #include "Creature.h"
 #include "Player.h"
+#include "TileMap.h"
 
 class GameState : public State
 {
@@ -20,11 +21,15 @@ private:
 	sf::Texture m_backgroundTexture;
 	sf::RectangleShape m_background;
 
+	//TileMap
+	TileMap* m_tileMap;
+
 	//Initialize Functions
 	void initButtons();
 	void initPauseMenu();
 	void initPlayer();
 	void initBackground();
+	void initTileMap();
 public:
 	//Constructors / Descructors
 	GameState(std::stack<State*>* states);
@@ -33,11 +38,17 @@ public:
 	//Update
 	void update(sf::RenderWindow* window, const float& timePerFrame) override;
 	void updateInput();
+
 	void updateButtons(sf::RenderWindow* window);
 	void updateButtonsHover(sf::RenderWindow* window);
 	void updateButtonsClickDetection(sf::RenderWindow* window);
+
 	void updatePauseMenuButtons(sf::RenderWindow* window);
+
 	void updateCreatures(const float& timePerFrame);
+	void updateCollision();
+	void updateTilesMapCollision();
+	
 
 	//Render
 	void render(sf::RenderTarget* target = nullptr) override;

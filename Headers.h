@@ -14,6 +14,8 @@
 #include <vector>
 #include <stack>
 #include <map>
+#include <random>
+#include <ctime>
 
 //my header files
 #include "AuxiliaryVariables.h"

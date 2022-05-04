@@ -43,6 +43,11 @@ public:
 
 	virtual void render(sf::RenderTarget* target) = 0;
 
+	virtual void updateCollision(sf::RectangleShape& tileHitbox) = 0;
+
+	virtual void tileCollision(sf::RectangleShape& tileHitbox) = 0;
+
+
 
 	//Accesors
 

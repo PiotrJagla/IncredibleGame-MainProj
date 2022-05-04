@@ -28,6 +28,16 @@ void Player::update(const float& timePerFrame)
 	m_animationComponent->update();
 }
 
+void Player::updateCollision(sf::RectangleShape& tileHitbox)
+{
+	this->tileCollision(tileHitbox);
+}
+
+void Player::tileCollision(sf::RectangleShape& tileHitbox)
+{
+	m_hitboxComponent->creatureTileCollision(tileHitbox);
+}
+
 //Render
 void Player::render(sf::RenderTarget* target)
 {

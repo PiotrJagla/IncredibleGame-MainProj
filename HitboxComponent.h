@@ -24,5 +24,7 @@ public:
 	void drawHitbx(sf::RenderTarget* target);
 
 	void scaleHitboxSize(sf::Vector2f scale);
+
+	void creatureTileCollision(sf::RectangleShape& tileHitbox);
 };
 

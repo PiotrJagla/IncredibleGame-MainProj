@@ -80,21 +80,14 @@ void PhysicsComponent::updateVelocity(const float& timePerFrame)
 			if (m_velocity.y > -m_maxVelocity.y)
 				m_velocity.y += m_acceleration * m_direction.y * timePerFrame * 10.0f;
 		}
-		/*if (m_velocity.y > -m_maxVelocity.y)
-			m_velocity.y += m_acceleration * m_direction.y * timePerFrame;*/
+
 	}
 	else if(m_isGrounded == true)
 	{
+		//m_velocity.y = 0.0f;
 		this->resetJumpKeyTime();
 	}
 
-	/*else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	{
-		m_direction.y = 1.0f;
-
-		if (m_velocity.y < m_maxVelocity.y)
-			m_velocity.y += m_acceleration * m_direction.y * timePerFrame;
-	}*/
 	
 }
 

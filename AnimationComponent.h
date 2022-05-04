@@ -36,6 +36,7 @@ public:
 
 	void setFrame(sf::IntRect firstFrameBounds);
 	void setSpriteRotation();
+	void setScale(sf::Vector2f scale);
 };
 
 

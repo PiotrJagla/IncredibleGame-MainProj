@@ -12,6 +12,8 @@ public:
 	virtual ~Player();
 
 	void update(const float& timePerFrame) override;
+	void updateCollision(sf::RectangleShape& tileHitbox) override;
+	void tileCollision(sf::RectangleShape& tileHitbox) override;
 
 	void render(sf::RenderTarget* target) override;
 };

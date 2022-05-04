@@ -46,9 +46,8 @@ bool Button::isButtonClicked(sf::RenderWindow* window)
 	if (m_buttonText.getGlobalBounds().contains(
 		sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))
 	{
-		if (RealeseDetection::mouseLeftButton == true)
+		if (RealeseDetection::mouseRealese() == true)
 		{
-			RealeseDetection::mouseLeftButton = false;
 			return true;
 		}
 	}

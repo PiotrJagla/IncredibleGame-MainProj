@@ -123,3 +123,9 @@ void AnimationComponent::setSpriteRotation()
 		m_sprite.setOrigin(m_sprite.getGlobalBounds().width / m_spriteScale.x, 0.0f);
 	}
 }
+
+void AnimationComponent::setScale(sf::Vector2f scale)
+{
+	m_sprite.setScale(scale);
+	m_spriteScale = scale;
+}

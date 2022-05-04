@@ -34,6 +34,7 @@ void Game::gameLoop()
 	while (m_window->isOpen())
 	{
 		m_timePerFrame = m_frameClock.restart().asSeconds();
+		deltaTime::timePerFrame = m_timePerFrame;
 		this->update();
 		this->render();
 	}
