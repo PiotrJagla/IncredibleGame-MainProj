@@ -15,8 +15,9 @@ void GameState::initPauseMenu()
 void GameState::initPlayer()
 {
 	m_player = new Player{"Textures/playerTextureSheet.png"};
-	m_player->setScale(sf::Vector2f{ 1.5f, 1.5f });
+	//m_player->setScale(sf::Vector2f{ 1.5f, 1.5f });
 	m_creatures.push_back(m_player);
+	
 }
 
 void GameState::initBackground()
@@ -55,7 +56,7 @@ GameState::GameState(std::stack<State*>* states) : State{states}
 GameState::~GameState()
 {
 	delete m_player;
-	delete[] m_tileMap;
+	delete m_tileMap;
 }
 
 
@@ -64,18 +65,18 @@ void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 {
 	this->updateKeyTime(timePerFrame);
 	this->updateInput();
-	this->updatePauseMenuButtons(window);
 	this->updateMousePositions(window);
-	m_tileMap->update(m_mouseGridPosition);
-	this->updateCollision();
 
 	if (m_isPaused == false)
 	{
+		m_tileMap->update(m_mouseGridPosition);
 		this->updateCreatures(timePerFrame);
 		this->updateButtons(window);
+		this->updateCollision();
 	}
 	else
 	{
+		this->updatePauseMenuButtons(window);
 		m_pauseMenu->update(window);
 	}
 }
@@ -135,9 +136,13 @@ void GameState::updateCollision()
 
 void GameState::updateTilesMapCollision()
 {
-	for (int iii{ 0 }; iii < m_tileMap->size(0); ++iii)
+	for (int iii{ 0 } ; iii < Constants::mapSizeY ; ++iii)
 	{
-		m_player->updateCollision(m_tileMap->getTile(0,iii)->m_tile);
+		for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
+		{
+			m_player->updateCollision(m_tileMap->getTile(iii, kkk)->m_tile);
+		}
+		
 	}
 }
 

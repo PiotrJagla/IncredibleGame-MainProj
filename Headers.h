@@ -21,7 +21,7 @@
 #include "AuxiliaryVariables.h"
 #include "GameResources.h"
 #include "Button.h"
-
+#include "Debug.h"
 
 
 

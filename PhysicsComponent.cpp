@@ -10,6 +10,7 @@ PhysicsComponent::PhysicsComponent(sf::Vector2f& velocity, sf::Vector2f& directi
 {
 	m_jumpTimerMax = 100.0f;
 	m_jumpTimer = m_jumpTimerMax;
+	m_isJumping = false;
 }
 
 PhysicsComponent::~PhysicsComponent()
@@ -26,10 +27,16 @@ void PhysicsComponent::update(const float& timePerFrame)
 
 void PhysicsComponent::gravity(const float& timePerFrame)
 {
-	m_direction.y = 1.0f;
+	if (m_isGrounded == false)
+	{
+		m_direction.y = 1.0f;
 
-	if(m_velocity.y <= m_maxVelocity.y)
-		m_velocity.y += m_gravity * timePerFrame;
+		if (m_velocity.y <= m_maxVelocity.y)
+			m_velocity.y += m_gravity * timePerFrame;
+	}
+
+	
+	
 }
 
 void PhysicsComponent::decelerate(const float& timePerFrame)
@@ -72,6 +79,7 @@ void PhysicsComponent::updateVelocity(const float& timePerFrame)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
+		m_isJumping = true;
 		m_isGrounded = false;
 		m_direction.y = -1.0f;
 
@@ -87,6 +95,13 @@ void PhysicsComponent::updateVelocity(const float& timePerFrame)
 		//m_velocity.y = 0.0f;
 		this->resetJumpKeyTime();
 	}
+	else
+	{
+		//This means that you cant double jump
+		m_jumpTimer = 100000.0f;
+	}
+	
+	
 
 	
 }
@@ -95,7 +110,7 @@ bool PhysicsComponent::jumpKeyTime(const float& timePerFrame)
 {
 	if (m_jumpTimer < m_jumpTimerMax)
 	{
-		m_jumpTimer += 600.0f * timePerFrame;
+		m_jumpTimer += 400.0f * timePerFrame;
 		return true;
 	}
 	else

@@ -7,7 +7,7 @@ AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Vector2f& velocit
 	m_animationState = MaxAnimations;
 	m_idleAnimationTimer.restart();
 	m_runningAnimationTimer.restart();
-	this->setFrame(sf::IntRect{ 5,5,50,60 });
+	this->setFrame(sf::IntRect{ 5,5,50,58 });
 	m_animationSwitch = false;
 	m_spriteScale.x = m_sprite.getScale().x;
 	m_spriteScale.y = m_sprite.getScale().y;
@@ -60,12 +60,12 @@ void AnimationComponent::updateAnimation()
 	}
 	else if (m_animationState == Jumping)
 	{
-		this->setFrame(sf::IntRect{ 5,136,50,60 });
+		this->setFrame(sf::IntRect{ 5,136,50,58 });
 		this->setSpriteRotation();
 	}
 	else if (m_animationState == Falling)
 	{
-		this->setFrame(sf::IntRect{ 5,200,50,60 });
+		this->setFrame(sf::IntRect{ 5,200,50,58 });
 		this->setSpriteRotation();
 	}
 	else if (m_animationState == MovingRight)

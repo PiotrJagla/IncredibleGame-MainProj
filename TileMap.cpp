@@ -7,9 +7,17 @@
 //Constructors / Descructors
 TileMap::TileMap()
 {
-	m_tileMap.resize(1,std::vector<Tile*>());
-	m_tileMap[0].push_back(new Tile{});
-	m_tileMap[0][0]->m_tile.setPosition(100.0f, 100.0f);
+	//m_tileMap.resize(Constants::mapSizeY, std::vector<Tile*>{});
+	for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
+	{
+		m_tileMap.resize(Constants::mapSizeX, std::vector<Tile*>{});
+		for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
+		{
+			m_tileMap[iii].push_back(new Tile{});
+			m_tileMap[iii][kkk]->m_tile.setPosition(Constants::gridSizeU * kkk, Constants::gridSizeU * iii);
+		}
+	}
+
 }
 
 TileMap::~TileMap()
@@ -24,16 +32,13 @@ void TileMap::update(sf::Vector2u& mouseGridPosition)
 
 void TileMap::render(sf::RenderTarget* target)
 {
-	/*for (int iii{ 0 }; m_tileMap.size(); ++iii)
+	for (int iii{ 0 }; iii < m_tileMap.size(); ++iii)
 	{
-		for (int kkk{ 0 }; m_tileMap[iii].size(); ++kkk)
+		for (int kkk{ 0 }; kkk < m_tileMap[iii].size(); ++kkk)
 		{
 			target->draw(m_tileMap[iii][kkk]->m_tile);
 		}
-	}*/
-	for (int iii{ 0 }; iii < m_tileMap[0].size(); ++iii)
-		target->draw(m_tileMap[0][iii]->m_tile);
-	
+	}
 }
 
 void TileMap::placeTile(sf::Vector2u& mouseGridPosition)
@@ -41,10 +46,7 @@ void TileMap::placeTile(sf::Vector2u& mouseGridPosition)
 	if (RealeseDetection::mouseRealese() == true)
 	{
 		std::cout << "Tile added\n";
-		m_tileMap[0].push_back(new Tile{});
-		m_tileMap[0][m_tileMap[0].size()-1]->m_tile.setPosition(
-			mouseGridPosition.x * Constants::gridSizeU, mouseGridPosition.y * Constants::gridSizeU
-		);
+		m_tileMap[mouseGridPosition.y][mouseGridPosition.x]->m_tile.setFillColor(sf::Color::Black);
 	}
 }
 

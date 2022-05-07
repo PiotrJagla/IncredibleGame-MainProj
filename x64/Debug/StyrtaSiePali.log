@@ -1,2 +1,4 @@
-﻿  PhysicsComponent.cpp
+﻿  HitboxComponent.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.cpp(147,42): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.cpp(160,33): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSiePali.exe

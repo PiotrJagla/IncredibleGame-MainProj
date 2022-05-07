@@ -78,6 +78,9 @@
     <ClCompile Include="TileMap.cpp">
       <Filter>Map</Filter>
     </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Auxiliary Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuxiliaryVariables.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="TileMap.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Auxiliary Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

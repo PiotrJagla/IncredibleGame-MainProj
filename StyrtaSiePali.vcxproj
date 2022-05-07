@@ -160,6 +160,7 @@
     <ClCompile Include="AuxiliaryVariables.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Creature.cpp" />
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameResources.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="AuxiliaryVariables.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Creature.h" />
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameResources.h" />
     <ClInclude Include="GameState.h" />

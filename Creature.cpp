@@ -17,7 +17,7 @@ void Creature::initSprite()
 {
 	m_sprite = new sf::Sprite{};
 	m_sprite->setTexture(*m_texture);
-	m_sprite->setTextureRect(sf::IntRect{ 5,5,50,60 });
+	m_sprite->setTextureRect(sf::IntRect{ 5,5,50,58 });
 }
 
 void Creature::initTexture(std::string textureDirectory)

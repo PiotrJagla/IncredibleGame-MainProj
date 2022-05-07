@@ -15,6 +15,7 @@ private:
 	float m_jumpTimerMax;
 
 	bool& m_isGrounded;
+	bool m_isJumping;
 
 public:
 	PhysicsComponent(sf::Vector2f& velocity, sf::Vector2f& direction,

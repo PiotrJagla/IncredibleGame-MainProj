@@ -7,8 +7,8 @@ const unsigned Constants::WindowHeigth = 900;
 const unsigned Constants::WindowWidth = 1400;
 const float Constants::gridSizeF = 100.0f;
 const unsigned Constants::gridSizeU = static_cast<unsigned>(Constants::gridSizeF);
-const unsigned Constants::mapSizeX = 100;
-const unsigned Constants::mapSizeY = 100;
+const unsigned Constants::mapSizeX = 14;
+const unsigned Constants::mapSizeY = 9;
 
 //Button realese detection
 bool RealeseDetection::Escape = false;
