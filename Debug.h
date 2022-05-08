@@ -2,6 +2,8 @@
 class Debug
 {
 public:
-	static void showVelocity(sf::Vector2f velocity);
+	static void showVelocity(float velocityX, float velocityY);
+
+	static void showPosition(float positionX, float positionY);
 };
 

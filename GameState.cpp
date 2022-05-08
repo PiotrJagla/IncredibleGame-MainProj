@@ -15,7 +15,7 @@ void GameState::initPauseMenu()
 void GameState::initPlayer()
 {
 	m_player = new Player{"Textures/playerTextureSheet.png"};
-	//m_player->setScale(sf::Vector2f{ 1.5f, 1.5f });
+	m_player->setScale(sf::Vector2f{ 2.23f, 1.7f });
 	m_creatures.push_back(m_player);
 	
 }
@@ -70,9 +70,9 @@ void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 	if (m_isPaused == false)
 	{
 		m_tileMap->update(m_mouseGridPosition);
+		//this->updateCollision();
 		this->updateCreatures(timePerFrame);
 		this->updateButtons(window);
-		this->updateCollision();
 	}
 	else
 	{
@@ -125,24 +125,29 @@ void GameState::updateCreatures(const float& timePerFrame)
 {
 	for (auto* creature : m_creatures)
 	{
-		creature->update(timePerFrame);
+		creature->updatePhysicsComponent(deltaTime::timePerFrame);
+		creature->updateHitboxComponent();
+		this->updateCollision(creature);
+		creature->updateAnimationComponent();
+		creature->updateMovementComponent(deltaTime::timePerFrame);
 	}
 }
 
-void GameState::updateCollision()
+void GameState::updateCollision(Creature* creature)
 {
-	this->updateTilesMapCollision();
+	creature->updateCollision();
+	this->updateTilesMapCollision(creature);
 }
 
-void GameState::updateTilesMapCollision()
+void GameState::updateTilesMapCollision(Creature* creature)
 {
-	for (int iii{ 0 } ; iii < Constants::mapSizeY ; ++iii)
+	for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
 	{
 		for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
 		{
-			m_player->updateCollision(m_tileMap->getTile(iii, kkk)->m_tile);
+			creature->tileCollision(m_tileMap->getTile(iii, kkk)->m_tile);
 		}
-		
+
 	}
 }
 

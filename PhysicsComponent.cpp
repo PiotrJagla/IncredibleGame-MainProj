@@ -21,19 +21,22 @@ PhysicsComponent::~PhysicsComponent()
 //Public functions
 void PhysicsComponent::update(const float& timePerFrame)
 {
+	
 	this->gravity(timePerFrame);
 	this->decelerate(timePerFrame);
+	this->updateVelocity(timePerFrame);
+	
 }
 
 void PhysicsComponent::gravity(const float& timePerFrame)
 {
-	if (m_isGrounded == false)
-	{
-		m_direction.y = 1.0f;
 
-		if (m_velocity.y <= m_maxVelocity.y)
-			m_velocity.y += m_gravity * timePerFrame;
-	}
+	m_direction.y = 1.0f;
+
+	if (m_velocity.y <= m_maxVelocity.y)
+		m_velocity.y += m_gravity * timePerFrame;
+	
+	
 
 	
 	

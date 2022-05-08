@@ -46,8 +46,8 @@ public:
 	void updatePauseMenuButtons(sf::RenderWindow* window);
 
 	void updateCreatures(const float& timePerFrame);
-	void updateCollision();
-	void updateTilesMapCollision();
+	void updateCollision(Creature* creature);
+	void updateTilesMapCollision(Creature* creature);
 	
 
 	//Render

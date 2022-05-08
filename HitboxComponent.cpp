@@ -23,6 +23,7 @@ HitboxComponent::~HitboxComponent()
 
 void HitboxComponent::update()
 {
+	
 	this->updateHitboxPosition();
 	this->checkSceenBoundsCollision();
 }
@@ -34,12 +35,18 @@ void HitboxComponent::updateHitboxPosition()
 
 void HitboxComponent::checkSceenBoundsCollision()
 {
-	if (m_hitbox.getPosition().x < 0.0f)
+	sf::FloatRect hitboxNextPosition{ m_hitbox.getGlobalBounds() };
+
+	hitboxNextPosition.left += m_velocity.x * deltaTime::timePerFrame;
+	hitboxNextPosition.top += m_velocity.y * deltaTime::timePerFrame;
+
+	if (hitboxNextPosition.left < 0.0f)
 	{
-		m_sprite.setPosition(0.0f, m_sprite.getPosition().y);
+		m_sprite.setPosition(3.0f, m_sprite.getPosition().y);
 		m_velocity.x = 0.0f;
 	}
-	else if (m_hitbox.getPosition().x + m_hitbox.getGlobalBounds().width >= Constants::WindowWidth)
+	else if (hitboxNextPosition.left + m_hitbox.getGlobalBounds().width >
+		static_cast<float>(Constants::WindowWidth))
 	{
 		m_sprite.setPosition(
 			Constants::WindowWidth - m_hitbox.getGlobalBounds().width,
@@ -50,7 +57,8 @@ void HitboxComponent::checkSceenBoundsCollision()
 
 
 
-	else if (m_hitbox.getPosition().y + m_hitbox.getGlobalBounds().height >= Constants::WindowHeigth)
+	else if (hitboxNextPosition.top + m_hitbox.getGlobalBounds().height > 
+		static_cast<float>(Constants::WindowHeigth))
 	{
 		m_sprite.setPosition(
 			m_sprite.getPosition().x,
@@ -58,13 +66,14 @@ void HitboxComponent::checkSceenBoundsCollision()
 		);
 		m_velocity.y = 0.0f;
 		m_isGrounded = true;
-		//std::cout << "Screen down\n";
+
+
 	}
 }
 
 void HitboxComponent::drawHitbx(sf::RenderTarget* target)
 {
-	target->draw(m_hitbox);
+	//target->draw(m_hitbox);
 }
 
 void HitboxComponent::scaleHitboxSize(sf::Vector2f scale)
@@ -79,8 +88,8 @@ void HitboxComponent::scaleHitboxSize(sf::Vector2f scale)
 
 void HitboxComponent::creatureTileCollision(sf::RectangleShape& tileHitbox)
 {
-	sf::FloatRect hitboxBounds{ m_hitbox.getGlobalBounds() };
 
+	sf::FloatRect hitboxBounds{ m_hitbox.getGlobalBounds() };
 	sf::FloatRect hitboxNextPosition{ m_hitbox.getGlobalBounds() };
 	//std::cout << deltaTime::timePerFrame << '\n';
 	hitboxNextPosition.left += m_velocity.x * deltaTime::timePerFrame;
@@ -138,29 +147,30 @@ void HitboxComponent::creatureTileCollision(sf::RectangleShape& tileHitbox)
 
 		if (m_velocity.y <= 0)
 		{
-			if (((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)hitboxNextGridPos.y) ||
-				((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 0.9f) && (int)tileGridPos.y == (int)hitboxNextGridPos.y))
+			if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)hitboxNextGridPos.y) ||
+				((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)hitboxNextGridPos.y))
 			{
-				//std::cout << "COLLISION\n"; TUTAJ JEST BLAD
+				//std::cout << "COLLISION\n"; 
+				
 				m_sprite.setPosition(
 					m_sprite.getPosition().x,
-					((int)(hitboxNextGridPos.y + 1.0f)) * Constants::gridSizeU
+					((int)(hitboxNextGridPos.y + 1.0f)) * Constants::gridSizeF
 				);
 				m_velocity.y = 0.0f;
 			}
 		}
 		else
 		{
-			if (((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)) ||
-				((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 0.9f) && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)))
+			if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)) ||
+				((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)))
 			{
 				//std::cout << "COLLISION\n";
 				m_sprite.setPosition(
 					m_sprite.getPosition().x,
-					((int)hitboxNextGridPos.y) * Constants::gridSizeU
+					((int)hitboxNextGridPos.y) * Constants::gridSizeF
 				);
 				m_velocity.y = 0.0f;
-				
+				m_isGrounded = true;
 			}
 		}
 	}

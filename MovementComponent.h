@@ -1,6 +1,5 @@
 #pragma once
 
-#include "PhysicsComponent.h"
 
 class MovementComponent
 {
@@ -10,11 +9,11 @@ private:
 	sf::Vector2f& m_direction;
 	sf::Vector2f& m_velocity;
 
-	PhysicsComponent* m_physicsComponent;
+	//PhysicsComponent* m_physicsComponent;
 
 	bool& m_isGrounded;
 
-	void initPhysicsComponent();
+	//void initPhysicsComponent();
 
 public:
 	MovementComponent(sf::Vector2f& direction, sf::Vector2f& velocity,

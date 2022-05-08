@@ -3,6 +3,7 @@
 #include "HitboxComponent.h"
 #include "MovementComponent.h"
 #include "AnimationComponent.h"
+#include"PhysicsComponent.h"
 
 class Creature
 {
@@ -23,6 +24,7 @@ protected:
 	HitboxComponent* m_hitboxComponent;
 	MovementComponent* m_movementComponent;
 	AnimationComponent* m_animationComponent;
+	PhysicsComponent* m_physicsComponent;
 	
 	
 	//Initialize protected functions
@@ -31,6 +33,7 @@ protected:
 	void initHitboxComponent();
 	void initMovementComponent();
 	void initAnimationComponent();
+	void initPhysicsComponent();
 
 public:
 	//Constructors / Descructors
@@ -40,10 +43,14 @@ public:
 
 	//Public functions
 	virtual void update(const float& timePerFrame) = 0;
+	virtual void updatePhysicsComponent(const float& timePerFrame) = 0;
+	virtual void updateMovementComponent(const float& timePerFrame) = 0;
+	virtual void updateAnimationComponent() = 0;
+	virtual void updateHitboxComponent() = 0;
 
 	virtual void render(sf::RenderTarget* target) = 0;
 
-	virtual void updateCollision(sf::RectangleShape& tileHitbox) = 0;
+	virtual void updateCollision() = 0;
 
 	virtual void tileCollision(sf::RectangleShape& tileHitbox) = 0;
 

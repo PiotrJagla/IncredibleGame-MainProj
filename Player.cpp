@@ -23,19 +23,39 @@ Player::~Player()
 //Update
 void Player::update(const float& timePerFrame)
 {
-	m_movementComponent->update(timePerFrame);
-	m_hitboxComponent->update();
-	m_animationComponent->update();
+	
 }
 
-void Player::updateCollision(sf::RectangleShape& tileHitbox)
+void Player::updateCollision()
 {
-	this->tileCollision(tileHitbox);
+
 }
 
 void Player::tileCollision(sf::RectangleShape& tileHitbox)
 {
 	m_hitboxComponent->creatureTileCollision(tileHitbox);
+}
+
+void Player::updatePhysicsComponent(const float& timePerFrame)
+{
+
+	m_physicsComponent->update(timePerFrame);
+}
+
+void Player::updateMovementComponent(const float& timePerFrame)
+{
+
+	m_movementComponent->update(timePerFrame);
+}
+
+void Player::updateAnimationComponent()
+{
+	m_animationComponent->update();
+}
+
+void Player::updateHitboxComponent()
+{
+	m_hitboxComponent->update();
 }
 
 //Render

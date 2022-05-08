@@ -1,16 +1,7 @@
-﻿  Game.cpp
-  GameState.cpp
-  MainMenuState.cpp
-  TileMap.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(43,68): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-          with
-          [
-              T=unsigned int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(43,24): warning C4244: "argument": konwersja z "T" do "float", możliwa utrata danych
-          with
-          [
-              T=unsigned int
-          ]
-  main.cpp
-LINK : fatal error LNK1104: nie można otworzyć pliku „D:\Program Files (x86)\GitHub\IncredibleGame\x64\Release\StyrtaSiePali.exe”
+﻿  HitboxComponent.cpp
+  Trwa generowanie kodu
+  1 of 681 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Zakończono generowanie kodu
+  StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Release\StyrtaSiePali.exe
