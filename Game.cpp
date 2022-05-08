@@ -12,7 +12,7 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-	m_states.push(new MainMenuState{ &m_states });
+	m_states.push(new MainMenuState{ &m_states, m_window});
 }
 
 //Constructors / Descructors

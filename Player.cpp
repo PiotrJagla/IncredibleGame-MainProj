@@ -64,3 +64,8 @@ void Player::render(sf::RenderTarget* target)
 	target->draw(*m_sprite);
 	m_hitboxComponent->drawHitbx(target);
 }
+
+const sf::Vector2f& Player::getPosition() const
+{
+	return m_sprite->getPosition();
+}

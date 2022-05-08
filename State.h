@@ -4,6 +4,8 @@ class State
 private:
 	
 protected:
+	sf::RenderWindow* m_window;
+
 	std::stack<State*>* m_states;
 	bool m_quit;
 
@@ -14,12 +16,12 @@ protected:
 
 	//Mouse positions
 	sf::Vector2i m_mousePositionWindow;
-	sf::Vector2i m_mousePositionView;
+	sf::Vector2f m_mousePositionView;
 	sf::Vector2u m_mouseGridPosition;
 
 public:
 	//Constructors / Descructors
-	State(std::stack<State*>* states);
+	State(std::stack<State*>* states, sf::RenderWindow* window);
 	virtual ~State();
 
 
@@ -31,7 +33,7 @@ public:
 	//Regular functions
 	void endState();
 	const bool& getQuit() const;
-	void updateMousePositions(sf::RenderWindow* window);
+	void updateMousePositions(sf::View& camera);
 
 	void pauseON();
 	void pauseOFF();

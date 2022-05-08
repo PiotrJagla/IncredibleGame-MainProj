@@ -25,7 +25,7 @@ void HitboxComponent::update()
 {
 	
 	this->updateHitboxPosition();
-	this->checkSceenBoundsCollision();
+	//this->checkSceenBoundsCollision();
 }
 
 void HitboxComponent::updateHitboxPosition()

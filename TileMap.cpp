@@ -2,12 +2,30 @@
 #include "TileMap.h"
 
 
-
-
-//Constructors / Descructors
-TileMap::TileMap()
+void TileMap::makeMap()
 {
-	//m_tileMap.resize(Constants::mapSizeY, std::vector<Tile*>{});
+	m_mapVisualization.resize(Constants::mapSizeY, std::wstring{});
+	m_mapVisualization[0] += L"........................................................................";
+	m_mapVisualization[1] += L"........................................................................";
+	m_mapVisualization[2] += L"#......................................................................#";
+	m_mapVisualization[3] += L"#................####..................................................#";
+	m_mapVisualization[4] += L"#...............##.....................................................#";
+	m_mapVisualization[5] += L"#..............##......................................................#";
+	m_mapVisualization[6] += L"###########.#########################..........#########################";
+	m_mapVisualization[7] += L"..........#.#...........................................................";
+	m_mapVisualization[8] += L"..........#.#...........................................................";
+	m_mapVisualization[9] += L"..........#.#...................######.......##.........................";
+	m_mapVisualization[10]+= L"..........#.#...................#.......................................";
+	m_mapVisualization[11]+= L"..........#.#...................#.......................................";
+	m_mapVisualization[12]+= L"..........#.#########.....#######.......................................";
+	m_mapVisualization[13]+= L"..........#.............##..............................................";
+	m_mapVisualization[14]+= L"..........#............##...............................#####...........";
+	m_mapVisualization[15]+= L"..........##############................................................";
+	//std::cout << m_mapVisualization[0].size();
+}
+
+void TileMap::initTileMap()
+{
 	for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
 	{
 		m_tileMap.resize(Constants::mapSizeX, std::vector<Tile*>{});
@@ -15,9 +33,23 @@ TileMap::TileMap()
 		{
 			m_tileMap[iii].push_back(new Tile{});
 			m_tileMap[iii][kkk]->m_tile.setPosition(Constants::gridSizeU * kkk, Constants::gridSizeU * iii);
+			if (m_mapVisualization[iii].at(kkk) == '.')
+			{
+				m_tileMap[iii][kkk]->m_tile.setFillColor(sf::Color::Transparent);
+			}
+			else if (m_mapVisualization[iii].at(kkk) == '#')
+			{
+				m_tileMap[iii][kkk]->m_tile.setFillColor(sf::Color::Black);
+			}
 		}
 	}
+}
 
+//Constructors / Descructors
+TileMap::TileMap()
+{
+	this->makeMap();
+	this->initTileMap();
 }
 
 TileMap::~TileMap()

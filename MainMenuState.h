@@ -16,7 +16,7 @@ private:
 	void initBackground();
 public:
 	//Constructors / Descructors
-	MainMenuState(std::stack<State*>* states);
+	MainMenuState(std::stack<State*>* states, sf::RenderWindow* window);
 	virtual ~MainMenuState();
 
 	//Update

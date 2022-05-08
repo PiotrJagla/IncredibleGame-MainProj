@@ -31,8 +31,8 @@ void MainMenuState::initBackground()
 }
 
 //Constructors / Descructors
-MainMenuState::MainMenuState(std::stack<State*>* states) :
-	State{states}
+MainMenuState::MainMenuState(std::stack<State*>* states, sf::RenderWindow* window) :
+	State{states, window}
 {
 	this->initButtons();
 	this->initBackground();
@@ -67,7 +67,7 @@ void MainMenuState::updateButtonClickDetection(sf::RenderWindow* window)
 {
 	if (m_buttons["newGameButton"]->isButtonClicked(window))
 	{
-		m_states->push(new GameState{ m_states });
+		m_states->push(new GameState{ m_states, m_window });
 	}
 	else if (m_buttons["quitButton"]->isButtonClicked(window))
 	{

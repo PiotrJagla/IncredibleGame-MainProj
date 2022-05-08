@@ -3,8 +3,8 @@
 
 
 //Constructors / Descrutors
-State::State(std::stack<State*>* states) :
-	m_states{ states }
+State::State(std::stack<State*>* states, sf::RenderWindow* window) :
+	m_states{ states }, m_window{window}
 {
 	m_quit = false;
 	m_isPaused = false;
@@ -34,9 +34,11 @@ const bool& State::getQuit() const
 	return m_quit;
 }
 
-void State::updateMousePositions(sf::RenderWindow* window)
+void State::updateMousePositions(sf::View& camera)
 {
-	m_mousePositionWindow = sf::Mouse::getPosition(*window);
+	m_mousePositionWindow = sf::Mouse::getPosition(*m_window);
+
+	m_mousePositionView = m_window->mapPixelToCoords(m_mousePositionWindow);
 
 	m_mouseGridPosition.x = m_mousePositionWindow.x / Constants::gridSizeU;
 	m_mouseGridPosition.y = m_mousePositionWindow.y / Constants::gridSizeU;

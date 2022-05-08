@@ -17,6 +17,7 @@ private:
 	//Creatures
 	std::vector<Creature*> m_creatures;
 	Player* m_player;
+	sf::View m_playerCamera;
 
 	sf::Texture m_backgroundTexture;
 	sf::RectangleShape m_background;
@@ -32,7 +33,7 @@ private:
 	void initTileMap();
 public:
 	//Constructors / Descructors
-	GameState(std::stack<State*>* states);
+	GameState(std::stack<State*>* states, sf::RenderWindow* window);
 	virtual ~GameState();
 
 	//Update
@@ -48,6 +49,7 @@ public:
 	void updateCreatures(const float& timePerFrame);
 	void updateCollision(Creature* creature);
 	void updateTilesMapCollision(Creature* creature);
+	void updatePlayerCamera();
 	
 
 	//Render

@@ -6,7 +6,10 @@ class TileMap
 {
 private:
 	std::vector<std::vector<Tile*>> m_tileMap;
-
+	std::vector<std::wstring> m_mapVisualization;
+	
+	void initTileMap();
+	void makeMap();
 public:
 	TileMap();
 	~TileMap();

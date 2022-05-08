@@ -18,6 +18,9 @@ void GameState::initPlayer()
 	m_player->setScale(sf::Vector2f{ 2.23f, 1.7f });
 	m_creatures.push_back(m_player);
 	
+
+	m_playerCamera.setSize(Constants::WindowWidth, Constants::WindowHeigth);
+	m_playerCamera.setCenter(Constants::WindowWidth / 2.0f, Constants::WindowHeigth / 2.0f);
 }
 
 void GameState::initBackground()
@@ -28,11 +31,12 @@ void GameState::initBackground()
 	}
 
 	m_background.setSize(sf::Vector2f{
-		static_cast<float>(Constants::WindowWidth), 
-		static_cast<float>(Constants::WindowHeigth) 
+		static_cast<float>(Constants::WindowWidth * 10.0f), 
+		static_cast<float>(Constants::WindowHeigth * 4.0f) 
 		}
 	);
 
+	m_background.setPosition(-1000.0f, -1000.0f);
 
 	m_background.setTexture(&m_backgroundTexture);
 }
@@ -43,7 +47,8 @@ void GameState::initTileMap()
 }
 
 //Constructors / Descructors
-GameState::GameState(std::stack<State*>* states) : State{states}
+GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window) 
+	: State{states, window}
 {
 
 	this->initButtons();
@@ -65,13 +70,14 @@ void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 {
 	this->updateKeyTime(timePerFrame);
 	this->updateInput();
-	this->updateMousePositions(window);
+	this->updateMousePositions(m_playerCamera);
 
 	if (m_isPaused == false)
 	{
 		m_tileMap->update(m_mouseGridPosition);
 		//this->updateCollision();
 		this->updateCreatures(timePerFrame);
+		this->updatePlayerCamera();
 		this->updateButtons(window);
 	}
 	else
@@ -151,14 +157,24 @@ void GameState::updateTilesMapCollision(Creature* creature)
 	}
 }
 
+void GameState::updatePlayerCamera()
+{
+	m_playerCamera.setCenter(m_player->getPosition());
+}
+
 void GameState::render(sf::RenderTarget* target)
 {
-	target->draw(m_background);
+	
 
+	target->setView(m_playerCamera);
+
+	target->draw(m_background);
 	m_tileMap->render(target);
-	this->renderButtons(target);
 	this->renderCreatures(target);
 
+	m_window->setView(m_window->getDefaultView());
+
+	this->renderButtons(target);
 	if (m_isPaused == true)
 	{
 		m_pauseMenu->render(target);

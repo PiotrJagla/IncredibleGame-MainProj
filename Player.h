@@ -5,6 +5,7 @@
 class Player : public Creature
 {
 private:
+	
 
 	//initialize private functions
 public:
@@ -21,5 +22,7 @@ public:
 	void updateHitboxComponent() override;
 
 	void render(sf::RenderTarget* target) override;
+
+	const sf::Vector2f& getPosition() const;
 };
 
