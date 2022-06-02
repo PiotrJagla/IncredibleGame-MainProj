@@ -1,6 +1,3 @@
-﻿  GameState.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(22,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(22,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(150,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(152,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+﻿  Player.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\Player.cpp(62,30): warning C4244: "argument": konwersja z "const float" do "int", możliwa utrata danych
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSiePali.exe

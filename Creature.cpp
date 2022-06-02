@@ -15,7 +15,7 @@ void Creature::initAnimationComponent()
 
 void Creature::initPhysicsComponent()
 {
-	m_physicsComponent = new PhysicsComponent{ m_velocity, m_direction, 1500.0f, -750.0f, 3000.0f,
+	m_physicsComponent = new PhysicsComponent{ m_velocity, m_direction, 1900.0f, -950.0f, 3500.0f,
 		sf::Vector2f{900.0f, 900.0f}, m_isGrounded };
 
 }
@@ -25,6 +25,7 @@ void Creature::initSprite()
 	m_sprite = new sf::Sprite{};
 	m_sprite->setTexture(*m_texture);
 	m_sprite->setTextureRect(sf::IntRect{ 5,5,50,58 });
+	m_sprite->setPosition(30.0f, 2300.0f);
 }
 
 void Creature::initTexture(std::string textureDirectory)
@@ -72,3 +73,5 @@ void Creature::setScale(sf::Vector2f scale)
 	//m_hitboxComponent->scaleHitboxSize(scale);
 	m_animationComponent->setScale(scale);
 }
+
+

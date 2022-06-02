@@ -1,6 +1,7 @@
 #include "Headers.h"
 #include "Tile.h"
 
+
 Tile::Tile()
 {
 	/*m_tile.setFillColor(sf::Color{ 
@@ -10,14 +11,17 @@ Tile::Tile()
 		255
 		}
 	);*/
-	m_tile.setFillColor(sf::Color::Transparent);
-	m_tile.setOutlineThickness(1.0f);
-	m_tile.setOutlineColor(sf::Color::Black);
+
+	//m_tile.setOutlineThickness(1.0f);
+	//m_tile.setOutlineColor(sf::Color::Black);
+
+	//m_tile.setFillColor(sf::Color::Transparent);
 	m_tile.setSize(sf::Vector2f{ Constants::gridSizeF, Constants::gridSizeF });
-	
+
 }
 
 Tile::~Tile()
 {
 
 }
+

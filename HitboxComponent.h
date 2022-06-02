@@ -25,6 +25,10 @@ public:
 
 	void scaleHitboxSize(sf::Vector2f scale);
 
-	void creatureTileCollision(sf::RectangleShape& tileHitbox);
+	void creatureTileCollision(Tile& collisionTile);
+	void walkingTileCollision(Tile& collisionTile);
+	bool creatureSpikeCollision(Tile& collisionTile);
+
+	const sf::RectangleShape& getHitbox() const;
 };
 

@@ -56,6 +56,7 @@ public:
 	void render(sf::RenderTarget* target = nullptr) override;
 	void renderButtons(sf::RenderTarget* target);
 	void renderCreatures(sf::RenderTarget* target);
+	void renderGUI(sf::RenderTarget* target);
 
 
 

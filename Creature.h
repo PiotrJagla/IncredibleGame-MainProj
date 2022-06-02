@@ -26,7 +26,9 @@ protected:
 	AnimationComponent* m_animationComponent;
 	PhysicsComponent* m_physicsComponent;
 	
-	
+	int m_currentHP;
+	int m_maxHP;
+
 	//Initialize protected functions
 	void initSprite();
 	void initTexture(std::string textureDirectory);
@@ -52,12 +54,16 @@ public:
 
 	virtual void updateCollision() = 0;
 
-	virtual void tileCollision(sf::RectangleShape& tileHitbox) = 0;
+	virtual void tileCollision(Tile& collisionTile) = 0;
 
 
 
 	//Accesors
 
+
 	//Modifiers
 	void setScale(sf::Vector2f scale);
+
+	//Creature funcjonality
+	virtual void getDamage(int damage) = 0;
 };

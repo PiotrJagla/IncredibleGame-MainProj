@@ -7,7 +7,7 @@ void Game::initWindow()
 	m_window = new sf::RenderWindow{ sf::VideoMode{Constants::WindowWidth, Constants::WindowHeigth} ,
 		"Incredible Game", sf::Style::Close | sf::Style::Titlebar };
 
-	//m_window->setFramerateLimit(30);
+	m_window->setFramerateLimit(40);
 }
 
 void Game::initStates()
@@ -35,6 +35,7 @@ void Game::gameLoop()
 {
 	while (m_window->isOpen())
 	{
+	
 		m_timePerFrame = m_frameClock.restart().asSeconds();
 		deltaTime::timePerFrame = m_timePerFrame;
 		this->update();

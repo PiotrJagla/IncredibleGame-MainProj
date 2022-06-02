@@ -86,9 +86,17 @@ void HitboxComponent::scaleHitboxSize(sf::Vector2f scale)
 	
 }
 
-void HitboxComponent::creatureTileCollision(sf::RectangleShape& tileHitbox)
+void HitboxComponent::creatureTileCollision(Tile& collisionTile)
 {
+	if (collisionTile.isObsticle == true)
+	{
+		this->walkingTileCollision(collisionTile);
+	}
+}
 
+void HitboxComponent::walkingTileCollision(Tile& collisionTile)
+{
+	sf::RectangleShape tileHitbox = collisionTile.m_tile;
 	sf::FloatRect hitboxBounds{ m_hitbox.getGlobalBounds() };
 	sf::FloatRect hitboxNextPosition{ m_hitbox.getGlobalBounds() };
 	//std::cout << deltaTime::timePerFrame << '\n';
@@ -112,151 +120,79 @@ void HitboxComponent::creatureTileCollision(sf::RectangleShape& tileHitbox)
 		hitboxNextPosition.top / Constants::gridSizeF
 	};
 
+	//std::cout << (int)tileGridPos.x << " " << (int)tileGridPos.y << " TILE " <<
+	//	//	(int)hitboxGridPos.x << " " << (int)hitboxGridPos.y << " HITBOX \n";
 
-	if (tileHitbox.getFillColor() == sf::Color::Black)
+	if (m_velocity.x <= 0)
 	{
-		//std::cout << (int)tileGridPos.x << " " << (int)tileGridPos.y << " TILE " <<
-		//	(int)hitboxGridPos.x << " " << (int)hitboxGridPos.y << " HITBOX \n";
-
-		if (m_velocity.x <= 0)
+		if (((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)hitboxGridPos.y) ||
+			((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)(hitboxGridPos.y + 0.9f)))
 		{
-			if (((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)hitboxGridPos.y) ||
-				((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)(hitboxGridPos.y + 0.9f)))
-			{
-				//std::cout << "COLLISION\n";
-				m_sprite.setPosition(
-					((int)hitboxNextGridPos.x + 1) * Constants::gridSizeF,
-					m_sprite.getPosition().y
-				);
-				m_velocity.x = 0.0f;
-			}
+			//std::cout << "COLLISION\n";
+			m_sprite.setPosition(
+				((int)hitboxNextGridPos.x + 1) * Constants::gridSizeF,
+				m_sprite.getPosition().y
+			);
+			m_velocity.x = 0.0f;
 		}
-		else
+	}
+	else
+	{
+		if (((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 1.0f) && (int)tileGridPos.y == (int)hitboxGridPos.y) ||
+			((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 1.0f) && (int)(tileGridPos.y == (int)(hitboxGridPos.y + 0.9f))))
 		{
-			if (((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 1.0f) && (int)tileGridPos.y == (int)hitboxGridPos.y) ||
-				((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 1.0f) && (int)(tileGridPos.y == (int)(hitboxGridPos.y + 0.9f))))
-			{
-				//std::cout << "COLLISION\n";
-				m_sprite.setPosition(
-					((int)hitboxNextGridPos.x) * Constants::gridSizeF,
-					m_sprite.getPosition().y
-				);
-				m_velocity.x = 0.0f;
-			}
-		}
-
-		if (m_velocity.y <= 0)
-		{
-			if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)hitboxNextGridPos.y) ||
-				((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)hitboxNextGridPos.y))
-			{
-				//std::cout << "COLLISION\n"; 
-				
-				m_sprite.setPosition(
-					m_sprite.getPosition().x,
-					((int)(hitboxNextGridPos.y + 1.0f)) * Constants::gridSizeF
-				);
-				m_velocity.y = 0.0f;
-			}
-		}
-		else
-		{
-			if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)) ||
-				((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)))
-			{
-				//std::cout << "COLLISION\n";
-				m_sprite.setPosition(
-					m_sprite.getPosition().x,
-					((int)hitboxNextGridPos.y) * Constants::gridSizeF
-				);
-				m_velocity.y = 0.0f;
-				m_isGrounded = true;
-			}
+			//std::cout << "COLLISION\n";
+			m_sprite.setPosition(
+				((int)hitboxNextGridPos.x) * Constants::gridSizeF,
+				m_sprite.getPosition().y
+			);
+			m_velocity.x = 0.0f;
 		}
 	}
 
+	if (m_velocity.y <= 0)
+	{
+		if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)hitboxNextGridPos.y) ||
+			((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)hitboxNextGridPos.y))
+		{
+			//std::cout << "COLLISION\n"; 
+			
+			m_sprite.setPosition(
+				m_sprite.getPosition().x,
+				((int)(hitboxNextGridPos.y + 1.0f)) * Constants::gridSizeF
+			);
+			m_velocity.y = 0.0f;
+		}
+	}
+	else
+	{
+		if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)) ||
+			((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)))
+		{
+			//std::cout << "COLLISION\n";
+			m_sprite.setPosition(
+				m_sprite.getPosition().x,
+				((int)hitboxNextGridPos.y) * Constants::gridSizeF
+			);
+			m_velocity.y = 0.0f;
+			m_isGrounded = true;
+		}
+	}
+}
 
+bool HitboxComponent::creatureSpikeCollision(Tile& collisionTile)
+{
+	if (collisionTile.m_tileType == Tile::Type::Spike)
+	{
+		if (m_hitbox.getGlobalBounds().intersects(collisionTile.m_tile.getGlobalBounds()))
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	//std::cout << "TILE: " << tileHitbox.getPosition().y << " PLAYER: " << m_hitbox.getPosition().y << '\n';
-
-	//if (tileBounds.intersects(hitboxNextPosition) && tileHitbox.getFillColor() == sf::Color::Black)
-	//{
-	//	if (tileBounds.left < hitboxBounds.left + hitboxBounds.width &&
-	//		tileBounds.left + tileBounds.width > hitboxBounds.left &&
-	//		tileBounds.top > hitboxBounds.top &&
-	//		tileBounds.top + tileBounds.height > hitboxBounds.top + hitboxBounds.height)
-	//	{//Up collision
-	//		std::cout << "UP\n";
-	//		m_sprite.setPosition(
-	//			m_hitbox.getPosition().x,
-	//			tileBounds.top - m_hitbox.getGlobalBounds().height
-	//		);
-	//		m_velocity.y = 0.0f;
-	//		m_isGrounded = true;
-	//		
-	//	}
-	//	else if (tileBounds.left < hitboxBounds.left + hitboxBounds.width &&
-	//		tileBounds.left + tileBounds.width > hitboxBounds.left &&
-	//		tileBounds.top < hitboxBounds.top &&
-	//		tileBounds.top + tileBounds.height < hitboxBounds.top + hitboxBounds.height)
-	//	{//Down collision
-
-	//		std::cout << "DOWN\n";
-	//	}
-
-
-	//	if (tileBounds.top < m_hitbox.getPosition().y + hitboxBounds.height &&
-	//		tileBounds.top + tileBounds.height > m_hitbox.getPosition().y &&
-	//		tileBounds.left > m_hitbox.getPosition().x &&
-	//		tileBounds.left + tileBounds.width > m_hitbox.getPosition().x + hitboxBounds.width)
-	//	{//Right collision
-	//		std::cout << "RIGHT\n";
-
-	//		m_velocity.x = 0.0f;
-	//		m_sprite.setPosition(
-	//			tileBounds.left - m_hitbox.getGlobalBounds().width,
-	//			m_hitbox.getPosition().y
-	//		);
-	//	}
-	//	else if (tileBounds.top < m_hitbox.getPosition().y + hitboxBounds.height &&
-	//		tileBounds.top + tileBounds.height > m_hitbox.getPosition().y &&
-	//		tileBounds.left < m_hitbox.getPosition().x &&
-	//		tileBounds.left + tileBounds.width < m_hitbox.getPosition().x + hitboxBounds.width)
-	//	{//Left collision
-	//		std::cout << "LEFT\n";
-
-	//		m_velocity.x = 0.0f;
-	//		m_sprite.setPosition(
-	//			tileBounds.left + tileBounds.width,
-	//			m_hitbox.getPosition().y
-	//		);
-	//	}
-	//}
+const sf::RectangleShape& HitboxComponent::getHitbox() const
+{
+	return m_hitbox;
 }

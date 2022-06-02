@@ -19,8 +19,9 @@ private:
 
 public:
 	PhysicsComponent(sf::Vector2f& velocity, sf::Vector2f& direction,
-		float acceleration, float deceleration,
-		float gravity ,sf::Vector2f maxVelocity, bool& isGrounded);
+		float acceleration, float deceleration, float gravity ,
+		sf::Vector2f maxVelocity, bool& isGrounded);
+
 	~PhysicsComponent();
 
 	void update(const float& timePerFrame);

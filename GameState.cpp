@@ -32,13 +32,14 @@ void GameState::initBackground()
 
 	m_background.setSize(sf::Vector2f{
 		static_cast<float>(Constants::WindowWidth * 10.0f), 
-		static_cast<float>(Constants::WindowHeigth * 4.0f) 
+		static_cast<float>(Constants::WindowHeigth * 5.0f) 
 		}
 	);
 
 	m_background.setPosition(-1000.0f, -1000.0f);
 
 	m_background.setTexture(&m_backgroundTexture);
+	//m_background.setFillColor(sf::Color::Blue);
 }
 
 void GameState::initTileMap()
@@ -151,7 +152,7 @@ void GameState::updateTilesMapCollision(Creature* creature)
 	{
 		for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
 		{
-			creature->tileCollision(m_tileMap->getTile(iii, kkk)->m_tile);
+			creature->tileCollision(*m_tileMap->getTile(iii, kkk));
 		}
 
 	}
@@ -159,6 +160,7 @@ void GameState::updateTilesMapCollision(Creature* creature)
 
 void GameState::updatePlayerCamera()
 {
+
 	m_playerCamera.setCenter(m_player->getPosition());
 }
 
@@ -173,6 +175,9 @@ void GameState::render(sf::RenderTarget* target)
 	this->renderCreatures(target);
 
 	m_window->setView(m_window->getDefaultView());
+
+	//Render GUI
+	this->renderGUI(target);
 
 	this->renderButtons(target);
 	if (m_isPaused == true)
@@ -192,4 +197,9 @@ void GameState::renderCreatures(sf::RenderTarget* target)
 	{
 		creature->render(target);
 	}
+}
+
+void GameState::renderGUI(sf::RenderTarget* target)
+{
+	m_player->renderHearts(target);
 }
