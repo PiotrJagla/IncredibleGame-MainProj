@@ -9,7 +9,7 @@ const float Constants::gridSizeF = 100.0f;
 const unsigned Constants::gridSizeU = static_cast<unsigned>(Constants::gridSizeF);
 const unsigned Constants::mapSizeX = 83;
 const unsigned Constants::mapSizeY = 30;
-const float Constants::spikeDamage = 1.5;
+const int Constants::spikeDamage = 15;
 
 //Button realese detection
 bool RealeseDetection::Escape = false;

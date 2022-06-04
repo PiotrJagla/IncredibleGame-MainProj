@@ -7,9 +7,6 @@
     <Filter Include="States">
       <UniqueIdentifier>{acd262e0-9cf2-4984-a2ee-cfafbb562825}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUI">
-      <UniqueIdentifier>{70177299-03cc-42fe-ab33-4b5e94239dd7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Creatures">
       <UniqueIdentifier>{d4e8a210-f05e-4efa-a8e2-2a1da6706a6d}</UniqueIdentifier>
     </Filter>
@@ -21,6 +18,21 @@
     </Filter>
     <Filter Include="Map">
       <UniqueIdentifier>{ad891371-6f91-40a2-83a1-2c2e3264f91b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{70177299-03cc-42fe-ab33-4b5e94239dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\GUI">
+      <UniqueIdentifier>{a2fcd349-c436-4912-bd31-2770d2594dbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\Other Libraries">
+      <UniqueIdentifier>{79ea3d2f-3838-4c27-9423-012a41165d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{b7f16930-1e3c-4a99-a086-f7748e0ea676}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items\Weapons">
+      <UniqueIdentifier>{af2e90e3-79f1-4073-8995-08f59a7d60c8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,14 +48,8 @@
     <ClCompile Include="GameState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
     <ClCompile Include="GameResources.cpp">
       <Filter>Auxiliary Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="PauseMenu.cpp">
-      <Filter>GUI</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
       <Filter>Creatures</Filter>
@@ -81,6 +87,21 @@
     <ClCompile Include="Debug.cpp">
       <Filter>Auxiliary Resources</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Libraries\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Libraries\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Libraries\Other Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Items\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuxiliaryVariables.h">
@@ -95,14 +116,8 @@
     <ClInclude Include="GameState.h">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>GUI</Filter>
-    </ClInclude>
     <ClInclude Include="GameResources.h">
       <Filter>Auxiliary Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseMenu.h">
-      <Filter>GUI</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
       <Filter>Creatures</Filter>
@@ -136,6 +151,21 @@
     </ClInclude>
     <ClInclude Include="Debug.h">
       <Filter>Auxiliary Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Libraries\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Libraries\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Libraries\Other Libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

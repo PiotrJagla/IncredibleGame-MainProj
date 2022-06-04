@@ -137,6 +137,8 @@ void GameState::updateCreatures(const float& timePerFrame)
 		this->updateCollision(creature);
 		creature->updateAnimationComponent();
 		creature->updateMovementComponent(deltaTime::timePerFrame);
+
+		creature->update(timePerFrame);
 	}
 }
 

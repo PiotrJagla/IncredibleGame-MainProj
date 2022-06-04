@@ -6,10 +6,10 @@
 //initialize private functions
 void Player::initHearts()
 {
-	m_maxHP = 5;
+	m_maxHP = 50;
 	m_currentHP = m_maxHP;
 
-	for (int iii{ 0 }; iii < m_maxHP; ++iii)
+	for (int iii{ 0 }; iii < m_maxHP/10; ++iii)
 	{
 
 		m_HPhearts.push_back(new sf::Sprite);
@@ -27,7 +27,11 @@ Player::Player(std::string textureDirectory)
 	: Creature{textureDirectory}
 {
 	this->initHearts();
-	m_milisecoundsImmortalityAfterDamage = 2000;
+	
+
+	m_afterDamageTimer.setSpeed(700.0f);
+	m_afterDamageTimer.setMAXtime(1600.0f);
+	m_afterDamageTimer.restart(m_afterDamageTimer.getTimeMAX() + 10.0f);
 }
 
 Player::~Player()
@@ -40,7 +44,12 @@ Player::~Player()
 //Update
 void Player::update(const float& timePerFrame)
 {
-	
+	this->updateTimers(timePerFrame);
+}
+
+void Player::updateTimers(const float& timePerFrame)
+{
+	m_afterDamageTimer.update(timePerFrame);
 }
 
 void Player::updateCollision()
@@ -57,25 +66,26 @@ void Player::tileCollision(Tile& collisionTile)
 void Player::playerSpikeCollision(Tile& collisionTile)
 {
 	if (m_hitboxComponent->creatureSpikeCollision(collisionTile) == true &&
-		m_afterDamageClock.getElapsedTime().asMilliseconds() > m_milisecoundsImmortalityAfterDamage)
+		m_afterDamageTimer.getElapsedTime() > m_afterDamageTimer.getTimeMAX())
 	{
 		this->getDamage(Constants::spikeDamage);
 	}
+
 }
 
 void Player::regulateHPhearts()
 {
-	for (int iii{ 0 }; iii < m_maxHP; ++iii)
+	for (int iii{ 0 }; iii < m_HPhearts.size(); ++iii)
 	{
-		if (iii+1 <= m_currentHP)
+		if ((iii+1)*10 <= m_currentHP)
 		{
 			m_HPhearts[iii]->setTexture(*GameResources::heartTexture);
 		}
-		else if ((m_currentHP - static_cast<int>(m_currentHP)) == 0.5)
+		else if ((iii + 1) * 10 - m_currentHP < 10 && m_currentHP%10 != 0)
 		{
 			m_HPhearts[iii]->setTexture(*GameResources::halfHeartTexture);
 		}
-		else
+		else if((iii + 1) *10 - m_currentHP >= 10)
 		{
 			m_HPhearts[iii]->setTexture(*GameResources::emptyHeartTexture);
 		}
@@ -106,15 +116,38 @@ void Player::updateHitboxComponent()
 //Render
 void Player::render(sf::RenderTarget* target)
 {
-	target->draw(*m_sprite);
+	this->renderPlayer(target);
 	m_hitboxComponent->drawHitbx(target);
-	//this->renderHearts(target);
 }
 
 void Player::renderHearts(sf::RenderTarget* target)
 {
 	for (auto heart : m_HPhearts)
 		target->draw(*heart);
+}
+
+void Player::renderPlayer(sf::RenderTarget* target)
+{
+
+	if (m_afterDamageTimer.getElapsedTime() >= m_afterDamageTimer.getTimeMAX())
+	{
+		target->draw(*m_sprite);
+	}
+	else
+	{
+		this->blinkingAfterDamaged(target);
+	}
+	
+		
+	
+}
+
+void Player::blinkingAfterDamaged(sf::RenderTarget* target)
+{
+	if (static_cast<int>(m_afterDamageTimer.getElapsedTime()) % 100 > 50)
+	{
+		target->draw(*m_sprite);
+	}
 }
 
 const sf::Vector2f& Player::getPosition() const
@@ -126,5 +159,5 @@ void Player::getDamage(int damage)
 {
 	m_currentHP -= damage;
 	this->regulateHPhearts();
-	m_afterDamageClock.restart();
+	m_afterDamageTimer.restart(0.0f);
 }

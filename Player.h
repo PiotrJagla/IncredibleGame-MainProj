@@ -7,8 +7,7 @@ class Player : public Creature
 private:
 	std::vector<sf::Sprite*> m_HPhearts;
 
-	sf::Clock m_afterDamageClock;
-	int m_milisecoundsImmortalityAfterDamage;
+	Timer m_afterDamageTimer;
 
 	//initialize private functions
 	void initHearts();
@@ -17,6 +16,7 @@ public:
 	virtual ~Player();
 
 	void update(const float& timePerFrame) override;
+	void updateTimers(const float& timePerFrame);
 	void updateCollision() override;
 	void tileCollision(Tile& collisionTile) override;
 	void playerSpikeCollision(Tile& collisionTile);
@@ -28,7 +28,9 @@ public:
 
 	void render(sf::RenderTarget* target) override;
 	void renderHearts(sf::RenderTarget* target);
+	void renderPlayer(sf::RenderTarget* target);
 
+	void blinkingAfterDamaged(sf::RenderTarget* target);
 	void regulateHPhearts();
 
 	const sf::Vector2f& getPosition() const;
