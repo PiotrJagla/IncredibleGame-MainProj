@@ -5,7 +5,7 @@
 void TileMap::makeMap()
 {
 	m_mapVisualization.resize(Constants::mapSizeY, std::wstring{});
-	m_mapVisualization[0] += L"................................#............................#.....................";
+	m_mapVisualization[0] += L"...................................................................................";
 	m_mapVisualization[1] += L"................#................................#...##............................";
 	m_mapVisualization[2] += L"..........................#........#...............................................";
 	m_mapVisualization[3] += L"........#.........................#..........###..........#...###..................";
@@ -31,10 +31,10 @@ void TileMap::makeMap()
 	m_mapVisualization[23]+= L"...........................................................................###.....";
 	m_mapVisualization[24]+= L"...........................................................###.....................";
 	m_mapVisualization[25]+= L"................#######............................................................";
-	m_mapVisualization[26]+= L"...........................................##......................................";
-	m_mapVisualization[27]+= L"...................................................................................";
-	m_mapVisualization[28]+= L"......................^............................................................";
-	m_mapVisualization[29]+= L"###############################################..##...##....###.....##......#######";
+	m_mapVisualization[26]+= L"...........................................##........................###...........";
+	m_mapVisualization[27]+= L"....................................................................##.#...........";
+	m_mapVisualization[28]+= L"......................^............................................###.............";
+	m_mapVisualization[29]+= L"###################################################################################";
 	//std::cout << m_mapVisualization[0].size();
 	
 }
@@ -88,11 +88,25 @@ void TileMap::update(sf::Vector2u& mouseGridPosition)
 	//this->placeTile(mouseGridPosition);
 }
 
-void TileMap::render(sf::RenderTarget* target)
+void TileMap::render(sf::RenderTarget* target, int& fromX, int& toX, int& fromY,int& toY)
 {
-	for (int iii{ 0 }; iii < m_tileMap.size(); ++iii)
+	/*for (int iii{ 0 }; iii < m_tileMap.size(); ++iii)
 	{
 		for (int kkk{ 0 }; kkk < m_tileMap[iii].size(); ++kkk)
+		{
+			target->draw(m_tileMap[iii][kkk]->m_tile);
+		}
+	}*/
+
+	/*if (m_tileMap.size() < toY)
+		toY = m_tileMap.size();
+
+	if (m_tileMap[0].size() < toX)
+		toX = m_tileMap[0].size();*/
+
+	for (int iii{ fromY }; iii < toY; ++iii)
+	{
+		for (int kkk{ fromX }; kkk < toX; ++kkk)
 		{
 			target->draw(m_tileMap[iii][kkk]->m_tile);
 		}
@@ -110,7 +124,9 @@ void TileMap::placeTile(sf::Vector2u& mouseGridPosition)
 
 int TileMap::size()
 {
-	return m_tileMap.size();
+	//std::cout << "m_tileMap.size(): " << m_tileMap.size() << ' ';
+	//return m_tileMap.size();
+	return Constants::mapSizeY;
 }
 
 int TileMap::size(int x)

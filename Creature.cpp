@@ -15,7 +15,7 @@ void Creature::initAnimationComponent()
 
 void Creature::initPhysicsComponent()
 {
-	m_physicsComponent = new PhysicsComponent{ m_velocity, m_direction, 1900.0f, -950.0f, 3500.0f,
+	m_physicsComponent = new PhysicsComponent{ m_velocity, m_direction, 2000.0f, -950.0f, 3500.0f,
 		sf::Vector2f{900.0f, 900.0f}, m_isGrounded };
 
 }
@@ -72,6 +72,16 @@ void Creature::setScale(sf::Vector2f scale)
 	m_sprite->setScale(scale);
 	//m_hitboxComponent->scaleHitboxSize(scale);
 	m_animationComponent->setScale(scale);
+}
+
+const sf::Vector2f& Creature::getPosition() const
+{
+	return m_sprite->getPosition();
+}
+
+const sf::Vector2f Creature::getSize() const
+{
+	return m_hitboxComponent->getHitbox().getSize();
 }
 
 

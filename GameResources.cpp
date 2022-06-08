@@ -7,6 +7,7 @@ sf::Texture* GameResources::grassTexture = new sf::Texture;
 sf::Texture* GameResources::heartTexture = new sf::Texture;
 sf::Texture* GameResources::halfHeartTexture = new sf::Texture;
 sf::Texture* GameResources::emptyHeartTexture = new sf::Texture;
+sf::Texture* GameResources::rifleTexture = new sf::Texture;
 
 sf::Texture* GameResources::spikeTexture = new sf::Texture;
 
@@ -42,10 +43,14 @@ void GameResources::initTextures()
 		std::cout << "GAME RESOURCES:: Empty Heart texture could not load\n";
 	}
 	
-
 	if (!GameResources::spikeTexture->loadFromFile("Textures/spikeTexture.png"))
 	{
 		std::cout << "GAME RESOURCES:: Spike texture could not load\n";
+	}
+
+	if (!GameResources::rifleTexture->loadFromFile("Textures/rifleTexture.png"))
+	{
+		std::cout << "GAME RESOURCES:: Rifle texture could not load\n";
 	}
 
 	

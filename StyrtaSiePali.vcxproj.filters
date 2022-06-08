@@ -99,7 +99,10 @@
     <ClCompile Include="Item.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="Weapon.cpp">
+    <ClCompile Include="MeleeWeapon.cpp">
+      <Filter>Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="RangeWeapon.cpp">
       <Filter>Items\Weapons</Filter>
     </ClCompile>
   </ItemGroup>
@@ -164,7 +167,10 @@
     <ClInclude Include="Item.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
+    <ClInclude Include="MeleeWeapon.h">
+      <Filter>Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="RangeWeapon.h">
       <Filter>Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>

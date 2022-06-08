@@ -14,7 +14,7 @@ void Player::initHearts()
 
 		m_HPhearts.push_back(new sf::Sprite);
 		m_HPhearts.back()->setScale(0.25f, 0.25f);
-		m_HPhearts.back()->setPosition(70.0f * iii, 0.0f);
+		m_HPhearts.back()->setPosition(50.0f * iii, 0.0f);
 		m_HPhearts.back()->setTexture(*GameResources::heartTexture);
 		
 	}
@@ -150,10 +150,7 @@ void Player::blinkingAfterDamaged(sf::RenderTarget* target)
 	}
 }
 
-const sf::Vector2f& Player::getPosition() const
-{
-	return m_sprite->getPosition();
-}
+
 
 void Player::getDamage(int damage)
 {

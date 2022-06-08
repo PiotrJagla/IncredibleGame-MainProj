@@ -59,7 +59,8 @@ public:
 
 
 	//Accesors
-
+	const sf::Vector2f& getPosition() const;
+	const sf::Vector2f getSize() const;
 
 	//Modifiers
 	void setScale(sf::Vector2f scale);

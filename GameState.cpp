@@ -47,16 +47,28 @@ void GameState::initTileMap()
 	m_tileMap = new TileMap{};
 }
 
+void GameState::initVariables()
+{
+	fromX = 0;
+	toX = 0;
+	fromY = 0;
+	toY = 0;
+}
+
 //Constructors / Descructors
 GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window) 
 	: State{states, window}
 {
-
 	this->initButtons();
 	this->initPauseMenu();
 	this->initPlayer();
 	this->initBackground();
 	this->initTileMap();
+	this->initVariables();
+
+	m_items.push_back(new RangeWeapon{ GameResources::rifleTexture });
+	m_items[0]->setScale(0.13f, 0.13f);
+	m_items[0]->setItemPosition(sf::Vector2f{ 30.0f, 2600.0f });
 }
 
 GameState::~GameState()
@@ -69,6 +81,8 @@ GameState::~GameState()
 //Public functions
 void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 {
+	this->updateRenderAndCollisionCheckBounds();
+
 	this->updateKeyTime(timePerFrame);
 	this->updateInput();
 	this->updateMousePositions(m_playerCamera);
@@ -80,12 +94,14 @@ void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 		this->updateCreatures(timePerFrame);
 		this->updatePlayerCamera();
 		this->updateButtons(window);
+		this->updateItems(timePerFrame);
 	}
 	else
 	{
 		this->updatePauseMenuButtons(window);
 		m_pauseMenu->update(window);
 	}
+	//Debug::showPosition(m_player->getPosition().x, m_player->getPosition().y);
 }
 
 void GameState::updateInput()
@@ -128,6 +144,21 @@ void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
 	}
 }
 
+void GameState::updateItems(const float& timerPerFrame)
+{
+	for (auto item : m_items)
+	{
+		item->update(timerPerFrame);
+		item->updateItemPosition(m_player->getPosition(),m_player->getSize());
+		//this->updateItemsPosition(*item);
+	}
+}
+
+void GameState::updateItemsPosition(Item& item)
+{
+	item.updateItemPosition(m_player->getPosition(), m_player->getSize());
+}
+
 void GameState::updateCreatures(const float& timePerFrame)
 {
 	for (auto* creature : m_creatures)
@@ -150,20 +181,93 @@ void GameState::updateCollision(Creature* creature)
 
 void GameState::updateTilesMapCollision(Creature* creature)
 {
-	for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
+	int reduceBoundsX{ 6 };
+	int reduceBoundsY{ 3 };
+
+	//Reducing collision bounds
+	if (fromY > reduceBoundsY )
+		fromY += reduceBoundsY;
+
+	if (fromX > reduceBoundsX)
+		fromX += reduceBoundsX;
+
+	if (toY < m_tileMap->size() - reduceBoundsY)
+		toY -= reduceBoundsY;
+
+	if (toX < m_tileMap->size(0) - reduceBoundsX)
+		toX -= reduceBoundsX;
+
+	if (toY > m_tileMap->size())
+		toY = m_tileMap->size();
+
+	if (toX > m_tileMap->size(0))
+		toX = m_tileMap->size(0);
+
+	if (fromX < 0)
+		fromX = 0;
+
+	if (fromY < 0)
+		fromY = 0;
+
+	for (int iii{ fromY }; iii < toY; ++iii)
 	{
-		for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
+		for (int kkk{ fromX  }; kkk < toX; ++kkk)
 		{
+
 			creature->tileCollision(*m_tileMap->getTile(iii, kkk));
 		}
 
 	}
+
+
+	//Unreducing Collision bounds
+	if (fromY > reduceBoundsY)
+		fromY -= reduceBoundsY;
+
+	if (fromX > reduceBoundsX)
+		fromX -= reduceBoundsX;
+
+	if (toY < m_tileMap->size() - reduceBoundsY)
+		toY += reduceBoundsY;
+
+	if (toX < m_tileMap->size(0) - reduceBoundsX)
+		toX += reduceBoundsX;
 }
 
 void GameState::updatePlayerCamera()
 {
 
 	m_playerCamera.setCenter(m_player->getPosition());
+}
+
+void GameState::updateRenderAndCollisionCheckBounds()
+{
+
+	fromX = (m_playerCamera.getCenter().x - m_playerCamera.getSize().x / 2.0f) / Constants::gridSizeU;
+	fromX -= 1;
+
+	toX = fromX + (m_playerCamera.getSize().x / Constants::gridSizeU);
+	toX += 3;
+
+	fromY = (m_playerCamera.getCenter().y - m_playerCamera.getSize().y / 2.0f) / Constants::gridSizeU;
+	fromY -= 1;
+
+	toY = fromY + (m_playerCamera.getSize().y / Constants::gridSizeU);
+	toY += 3;
+
+	if (toY > m_tileMap->size())
+		toY = m_tileMap->size();
+
+	if (toX > m_tileMap->size(0))
+		toX = m_tileMap->size(0);
+
+	if (fromX < 0)
+		fromX = 0;
+
+	if (fromY < 0)
+		fromY = 0;
+
+	//std::cout << "fromX: " << fromX << " toX: " << toX << "  fromY: " << fromY << " toY: " << toY << '\n';
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -173,8 +277,9 @@ void GameState::render(sf::RenderTarget* target)
 	target->setView(m_playerCamera);
 
 	target->draw(m_background);
-	m_tileMap->render(target);
+	m_tileMap->render(target, fromX, toX, fromY, toY);
 	this->renderCreatures(target);
+	this->renderItems(target);
 
 	m_window->setView(m_window->getDefaultView());
 
@@ -204,4 +309,12 @@ void GameState::renderCreatures(sf::RenderTarget* target)
 void GameState::renderGUI(sf::RenderTarget* target)
 {
 	m_player->renderHearts(target);
+}
+
+void GameState::renderItems(sf::RenderTarget* target)
+{
+	for (auto item : m_items)
+	{
+		item->render(target);
+	}
 }

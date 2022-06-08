@@ -33,7 +33,7 @@ public:
 	void blinkingAfterDamaged(sf::RenderTarget* target);
 	void regulateHPhearts();
 
-	const sf::Vector2f& getPosition() const;
+	
 
 	//Creature funkcjonality
 	void getDamage(int damage) override;

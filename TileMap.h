@@ -16,7 +16,8 @@ public:
 
 	void update(sf::Vector2u& mouseGridPosition);
 
-	void render(sf::RenderTarget* target);
+	void render(sf::RenderTarget* target,
+		int& fromX, int& toX, int& fromY, int& toY);
 
 	void placeTile(sf::Vector2u& mouseGridPosition);
 

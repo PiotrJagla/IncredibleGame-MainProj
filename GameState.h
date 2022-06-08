@@ -5,6 +5,8 @@
 #include "Creature.h"
 #include "Player.h"
 #include "TileMap.h"
+#include "Item.h"
+#include "RangeWeapon.h"
 
 class GameState : public State
 {
@@ -22,6 +24,15 @@ private:
 	sf::Texture m_backgroundTexture;
 	sf::RectangleShape m_background;
 
+	//Items
+	std::vector<Item*> m_items;
+
+	//Render and collision bounds
+	int fromX;
+	int toX;
+	int fromY;
+	int toY;
+
 	//TileMap
 	TileMap* m_tileMap;
 
@@ -31,6 +42,7 @@ private:
 	void initPlayer();
 	void initBackground();
 	void initTileMap();
+	void initVariables();
 public:
 	//Constructors / Descructors
 	GameState(std::stack<State*>* states, sf::RenderWindow* window);
@@ -46,10 +58,14 @@ public:
 
 	void updatePauseMenuButtons(sf::RenderWindow* window);
 
+	void updateItems(const float& timerPerFrame);
+	void updateItemsPosition(Item& item);
+
 	void updateCreatures(const float& timePerFrame);
 	void updateCollision(Creature* creature);
 	void updateTilesMapCollision(Creature* creature);
 	void updatePlayerCamera();
+	void updateRenderAndCollisionCheckBounds();
 	
 
 	//Render
@@ -57,6 +73,7 @@ public:
 	void renderButtons(sf::RenderTarget* target);
 	void renderCreatures(sf::RenderTarget* target);
 	void renderGUI(sf::RenderTarget* target);
+	void renderItems(sf::RenderTarget* target);
 
 
 
