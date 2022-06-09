@@ -99,7 +99,7 @@ void HitboxComponent::walkingTileCollision(Tile& collisionTile)
 	sf::RectangleShape tileHitbox = collisionTile.m_tile;
 	sf::FloatRect hitboxBounds{ m_hitbox.getGlobalBounds() };
 	sf::FloatRect hitboxNextPosition{ m_hitbox.getGlobalBounds() };
-	//std::cout << deltaTime::timePerFrame << '\n';
+
 	hitboxNextPosition.left += m_velocity.x * deltaTime::timePerFrame;
 	hitboxNextPosition.top += m_velocity.y * deltaTime::timePerFrame;
 
@@ -120,15 +120,13 @@ void HitboxComponent::walkingTileCollision(Tile& collisionTile)
 		hitboxNextPosition.top / Constants::gridSizeF
 	};
 
-	//std::cout << (int)tileGridPos.x << " " << (int)tileGridPos.y << " TILE " <<
-	//	//	(int)hitboxGridPos.x << " " << (int)hitboxGridPos.y << " HITBOX \n";
+
 
 	if (m_velocity.x <= 0)
 	{
 		if (((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)hitboxGridPos.y) ||
 			((int)tileGridPos.x == (int)hitboxNextGridPos.x && (int)tileGridPos.y == (int)(hitboxGridPos.y + 0.9f)))
 		{
-			//std::cout << "COLLISION\n";
 			m_sprite.setPosition(
 				((int)hitboxNextGridPos.x + 1) * Constants::gridSizeF,
 				m_sprite.getPosition().y
@@ -141,7 +139,6 @@ void HitboxComponent::walkingTileCollision(Tile& collisionTile)
 		if (((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 1.0f) && (int)tileGridPos.y == (int)hitboxGridPos.y) ||
 			((int)tileGridPos.x == (int)(hitboxNextGridPos.x + 1.0f) && (int)(tileGridPos.y == (int)(hitboxGridPos.y + 0.9f))))
 		{
-			//std::cout << "COLLISION\n";
 			m_sprite.setPosition(
 				((int)hitboxNextGridPos.x) * Constants::gridSizeF,
 				m_sprite.getPosition().y
@@ -155,7 +152,6 @@ void HitboxComponent::walkingTileCollision(Tile& collisionTile)
 		if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)hitboxNextGridPos.y) ||
 			((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)hitboxNextGridPos.y))
 		{
-			//std::cout << "COLLISION\n"; 
 			
 			m_sprite.setPosition(
 				m_sprite.getPosition().x,
@@ -169,7 +165,6 @@ void HitboxComponent::walkingTileCollision(Tile& collisionTile)
 		if (((int)tileGridPos.x == (int)hitboxGridPos.x && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)) ||
 			((int)tileGridPos.x == (int)(hitboxGridPos.x + 0.9f) && (int)tileGridPos.y == (int)(hitboxNextGridPos.y + 1.0f)))
 		{
-			//std::cout << "COLLISION\n";
 			m_sprite.setPosition(
 				m_sprite.getPosition().x,
 				((int)hitboxNextGridPos.y) * Constants::gridSizeF

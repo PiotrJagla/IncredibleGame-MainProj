@@ -18,6 +18,7 @@ protected:
 	sf::Vector2i m_mousePositionWindow;
 	sf::Vector2f m_mousePositionView;
 	sf::Vector2u m_mouseGridPosition;
+	sf::Vector2i m_mousePositionMap;
 
 public:
 	//Constructors / Descructors

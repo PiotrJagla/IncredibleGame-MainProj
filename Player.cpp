@@ -94,7 +94,7 @@ void Player::regulateHPhearts()
 
 void Player::updatePhysicsComponent(const float& timePerFrame)
 {
-	m_physicsComponent->update(timePerFrame);
+	m_physicsComponent->update(timePerFrame, m_velocity, m_direction, m_isGrounded);
 }
 
 void Player::updateMovementComponent(const float& timePerFrame)

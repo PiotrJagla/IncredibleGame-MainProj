@@ -164,6 +164,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameResources.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Headers.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">headers.h</PrecompiledHeaderFile>
@@ -194,6 +195,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameResources.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Geometry.h" />
     <ClInclude Include="Headers.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="Item.h" />

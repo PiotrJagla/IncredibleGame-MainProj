@@ -28,10 +28,10 @@ private:
 	std::vector<Item*> m_items;
 
 	//Render and collision bounds
-	int fromX;
-	int toX;
-	int fromY;
-	int toY;
+	int m_renderFromX;
+	int m_renderToX;
+	int m_renderFromY;
+	int m_renderToY;
 
 	//TileMap
 	TileMap* m_tileMap;
@@ -66,6 +66,7 @@ public:
 	void updateTilesMapCollision(Creature* creature);
 	void updatePlayerCamera();
 	void updateRenderAndCollisionCheckBounds();
+	void updateItemsCollision(Item* item);
 	
 
 	//Render
@@ -75,7 +76,7 @@ public:
 	void renderGUI(sf::RenderTarget* target);
 	void renderItems(sf::RenderTarget* target);
 
-
+	void checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY);
 
 };
 

@@ -15,8 +15,8 @@ void Creature::initAnimationComponent()
 
 void Creature::initPhysicsComponent()
 {
-	m_physicsComponent = new PhysicsComponent{ m_velocity, m_direction, 2000.0f, -950.0f, 3500.0f,
-		sf::Vector2f{900.0f, 900.0f}, m_isGrounded };
+	m_physicsComponent = new PhysicsComponent{ 2000.0f, -950.0f, 3500.0f,
+		sf::Vector2f{900.0f, 900.0f} };
 
 }
 

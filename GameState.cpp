@@ -49,10 +49,10 @@ void GameState::initTileMap()
 
 void GameState::initVariables()
 {
-	fromX = 0;
-	toX = 0;
-	fromY = 0;
-	toY = 0;
+	m_renderFromX = 0;
+	m_renderToX = 0;
+	m_renderFromY = 0;
+	m_renderToY = 0;
 }
 
 //Constructors / Descructors
@@ -68,7 +68,8 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 
 	m_items.push_back(new RangeWeapon{ GameResources::rifleTexture });
 	m_items[0]->setScale(0.13f, 0.13f);
-	m_items[0]->setItemPosition(sf::Vector2f{ 30.0f, 2600.0f });
+	m_items[0]->setItemPosition(sf::Vector2f{ 30.0f, 2300.0f });
+	
 }
 
 GameState::~GameState()
@@ -149,15 +150,11 @@ void GameState::updateItems(const float& timerPerFrame)
 	for (auto item : m_items)
 	{
 		item->update(timerPerFrame);
-		item->updateItemPosition(m_player->getPosition(),m_player->getSize());
-		//this->updateItemsPosition(*item);
+		item->updateItemPosition(m_mousePositionMap, m_player->getPosition(),m_player->getSize());
+		this->updateItemsCollision(item);
 	}
 }
 
-void GameState::updateItemsPosition(Item& item)
-{
-	item.updateItemPosition(m_player->getPosition(), m_player->getSize());
-}
 
 void GameState::updateCreatures(const float& timePerFrame)
 {
@@ -185,33 +182,34 @@ void GameState::updateTilesMapCollision(Creature* creature)
 	int reduceBoundsY{ 3 };
 
 	//Reducing collision bounds
-	if (fromY > reduceBoundsY )
-		fromY += reduceBoundsY;
+	if (m_renderFromY > reduceBoundsY )
+		m_renderFromY += reduceBoundsY;
 
-	if (fromX > reduceBoundsX)
-		fromX += reduceBoundsX;
+	if (m_renderFromX > reduceBoundsX)
+		m_renderFromX += reduceBoundsX;
 
-	if (toY < m_tileMap->size() - reduceBoundsY)
-		toY -= reduceBoundsY;
+	if (m_renderToY < m_tileMap->size() - reduceBoundsY)
+		m_renderToY -= reduceBoundsY;
 
-	if (toX < m_tileMap->size(0) - reduceBoundsX)
-		toX -= reduceBoundsX;
+	if (m_renderToX < m_tileMap->size(0) - reduceBoundsX)
+		m_renderToX -= reduceBoundsX;
 
-	if (toY > m_tileMap->size())
-		toY = m_tileMap->size();
+	/*if (m_renderToY > m_tileMap->size())
+		m_renderToY = m_tileMap->size();
 
-	if (toX > m_tileMap->size(0))
-		toX = m_tileMap->size(0);
+	if (m_renderToX > m_tileMap->size(0))
+		m_renderToX = m_tileMap->size(0);
 
-	if (fromX < 0)
-		fromX = 0;
+	if (m_renderFromX < 0)
+		m_renderFromX = 0;
 
-	if (fromY < 0)
-		fromY = 0;
+	if (m_renderFromY < 0)
+		m_renderFromY = 0;*/
+	this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 
-	for (int iii{ fromY }; iii < toY; ++iii)
+	for (int iii{ m_renderFromY }; iii < m_renderToY; ++iii)
 	{
-		for (int kkk{ fromX  }; kkk < toX; ++kkk)
+		for (int kkk{ m_renderFromX  }; kkk < m_renderToX; ++kkk)
 		{
 
 			creature->tileCollision(*m_tileMap->getTile(iii, kkk));
@@ -221,17 +219,17 @@ void GameState::updateTilesMapCollision(Creature* creature)
 
 
 	//Unreducing Collision bounds
-	if (fromY > reduceBoundsY)
-		fromY -= reduceBoundsY;
+	if (m_renderFromY > reduceBoundsY)
+		m_renderFromY -= reduceBoundsY;
 
-	if (fromX > reduceBoundsX)
-		fromX -= reduceBoundsX;
+	if (m_renderFromX > reduceBoundsX)
+		m_renderFromX -= reduceBoundsX;
 
-	if (toY < m_tileMap->size() - reduceBoundsY)
-		toY += reduceBoundsY;
+	if (m_renderToY < m_tileMap->size() - reduceBoundsY)
+		m_renderToY += reduceBoundsY;
 
-	if (toX < m_tileMap->size(0) - reduceBoundsX)
-		toX += reduceBoundsX;
+	if (m_renderToX < m_tileMap->size(0) - reduceBoundsX)
+		m_renderToX += reduceBoundsX;
 }
 
 void GameState::updatePlayerCamera()
@@ -243,31 +241,53 @@ void GameState::updatePlayerCamera()
 void GameState::updateRenderAndCollisionCheckBounds()
 {
 
-	fromX = (m_playerCamera.getCenter().x - m_playerCamera.getSize().x / 2.0f) / Constants::gridSizeU;
-	fromX -= 1;
+	m_renderFromX = (m_playerCamera.getCenter().x - m_playerCamera.getSize().x / 2.0f) / Constants::gridSizeU;
+	m_renderFromX -= 1;
 
-	toX = fromX + (m_playerCamera.getSize().x / Constants::gridSizeU);
-	toX += 3;
+	m_renderToX = m_renderFromX + (m_playerCamera.getSize().x / Constants::gridSizeU);
+	m_renderToX += 3;
 
-	fromY = (m_playerCamera.getCenter().y - m_playerCamera.getSize().y / 2.0f) / Constants::gridSizeU;
-	fromY -= 1;
+	m_renderFromY = (m_playerCamera.getCenter().y - m_playerCamera.getSize().y / 2.0f) / Constants::gridSizeU;
+	m_renderFromY -= 1;
 
-	toY = fromY + (m_playerCamera.getSize().y / Constants::gridSizeU);
-	toY += 3;
+	m_renderToY = m_renderFromY + (m_playerCamera.getSize().y / Constants::gridSizeU);
+	m_renderToY += 3;
 
-	if (toY > m_tileMap->size())
-		toY = m_tileMap->size();
+	/*if (m_renderToY > m_tileMap->size())
+		m_renderToY = m_tileMap->size();
 
-	if (toX > m_tileMap->size(0))
-		toX = m_tileMap->size(0);
+	if (m_renderToX > m_tileMap->size(0))
+		m_renderToX = m_tileMap->size(0);
 
-	if (fromX < 0)
-		fromX = 0;
+	if (m_renderFromX < 0)
+		m_renderFromX = 0;
 
-	if (fromY < 0)
-		fromY = 0;
+	if (m_renderFromY < 0)
+		m_renderFromY = 0;*/
+
+	this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 
 	//std::cout << "fromX: " << fromX << " toX: " << toX << "  fromY: " << fromY << " toY: " << toY << '\n';
+}
+
+void GameState::updateItemsCollision(Item* item)
+{
+	int fromX{ static_cast<int>(item->getPosition().x / Constants::gridSizeU) - 1 };
+	int toX{ fromX + 3 };
+
+	int fromY{ static_cast<int>(item->getPosition().y / Constants::gridSizeU) - 1 };
+	int toY{ fromY + 3 };
+
+	this->checkTileMapBounds(fromX, toX, fromY, toY);
+		
+	for (int iii{ fromY }; iii < toY; ++iii)
+	{
+		for (int kkk{ fromX }; kkk < toX; ++kkk)
+		{
+			item->itemGroundCollision(*m_tileMap->getTile(iii, kkk));
+		}
+	}
+	
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -277,7 +297,7 @@ void GameState::render(sf::RenderTarget* target)
 	target->setView(m_playerCamera);
 
 	target->draw(m_background);
-	m_tileMap->render(target, fromX, toX, fromY, toY);
+	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 	this->renderCreatures(target);
 	this->renderItems(target);
 
@@ -317,4 +337,20 @@ void GameState::renderItems(sf::RenderTarget* target)
 	{
 		item->render(target);
 	}
+}
+
+void GameState::checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY)
+{
+	if (toY > m_tileMap->size())
+		toY = m_tileMap->size();
+
+	if (toX > m_tileMap->size(0))
+		toX = m_tileMap->size(0);
+
+	if (fromX < 0)
+		fromX = 0;
+
+	if (fromY < 0)
+		fromY = 0;
+
 }

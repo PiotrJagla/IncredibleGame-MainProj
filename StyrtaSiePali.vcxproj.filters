@@ -34,6 +34,9 @@
     <Filter Include="Items\Weapons">
       <UniqueIdentifier>{af2e90e3-79f1-4073-8995-08f59a7d60c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries\Single Functions">
+      <UniqueIdentifier>{a860ceb5-8e07-4e1c-a07d-d4572f9c1b32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AuxiliaryVariables.cpp">
@@ -105,6 +108,9 @@
     <ClCompile Include="RangeWeapon.cpp">
       <Filter>Items\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>Libraries\Single Functions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuxiliaryVariables.h">
@@ -172,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="RangeWeapon.h">
       <Filter>Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Libraries\Single Functions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

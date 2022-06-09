@@ -36,6 +36,8 @@ const bool& State::getQuit() const
 
 void State::updateMousePositions(sf::View& camera)
 {
+	m_mousePositionMap = sf::Mouse::getPosition();
+
 	m_mousePositionWindow = sf::Mouse::getPosition(*m_window);
 
 	m_mousePositionView = m_window->mapPixelToCoords(m_mousePositionWindow);
