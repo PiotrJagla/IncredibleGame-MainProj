@@ -1,2 +1,15 @@
-﻿  Item.cpp
+﻿  HitboxComponent.cpp
+  Item.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\Item.cpp(53,52): warning C4244: "argument": konwersja z "const T" do "float", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\Item.cpp(53,35): warning C4244: "argument": konwersja z "const T" do "float", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\Item.cpp(55,58): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+  Generowanie kodu...
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSiePali.exe

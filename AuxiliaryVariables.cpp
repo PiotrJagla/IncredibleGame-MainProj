@@ -11,6 +11,8 @@ const unsigned Constants::mapSizeX = 83;
 const unsigned Constants::mapSizeY = 30;
 const int Constants::spikeDamage = 15;
 
+const float Constants::pi = 3.14;
+
 //Button realese detection
 bool RealeseDetection::Escape = false;
 bool RealeseDetection::mouseLeftButton = false;

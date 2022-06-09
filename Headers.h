@@ -16,6 +16,7 @@
 #include <map>
 #include <random>
 #include <ctime>
+#include <cmath>
 
 //my header files
 #include "AuxiliaryVariables.h"

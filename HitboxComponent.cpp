@@ -13,7 +13,6 @@ HitboxComponent::HitboxComponent(sf::Sprite& sprite, sf::Vector2f& velocity, boo
 	m_hitbox.setFillColor(sf::Color::Transparent);
 	m_hitbox.setOutlineThickness(2.0f);
 	m_hitbox.setOutlineColor(sf::Color::Black);
-	std::cout << m_hitbox.getGlobalBounds().width << " " << Constants::gridSizeF << '\n';
 }
 
 HitboxComponent::~HitboxComponent()

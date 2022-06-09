@@ -29,7 +29,7 @@ public:
 	virtual void update(const float& timePerFrame) = 0;
 	void updateItemPosition(const sf::Vector2i& mousePosition,
 		const sf::Vector2f& position, const sf::Vector2f& creatureSize);
-	void inHandRotation(sf::Vector2i mousePosition);
+	void inHandRotation(const sf::Vector2i& mousePosition);
 
 	virtual void render(sf::RenderTarget* target) = 0;
 

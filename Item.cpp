@@ -45,9 +45,14 @@ void Item::updateItemPosition(const sf::Vector2i& mousePosition, const sf::Vecto
 	}
 }
 
-void Item::inHandRotation(sf::Vector2i mousePosition)
+void Item::inHandRotation(const sf::Vector2i& mousePosition)
 {
-	
+	/*std::cout << "ITEM: ";
+	Debug::showPosition(m_item->getPosition().x, m_item->getPosition().y);
+	std::cout << "MOUSE: ";
+	Debug::showPosition(mousePosition.x, mousePosition.y);*/
+
+	m_item->setRotation(Geometry::getAngleRelativelyToGround(m_item->getPosition(), mousePosition));
 }
 
 

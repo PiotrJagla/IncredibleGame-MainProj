@@ -12,6 +12,8 @@ public:
 	static const unsigned mapSizeY;
 
 	static const int spikeDamage;
+
+	static const float pi;
 };
 
 class RealeseDetection
