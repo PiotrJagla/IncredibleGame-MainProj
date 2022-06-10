@@ -36,12 +36,24 @@ const bool& State::getQuit() const
 
 void State::updateMousePositions(sf::View& camera)
 {
-	m_mousePositionMap = sf::Mouse::getPosition();
+	//All map position
+	sf::Vector2f viewLeftCorner{
+		camera.getCenter().x - camera.getSize().x /2.0f,
+		camera.getCenter().y - camera.getSize().y / 2.0f
+	};
 
+	m_mousePositionMap = sf::Mouse::getPosition(*m_window);
+
+	m_mousePositionMap.x += viewLeftCorner.x;
+	m_mousePositionMap.y += viewLeftCorner.y;
+
+	//Window pos
 	m_mousePositionWindow = sf::Mouse::getPosition(*m_window);
 
+	//View pos
 	m_mousePositionView = m_window->mapPixelToCoords(m_mousePositionWindow);
 
+	//Grid pos
 	m_mouseGridPosition.x = m_mousePositionWindow.x / Constants::gridSizeU;
 	m_mouseGridPosition.y = m_mousePositionWindow.y / Constants::gridSizeU;
 
