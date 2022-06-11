@@ -26,6 +26,7 @@ private:
 
 	//Items
 	std::vector<Item*> m_items;
+	RangeWeapon* m_rifle;
 
 	//Render and collision bounds
 	int m_renderFromX;
@@ -52,21 +53,27 @@ public:
 	void update(sf::RenderWindow* window, const float& timePerFrame) override;
 	void updateInput();
 
+	//Buttons
 	void updateButtons(sf::RenderWindow* window);
 	void updateButtonsHover(sf::RenderWindow* window);
 	void updateButtonsClickDetection(sf::RenderWindow* window);
 
 	void updatePauseMenuButtons(sf::RenderWindow* window);
 
+	//Items
 	void updateItems(const float& timerPerFrame);
-	void updateItemsPosition(Item& item);
-
-	void updateCreatures(const float& timePerFrame);
-	void updateCollision(Creature* creature);
-	void updateTilesMapCollision(Creature* creature);
-	void updatePlayerCamera();
-	void updateRenderAndCollisionCheckBounds();
 	void updateItemsCollision(Item* item);
+	void bulletsCollision(Item* item);
+	void bulletsTileMapCollision(Item* item);
+	
+	//Creatures
+	void updateCreatures(const float& timePerFrame);
+	void updatePlayerCamera();
+
+	//Collision
+	void updateTilesMapCollision(Creature* creature);
+	void updateRenderAndCollisionCheckBounds();
+	void updateCollision(Creature* creature);
 	
 
 	//Render
@@ -77,6 +84,7 @@ public:
 	void renderItems(sf::RenderTarget* target);
 
 	void checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY);
+	void checkPlayerCameraBounds();
 
 };
 

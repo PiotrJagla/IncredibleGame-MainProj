@@ -2,7 +2,7 @@
 #include "Item.h"
 class RangeWeapon : public Item
 {
-private:
+public:
 	class Bullet
 	{
 	public:
@@ -37,7 +37,12 @@ public:
 	void render(sf::RenderTarget* target) override;
 	void renderBullets(sf::RenderTarget* target);
 
+	void bulletTileMapCollision(Tile& collisionTile, int bulletIndex);
+
 	void giveBulletDirection();
 	void giveBulletPosition();
+
+	const int& firedBullets() const;
+	const RangeWeapon::Bullet& getBullet(int index) const;
 };
 

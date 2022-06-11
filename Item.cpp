@@ -50,12 +50,6 @@ void Item::inHandRotation(const sf::Vector2i& mousePosition)
 	m_item->setRotation(Geometry::getAngleRelativelyToGround(m_item->getPosition(), mousePosition));
 }
 
-
-void Item::setScale(float scaleX, float scaleY)
-{
-	m_item->setScale(scaleX, scaleY);
-}
-
 void Item::setItemPosition(sf::Vector2f position)
 {
 	m_itemPosition = position;
@@ -83,9 +77,15 @@ void Item::itemGroundCollision(Tile& collisionTile)
 	}
 }
 
-const bool Item::isItemOnGround() const
+//					ACCESORS
+const bool& Item::isItemOnGround() const
 {
 	return m_isOnGround;
+}
+
+const bool& Item::isItemEquiped() const
+{
+	return m_isInHand;
 }
 
 const sf::Vector2f Item::getPosition() const
@@ -93,7 +93,24 @@ const sf::Vector2f Item::getPosition() const
 	return m_item->getPosition();
 }
 
+const Item::Type& Item::itemType() const
+{
+	return m_itemType;
+}
+
+
+//					MODIFIERS
 void Item::setPointerToMousePosition(sf::Vector2i& mousePositionMap)
 {
 	m_mousePositionMapPtr = &mousePositionMap;
+}
+
+void Item::setItemType(Type itemType)
+{
+	m_itemType = itemType;
+}
+
+void Item::setScale(float scaleX, float scaleY)
+{
+	m_item->setScale(scaleX, scaleY);
 }

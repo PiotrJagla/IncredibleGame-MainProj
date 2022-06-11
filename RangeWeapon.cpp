@@ -63,6 +63,16 @@ void RangeWeapon::renderBullets(sf::RenderTarget* target)
 		target->draw(bullet->m_bullet);
 }
 
+void RangeWeapon::bulletTileMapCollision(Tile& collisionTile, int bulletIndex)
+{
+	if (collisionTile.m_tile.getGlobalBounds().intersects(m_bullets[bulletIndex]->m_bullet.getGlobalBounds()) &&
+		collisionTile.m_tileType == Tile::Type::Grass)
+	{
+		delete m_bullets[bulletIndex];
+		m_bullets.erase(m_bullets.begin() + bulletIndex);
+	}
+}
+
 void RangeWeapon::giveBulletDirection()
 {
 	sf::Vector2f directionVector{
@@ -85,8 +95,27 @@ void RangeWeapon::giveBulletDirection()
 
 void RangeWeapon::giveBulletPosition()
 {
-	m_bullets.back()->m_bullet.setPosition(m_item->getPosition());
+	sf::Vector2f bulletDir{ m_bullets.back()->m_direction };
+
+	m_bullets.back()->m_bullet.setPosition(
+		m_item->getPosition().x + bulletDir.x*40.0f,
+		m_item->getPosition().y + bulletDir.y*40.0f
+	);
 }
+
+const int& RangeWeapon::firedBullets() const
+{
+	return m_bullets.size();
+}
+
+const RangeWeapon::Bullet& RangeWeapon::getBullet(int index) const
+{
+	return *m_bullets[index];
+}
+
+
+
+
 
 
 

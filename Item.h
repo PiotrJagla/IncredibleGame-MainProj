@@ -1,15 +1,13 @@
 #pragma once
+
 class Item
 {
 public:
-	class Type
+	enum class Type
 	{
-	public:
-		enum class Weapon
-		{
-			Rifle
-		};
+		Rifle
 	};
+
 private:
 
 	void initSprite(sf::Texture* texture);
@@ -18,6 +16,8 @@ protected:
 	sf::Sprite* m_item;
 	sf::Vector2f m_itemPosition;
 	float m_speed;
+
+	Type m_itemType;
 	
 	sf::Vector2i* m_mousePositionMapPtr;
 
@@ -34,17 +34,20 @@ public:
 
 	virtual void render(sf::RenderTarget* target) = 0;
 
-	void setScale(float scaleX, float scaleY);
 	void setItemPosition(sf::Vector2f position);
 
 	void dragItemDown();
 	void itemGroundCollision(Tile& collisionTile);
 
-	const bool isItemOnGround() const;
-
+	const bool& isItemOnGround() const;
+	const bool& isItemEquiped() const;
 	const sf::Vector2f getPosition() const;
+	const Type& itemType() const;
 
 	void setPointerToMousePosition(sf::Vector2i& mousePositionMap);
+	void setItemType(Type itemType);
+	void setScale(float scaleX, float scaleY);
+
 
 };
 

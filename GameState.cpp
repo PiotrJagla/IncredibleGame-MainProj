@@ -70,9 +70,14 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 	this->initVariables();
 
 	//Init item
-	m_items.push_back(new RangeWeapon{ GameResources::rifleTexture });
-	m_items[0]->setScale(0.11f, 0.11f);
-	m_items[0]->setPointerToMousePosition(m_mousePositionMap);
+	m_rifle = new RangeWeapon{ GameResources::rifleTexture };
+	m_rifle->setScale(0.11f, 0.11f);
+	m_rifle->setPointerToMousePosition(m_mousePositionMap);
+	m_rifle->setItemType(Item::Type::Rifle);
+
+	m_items.push_back(m_rifle);
+	
+
 	
 }
 
@@ -156,9 +161,60 @@ void GameState::updateItems(const float& timerPerFrame)
 		item->update(timerPerFrame);
 		item->updateItemPosition(m_mousePositionMap, m_player->getPosition(),m_player->getSize());
 		this->updateItemsCollision(item);
+
+		if (item->isItemEquiped() == true && item->itemType() == Item::Type::Rifle)
+		{
+			this->bulletsCollision(item);
+		}
 	}
 }
 
+void GameState::updateItemsCollision(Item* item)
+{
+	int fromX{ static_cast<int>(item->getPosition().x / Constants::gridSizeU) - 1 };
+	int toX{ fromX + 3 };
+
+	int fromY{ static_cast<int>(item->getPosition().y / Constants::gridSizeU) - 1 };
+	int toY{ fromY + 3 };
+
+	this->checkTileMapBounds(fromX, toX, fromY, toY);
+
+	for (int iii{ fromY }; iii < toY; ++iii)
+	{
+		for (int kkk{ fromX }; kkk < toX; ++kkk)
+		{
+			item->itemGroundCollision(*m_tileMap->getTile(iii, kkk));
+		}
+	}
+
+}
+
+void GameState::bulletsCollision(Item* item)
+{
+	this->bulletsTileMapCollision(item);
+}
+
+void GameState::bulletsTileMapCollision(Item* item)
+{
+	for (int iii{ 0 }; iii < m_rifle->firedBullets(); ++iii)
+	{
+		sf::Vector2f bulletPosition{ m_rifle->getBullet(iii).m_bullet.getPosition() };
+
+		int fromX{ static_cast<int>(bulletPosition.x / Constants::gridSizeF) - 1};
+		int toX{ fromX + 3 };
+
+		int fromY{ static_cast<int>(bulletPosition.y / Constants::gridSizeF) - 1 };
+		int toY{ fromY + 3 };
+
+		for (int iii{ fromY }; iii < toY; ++iii)
+		{
+			for (int kkk{ fromX }; kkk < toX; ++kkk)
+			{
+				m_rifle->bulletTileMapCollision(*m_tileMap->getTile(iii,kkk), iii);
+			}
+		}
+	}
+}
 
 void GameState::updateCreatures(const float& timePerFrame)
 {
@@ -240,6 +296,8 @@ void GameState::updatePlayerCamera()
 {
 
 	m_playerCamera.setCenter(m_player->getPosition());
+
+	this->checkPlayerCameraBounds();
 }
 
 void GameState::updateRenderAndCollisionCheckBounds()
@@ -272,26 +330,6 @@ void GameState::updateRenderAndCollisionCheckBounds()
 	this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 
 	//std::cout << "fromX: " << fromX << " toX: " << toX << "  fromY: " << fromY << " toY: " << toY << '\n';
-}
-
-void GameState::updateItemsCollision(Item* item)
-{
-	int fromX{ static_cast<int>(item->getPosition().x / Constants::gridSizeU) - 1 };
-	int toX{ fromX + 3 };
-
-	int fromY{ static_cast<int>(item->getPosition().y / Constants::gridSizeU) - 1 };
-	int toY{ fromY + 3 };
-
-	this->checkTileMapBounds(fromX, toX, fromY, toY);
-		
-	for (int iii{ fromY }; iii < toY; ++iii)
-	{
-		for (int kkk{ fromX }; kkk < toX; ++kkk)
-		{
-			item->itemGroundCollision(*m_tileMap->getTile(iii, kkk));
-		}
-	}
-	
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -356,5 +394,49 @@ void GameState::checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY)
 
 	if (fromY < 0)
 		fromY = 0;
+
+}
+
+void GameState::checkPlayerCameraBounds()
+{
+
+	float leftCameraBound{ m_playerCamera.getCenter().x - m_playerCamera.getSize().x / 2.0f };
+	float rightCameraBound{ m_playerCamera.getCenter().x + m_playerCamera.getSize().x / 2.0f };
+
+	float upCameraBound{ m_playerCamera.getCenter().y - m_playerCamera.getSize().y / 2.0f };
+	float downCameraBound{ m_playerCamera.getCenter().y + m_playerCamera.getSize().y / 2.0f };
+
+
+	//X axis
+	if (leftCameraBound < 0.0f)
+	{
+		m_playerCamera.setCenter(
+			m_playerCamera.getSize().x / 2.0f,
+			m_playerCamera.getCenter().y
+		);
+	}
+	else if (rightCameraBound > Constants::mapSizeX * Constants::gridSizeF)
+	{
+		m_playerCamera.setCenter(
+			Constants::mapSizeX * Constants::gridSizeF - m_playerCamera.getSize().x / 2.0f,
+			m_playerCamera.getCenter().y
+		);
+	}
+
+	//Y axis
+	if (upCameraBound < 0.0f)
+	{
+		m_playerCamera.setCenter(
+			m_playerCamera.getCenter().x,
+			m_playerCamera.getSize().y / 2.0f
+		);
+	}
+	else if (downCameraBound > Constants::mapSizeY * Constants::gridSizeF)
+	{
+		m_playerCamera.setCenter(
+			m_playerCamera.getCenter().x,
+			Constants::mapSizeY * Constants::gridSizeF - m_playerCamera.getSize().y / 2.0f
+		);
+	}
 
 }

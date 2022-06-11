@@ -1,12 +1,14 @@
 #include "Headers.h"
 
-
+//TODO
 /*
 	Trzeba dokoñczyæ kolizje w hitbox component (RAY CASTING COLLISION)
 */
 
 /*
-	Zoptymalizowaæ system wyszukiwania z którymi tiles gracz mo¿e kolidowaæ, zamiast
-	przechodziæ przez wszystkie tiles, wystarczy pobraæ playerGridPosition, i sprawdziæ wszystkie
-	do oko³a (TODO)
+	Po wystrzeleniu pocisku gdzieœ jest wyjœcie poza zasieg wektora zwi¹zanego z pociskami,
+	pociski maj¹ zostaæ ziszczone kiedy trafi¹ na blok trawy
 */
+
+
+
