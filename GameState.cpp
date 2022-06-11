@@ -15,7 +15,10 @@ void GameState::initPauseMenu()
 void GameState::initPlayer()
 {
 	m_player = new Player{"Textures/playerTextureSheet.png"};
-	m_player->setScale(sf::Vector2f{ 2.23f, 1.7f });
+	sf::Vector2f scalePlayerToGridSize{};
+	scalePlayerToGridSize.x = Constants::gridSizeF / Constants::playerSizeX;
+	scalePlayerToGridSize.y = Constants::gridSizeF / Constants::playerSizeY;
+	m_player->setScale(sf::Vector2f{ scalePlayerToGridSize });
 	m_creatures.push_back(m_player);
 	
 
@@ -66,9 +69,10 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 	this->initTileMap();
 	this->initVariables();
 
+	//Init item
 	m_items.push_back(new RangeWeapon{ GameResources::rifleTexture });
-	m_items[0]->setScale(0.13f, 0.13f);
-	m_items[0]->setItemPosition(sf::Vector2f{ 30.0f, 2300.0f });
+	m_items[0]->setScale(0.11f, 0.11f);
+	m_items[0]->setPointerToMousePosition(m_mousePositionMap);
 	
 }
 

@@ -1,58 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Auxiliary Resources">
-      <UniqueIdentifier>{bda4d281-2984-42d7-a139-003acf645b7e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="States">
-      <UniqueIdentifier>{acd262e0-9cf2-4984-a2ee-cfafbb562825}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Creatures">
-      <UniqueIdentifier>{d4e8a210-f05e-4efa-a8e2-2a1da6706a6d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{72191727-6a50-4f4e-b9cf-693e2d781dca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Other stuff">
-      <UniqueIdentifier>{6cb124c7-22d7-4c94-8ff9-c3069a5bdba5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Map">
-      <UniqueIdentifier>{ad891371-6f91-40a2-83a1-2c2e3264f91b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries">
-      <UniqueIdentifier>{70177299-03cc-42fe-ab33-4b5e94239dd7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\GUI">
-      <UniqueIdentifier>{a2fcd349-c436-4912-bd31-2770d2594dbc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\Other Libraries">
-      <UniqueIdentifier>{79ea3d2f-3838-4c27-9423-012a41165d5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Items">
-      <UniqueIdentifier>{b7f16930-1e3c-4a99-a086-f7748e0ea676}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Items\Weapons">
-      <UniqueIdentifier>{af2e90e3-79f1-4073-8995-08f59a7d60c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\Single Functions">
-      <UniqueIdentifier>{a860ceb5-8e07-4e1c-a07d-d4572f9c1b32}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AuxiliaryVariables.cpp">
-      <Filter>Auxiliary Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>States</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenuState.cpp">
       <Filter>States</Filter>
     </ClCompile>
     <ClCompile Include="GameState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="GameResources.cpp">
-      <Filter>Auxiliary Resources</Filter>
+    <ClCompile Include="State.cpp">
+      <Filter>States</Filter>
     </ClCompile>
     <ClCompile Include="Creature.cpp">
       <Filter>Creatures</Filter>
@@ -60,44 +16,29 @@
     <ClCompile Include="Player.cpp">
       <Filter>Creatures</Filter>
     </ClCompile>
-    <ClCompile Include="MovementComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Other stuff</Filter>
-    </ClCompile>
-    <ClCompile Include="Headers.cpp">
-      <Filter>Other stuff</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Other stuff</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsComponent.cpp">
+    <ClCompile Include="AnimationComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="HitboxComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationComponent.cpp">
+    <ClCompile Include="MovementComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="TileMap.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug.cpp">
-      <Filter>Auxiliary Resources</Filter>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Libraries\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="PauseMenu.cpp">
-      <Filter>Libraries\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Libraries\Other Libraries</Filter>
+      <Filter>Libraries\Other libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Tile Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>Tile Map</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Items</Filter>
@@ -108,25 +49,40 @@
     <ClCompile Include="RangeWeapon.cpp">
       <Filter>Items\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Libraries\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AuxiliaryVariables.cpp">
+      <Filter>Auxiliary Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="GameResources.cpp">
+      <Filter>Auxiliary Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Other stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Other stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>Auxiliary Resources</Filter>
+    </ClCompile>
     <ClCompile Include="Geometry.cpp">
-      <Filter>Libraries\Single Functions</Filter>
+      <Filter>Libraries\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Headers.cpp">
+      <Filter>Other stuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AuxiliaryVariables.h">
-      <Filter>Auxiliary Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>States</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenuState.h">
       <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="GameResources.h">
-      <Filter>Auxiliary Resources</Filter>
+    <ClInclude Include="State.h">
+      <Filter>States</Filter>
     </ClInclude>
     <ClInclude Include="Creature.h">
       <Filter>Creatures</Filter>
@@ -134,41 +90,29 @@
     <ClInclude Include="Player.h">
       <Filter>Creatures</Filter>
     </ClInclude>
-    <ClInclude Include="MovementComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Other stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="Headers.h">
-      <Filter>Other stuff</Filter>
-    </ClInclude>
-    <ClInclude Include="PhysicsComponent.h">
+    <ClInclude Include="AnimationComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="HitboxComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationComponent.h">
+    <ClInclude Include="MovementComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="TileMap.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Debug.h">
-      <Filter>Auxiliary Resources</Filter>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Libraries\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="PauseMenu.h">
-      <Filter>Libraries\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Libraries\Other Libraries</Filter>
+      <Filter>Libraries\Other libraries</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Tile Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>Tile Map</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>Items</Filter>
@@ -179,8 +123,64 @@
     <ClInclude Include="RangeWeapon.h">
       <Filter>Items\Weapons</Filter>
     </ClInclude>
-    <ClInclude Include="Geometry.h">
-      <Filter>Libraries\Single Functions</Filter>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Libraries\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="AuxiliaryVariables.h">
+      <Filter>Auxiliary Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="GameResources.h">
+      <Filter>Auxiliary Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Other stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>Auxiliary Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>Libraries\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers.h">
+      <Filter>Other stuff</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="States">
+      <UniqueIdentifier>{1c7b6d67-6778-493d-90ee-e7eddf0c1f69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Creatures">
+      <UniqueIdentifier>{aa730fa5-fab0-470a-9e3a-0ccd2d6bd713}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{99cb9268-2eae-40b3-943a-b7c10f27c787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{31d2236d-5010-4418-a8b2-36d7408d74af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\GUI">
+      <UniqueIdentifier>{6efc9acf-59d7-4a5e-b333-9811341c480c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\Other libraries">
+      <UniqueIdentifier>{eac14754-4e18-47f9-831a-0262a32244bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tile Map">
+      <UniqueIdentifier>{586fd063-6b05-490f-a244-510166765f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{7e8a2e37-16cc-42df-ba93-36b539ce8c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items\Weapons">
+      <UniqueIdentifier>{4bcb6af1-cc74-4f75-9245-c0ceaafc436e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other stuff">
+      <UniqueIdentifier>{5fd18644-293a-4b91-8bcf-6c6420889528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\Geometry">
+      <UniqueIdentifier>{76354607-ae23-46d3-bf0a-453ed9c301dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Auxiliary Resources">
+      <UniqueIdentifier>{109cd2c1-e8b7-433f-858c-867ca0634530}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

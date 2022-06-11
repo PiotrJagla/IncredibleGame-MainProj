@@ -5,13 +5,16 @@
 //Constants
 const unsigned Constants::WindowHeigth = 900;
 const unsigned Constants::WindowWidth = 1400;
-const float Constants::gridSizeF = 100.0f;
+const float Constants::gridSizeF = 80.0f;
 const unsigned Constants::gridSizeU = static_cast<unsigned>(Constants::gridSizeF);
 const unsigned Constants::mapSizeX = 83;
 const unsigned Constants::mapSizeY = 30;
 const int Constants::spikeDamage = 15;
 
 const float Constants::pi = 3.14;
+
+const float Constants::playerSizeX = 50.0f;
+const float Constants::playerSizeY = 58.0f;
 
 //Button realese detection
 bool RealeseDetection::Escape = false;

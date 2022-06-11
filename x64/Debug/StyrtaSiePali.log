@@ -1,6 +1,3 @@
-﻿  Geometry.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(17,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(28,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(88,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(99,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
-  StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSiePali.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: Katalog pośredni (x64\Debug\) zawiera pliki udostępnione z innego projektu (IncredibleGame.vcxproj). Może to spowodować niepoprawne zachowanie podczas oczyszczania i ponownej kompilacji.
+  Creature.cpp
+  StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSIePali.exe

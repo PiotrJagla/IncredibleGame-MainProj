@@ -14,6 +14,9 @@ public:
 	static const int spikeDamage;
 
 	static const float pi;
+
+	static const float playerSizeX;
+	static const float playerSizeY;
 };
 
 class RealeseDetection

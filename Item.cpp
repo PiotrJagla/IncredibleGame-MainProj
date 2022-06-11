@@ -47,15 +47,8 @@ void Item::updateItemPosition(const sf::Vector2i& mousePosition, const sf::Vecto
 
 void Item::inHandRotation(const sf::Vector2i& mousePosition)
 {
-	std::cout << "ITEM: ";
-	Debug::showPosition(m_item->getPosition().x, m_item->getPosition().y);
-	std::cout << "MOUSE: ";
-	Debug::showPosition(mousePosition.x, mousePosition.y);
-
 	m_item->setRotation(Geometry::getAngleRelativelyToGround(m_item->getPosition(), mousePosition));
 }
-
-
 
 
 void Item::setScale(float scaleX, float scaleY)
@@ -98,4 +91,9 @@ const bool Item::isItemOnGround() const
 const sf::Vector2f Item::getPosition() const
 {
 	return m_item->getPosition();
+}
+
+void Item::setPointerToMousePosition(sf::Vector2i& mousePositionMap)
+{
+	m_mousePositionMapPtr = &mousePositionMap;
 }

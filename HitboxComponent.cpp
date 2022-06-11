@@ -8,11 +8,13 @@ HitboxComponent::HitboxComponent(sf::Sprite& sprite, sf::Vector2f& velocity, boo
 		m_sprite.getGlobalBounds().width,
 		m_sprite.getGlobalBounds().height}
 	);*/
-	m_hitbox.setSize(sf::Vector2f{Constants::gridSizeF - 4.0f,Constants::gridSizeF - 4.0f});
+	m_hitbox.setSize(sf::Vector2f{Constants::gridSizeF,Constants::gridSizeF});
 	//m_hitbox.setScale( 1.0f, 1.0f );
 	m_hitbox.setFillColor(sf::Color::Transparent);
 	m_hitbox.setOutlineThickness(2.0f);
 	m_hitbox.setOutlineColor(sf::Color::Black);
+
+	Debug::showPosition(m_hitbox.getSize().x, m_hitbox.getSize().y);
 }
 
 HitboxComponent::~HitboxComponent()

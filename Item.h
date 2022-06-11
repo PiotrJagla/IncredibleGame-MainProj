@@ -19,6 +19,7 @@ protected:
 	sf::Vector2f m_itemPosition;
 	float m_speed;
 	
+	sf::Vector2i* m_mousePositionMapPtr;
 
 	bool m_isInHand;
 	bool m_isOnGround;
@@ -42,6 +43,8 @@ public:
 	const bool isItemOnGround() const;
 
 	const sf::Vector2f getPosition() const;
+
+	void setPointerToMousePosition(sf::Vector2i& mousePositionMap);
 
 };
 

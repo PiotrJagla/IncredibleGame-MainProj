@@ -6,6 +6,13 @@
 PhysicsComponent::PhysicsComponent(float acceleration, float deceleration, float gravity,sf::Vector2f maxVelocity)
 	: m_acceleration{acceleration}, m_deceleration{ deceleration }, m_gravity{ gravity }, m_maxVelocity{ maxVelocity }
 {
+	m_acceleration *=  Constants::gridSizeF / 100.0f;
+	m_deceleration *= Constants::gridSizeF / 100.0f;
+	m_gravity *= Constants::gridSizeF / 100.0f;
+
+	m_maxVelocity *= Constants::gridSizeF / 100.0f;
+	
+
 	m_jumpTimerMax = 100.0f;
 	m_jumpTimer = m_jumpTimerMax;
 	m_isJumping = false;
