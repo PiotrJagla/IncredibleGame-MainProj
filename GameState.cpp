@@ -196,9 +196,13 @@ void GameState::bulletsCollision(Item* item)
 
 void GameState::bulletsTileMapCollision(Item* item)
 {
-	for (int iii{ 0 }; iii < m_rifle->firedBullets(); ++iii)
+	int bulletsNumber{ m_rifle->firedBullets() };
+
+	for (int bulletIndex{ 0 }; bulletIndex < bulletsNumber; ++bulletIndex)
 	{
-		sf::Vector2f bulletPosition{ m_rifle->getBullet(iii).m_bullet.getPosition() };
+		
+		bool isBulletDeleted{ false };
+		sf::Vector2f bulletPosition{ m_rifle->getBullet(bulletIndex).m_bullet.getPosition() };
 
 		int fromX{ static_cast<int>(bulletPosition.x / Constants::gridSizeF) - 1};
 		int toX{ fromX + 3 };
@@ -206,12 +210,20 @@ void GameState::bulletsTileMapCollision(Item* item)
 		int fromY{ static_cast<int>(bulletPosition.y / Constants::gridSizeF) - 1 };
 		int toY{ fromY + 3 };
 
-		for (int iii{ fromY }; iii < toY; ++iii)
+		this->checkTileMapBounds(fromX, toX, fromY, toY);
+
+		for (int iii{ fromY }; iii < toY && isBulletDeleted == false; ++iii)
 		{
-			for (int kkk{ fromX }; kkk < toX; ++kkk)
+			for (int kkk{ fromX }; kkk < toX && isBulletDeleted == false; ++kkk)
 			{
-				m_rifle->bulletTileMapCollision(*m_tileMap->getTile(iii,kkk), iii);
+				isBulletDeleted = m_rifle->bulletTileMapCollision(*m_tileMap->getTile(iii,kkk), bulletIndex);
 			}
+		}
+
+		if (isBulletDeleted == true)
+		{
+			bulletsNumber = m_rifle->firedBullets();
+			--bulletIndex;
 		}
 	}
 }

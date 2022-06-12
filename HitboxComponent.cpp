@@ -14,7 +14,6 @@ HitboxComponent::HitboxComponent(sf::Sprite& sprite, sf::Vector2f& velocity, boo
 	m_hitbox.setOutlineThickness(2.0f);
 	m_hitbox.setOutlineColor(sf::Color::Black);
 
-	Debug::showPosition(m_hitbox.getSize().x, m_hitbox.getSize().y);
 }
 
 HitboxComponent::~HitboxComponent()

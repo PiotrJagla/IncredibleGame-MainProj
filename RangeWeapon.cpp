@@ -26,6 +26,7 @@ void RangeWeapon::update(const float& timePerFrame)
 {
 	this->shootBullet();
 	this->updateBullets();
+	std::cout << "Bullets: " << m_bullets.size() << '\n';
 }
 
 void RangeWeapon::updateBullets()
@@ -63,14 +64,17 @@ void RangeWeapon::renderBullets(sf::RenderTarget* target)
 		target->draw(bullet->m_bullet);
 }
 
-void RangeWeapon::bulletTileMapCollision(Tile& collisionTile, int bulletIndex)
+bool RangeWeapon::bulletTileMapCollision(Tile& collisionTile, int bulletIndex)
 {
 	if (collisionTile.m_tile.getGlobalBounds().intersects(m_bullets[bulletIndex]->m_bullet.getGlobalBounds()) &&
 		collisionTile.m_tileType == Tile::Type::Grass)
 	{
+
 		delete m_bullets[bulletIndex];
 		m_bullets.erase(m_bullets.begin() + bulletIndex);
+		return true;
 	}
+	return false;
 }
 
 void RangeWeapon::giveBulletDirection()
