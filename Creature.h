@@ -3,7 +3,7 @@
 #include "HitboxComponent.h"
 #include "MovementComponent.h"
 #include "AnimationComponent.h"
-#include"PhysicsComponent.h"
+#include "PhysicsComponent.h"
 
 class Creature
 {
@@ -64,6 +64,7 @@ public:
 
 	//Modifiers
 	void setScale(sf::Vector2f scale);
+	void setBasicFrame(sf::IntRect basicFrame);
 
 	//Creature funcjonality
 	virtual void getDamage(int damage) = 0;

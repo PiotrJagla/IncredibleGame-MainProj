@@ -34,7 +34,7 @@ void Creature::initTexture(std::string textureDirectory)
 	m_texture = new sf::Texture{};
 	if (!m_texture->loadFromFile(textureDirectory))
 	{
-		std::cout << "ERROR::CREATURE::Player texture could not load\n";
+		std::cout << "ERROR::CREATURE:: Texture could not load\n";
 	}
 }
 
@@ -72,6 +72,14 @@ void Creature::setScale(sf::Vector2f scale)
 	m_sprite->setScale(scale);
 	//m_hitboxComponent->scaleHitboxSize(scale);
 	m_animationComponent->setScale(scale);
+}
+
+void Creature::setBasicFrame(sf::IntRect basicFrame)
+{
+	m_currentFrame = basicFrame;
+	m_sprite->setTextureRect(m_currentFrame);
+	m_animationComponent->setBacisFrame( basicFrame );
+
 }
 
 const sf::Vector2f& Creature::getPosition() const

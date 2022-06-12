@@ -39,7 +39,7 @@ void GameState::initBackground()
 		}
 	);
 
-	m_background.setPosition(-1000.0f, -1000.0f);
+	m_background.setPosition(0,0);
 
 	m_background.setTexture(&m_backgroundTexture);
 	//m_background.setFillColor(sf::Color::Blue);
@@ -76,8 +76,11 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 	m_rifle->setItemType(Item::Type::Rifle);
 
 	m_items.push_back(m_rifle);
-	
 
+	//Init enemy
+	m_enemies.push_back( new Enemy{"Textures/batTexture.jpg"} );
+	m_creatures.push_back(m_enemies[0]);
+	m_enemies[0]->setBasicFrame(sf::IntRect{ 2,4,139,69 });
 	
 }
 

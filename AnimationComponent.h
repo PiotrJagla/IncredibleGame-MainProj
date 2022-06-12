@@ -22,6 +22,9 @@ private:
 	sf::IntRect m_currentFrame;
 	sf::Vector2f m_spriteScale;
 
+	sf::IntRect m_basicFrame;
+
+
 	bool m_animationSwitch;
 
 public:
@@ -37,6 +40,7 @@ public:
 	void setFrame(sf::IntRect firstFrameBounds);
 	void setSpriteRotation();
 	void setScale(sf::Vector2f scale);
+	void setBacisFrame(sf::IntRect basicFrame);
 };
 
 

@@ -7,7 +7,8 @@ AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Vector2f& velocit
 	m_animationState = MaxAnimations;
 	m_idleAnimationTimer.restart();
 	m_runningAnimationTimer.restart();
-	this->setFrame(sf::IntRect{ 5,5,50,58 });
+	
+	//this->setFrame(sf::IntRect{ 5,5,50,58 });
 	
 	m_animationSwitch = false;
 	m_spriteScale.x = m_sprite.getScale().x;
@@ -96,7 +97,7 @@ void AnimationComponent::playAnimation(sf::Clock& animationTimer,
 
 		if (m_currentFrame.left >= maxBound)
 		{
-			m_currentFrame.left = 5.0f;
+			m_currentFrame.left = m_basicFrame.left;
 		}
 
 		animationTimer.restart();
@@ -129,4 +130,10 @@ void AnimationComponent::setScale(sf::Vector2f scale)
 {
 	m_sprite.setScale(scale);
 	m_spriteScale = scale;
+}
+
+void AnimationComponent::setBacisFrame(sf::IntRect basicFrame)
+{
+	m_basicFrame = basicFrame;
+	m_currentFrame = m_basicFrame;
 }

@@ -7,6 +7,7 @@
 #include "TileMap.h"
 #include "Item.h"
 #include "RangeWeapon.h"
+#include "Enemy.h"
 
 class GameState : public State
 {
@@ -18,6 +19,7 @@ private:
 
 	//Creatures
 	std::vector<Creature*> m_creatures;
+	std::vector<Enemy*> m_enemies;
 	Player* m_player;
 	sf::View m_playerCamera;
 

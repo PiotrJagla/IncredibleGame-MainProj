@@ -24,5 +24,6 @@ public:
 	void updateMovement(const float& timePerFrame);
 	void moveSprite(const float& timePerFrame);
 
+
 };
 

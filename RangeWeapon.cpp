@@ -26,7 +26,6 @@ void RangeWeapon::update(const float& timePerFrame)
 {
 	this->shootBullet();
 	this->updateBullets();
-	std::cout << "Bullets: " << m_bullets.size() << '\n';
 }
 
 void RangeWeapon::updateBullets()

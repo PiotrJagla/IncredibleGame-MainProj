@@ -73,6 +73,9 @@
     <ClCompile Include="Headers.cpp">
       <Filter>Other stuff</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Creatures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="Headers.h">
       <Filter>Other stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Creatures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

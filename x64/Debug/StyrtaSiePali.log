@@ -1,25 +1,33 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: Katalog pośredni (x64\Debug\) zawiera pliki udostępnione z innego projektu (IncredibleGame.vcxproj). Może to spowodować niepoprawne zachowanie podczas oczyszczania i ponownej kompilacji.
+  Creature.cpp
+  Enemy.cpp
+  Game.cpp
   GameState.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(25,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
 D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(25,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(318,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(321,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(321,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(324,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(324,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(327,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(327,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(330,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
+  MainMenuState.cpp
+  MovementComponent.cpp
+  Player.cpp
+  main.cpp
+  Generowanie kodu...
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSIePali.exe
