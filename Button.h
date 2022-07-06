@@ -11,7 +11,8 @@ private:
 	void initColors();
 public:
 	//Constructors / Descructors
-	Button(sf::Vector2f buttonPosition, std::string buttonText, float buttonTextSize,
+	Button(sf::Vector2f buttonPosition = sf::Vector2f{0.0f, 0.0f},
+		std::string buttonText = "", float buttonTextSize = 0.0f,
 		sf::Color buttonColor = sf::Color::White);
 	~Button();
 

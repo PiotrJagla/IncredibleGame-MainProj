@@ -25,10 +25,12 @@ public:
 
 	void scaleHitboxSize(sf::Vector2f scale);
 
-	void creatureTileCollision(Tile& collisionTile);
+	void creatureTilesCollision(std::vector<Tile>& tilesToCheckCollision);
+	std::pair<int, float> calculateNearHitsIndex(Tile& collisionTile, int tileIndex);
 	void walkingTileCollision(Tile& collisionTile);
 	bool creatureSpikeCollision(Tile& collisionTile);
 
 	const sf::RectangleShape& getHitbox() const;
 };
+
 

@@ -16,15 +16,20 @@ private:
 	//GUI
 	std::map<sf::String, Button*> m_buttons;
 	PauseMenu* m_pauseMenu;
+	PauseMenu* m_afterDeathMenu;
 
 	//Creatures
 	std::vector<Creature*> m_creatures;
 	std::vector<Enemy*> m_enemies;
 	Player* m_player;
 	sf::View m_playerCamera;
+	bool m_isCameraOnLeftBound;
+	bool m_isCameraOnRightBound;
 
 	sf::Texture m_backgroundTexture;
 	sf::RectangleShape m_background;
+
+	Timer m_enemySpawnTimer;
 
 	//Items
 	std::vector<Item*> m_items;
@@ -61,20 +66,28 @@ public:
 	void updateButtonsClickDetection(sf::RenderWindow* window);
 
 	void updatePauseMenuButtons(sf::RenderWindow* window);
+	void updateAfterDeathMenuButtons(sf::RenderWindow* window);
+	void deleteAllEnemies();
 
 	//Items
 	void updateItems(const float& timerPerFrame);
 	void updateItemsCollision(Item* item);
 	void bulletsCollision(Item* item);
 	void bulletsTileMapCollision(Item* item);
+	void bulletEnemyCollision(Item* item);
+	void playerEnemyCollision();
 	
 	//Creatures
 	void updateCreatures(const float& timePerFrame);
 	void updatePlayerCamera();
+	void moveBackgroundProportionallyToMap();
+
+	void updateEnemySpawn();
 
 	//Collision
 	void updateTilesMapCollision(Creature* creature);
-	void updateRenderAndCollisionCheckBounds();
+	void updateRenderBounds();
+	void calculateCollisionBounds(sf::Vector2f point, int& fromX, int& toX, int& fromY, int& toY);
 	void updateCollision(Creature* creature);
 	
 
@@ -87,6 +100,8 @@ public:
 
 	void checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY);
 	void checkPlayerCameraBounds();
-
+	bool isPlayerDead();
+	void deleteDeadEnemy();
+	
 };
 

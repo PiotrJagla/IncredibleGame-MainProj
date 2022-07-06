@@ -12,21 +12,33 @@ public:
 	static const unsigned mapSizeY;
 
 	static const int spikeDamage;
+	static const int rifleDamage;
+	static const int batDamage;
+	static const int ninjaDamage;
+
+	static const int batMaxHP;
+	static const int ninjaMaxHP;
+	static const int playerMaxHP;
 
 	static const float pi;
 
 	static const float playerSizeX;
 	static const float playerSizeY;
+	static const sf::Vector2f playerScale;
+	static const sf::Vector2f batScale;
+	static const sf::Vector2f ninjaScale;
 };
 
 class RealeseDetection
 {
 public:
 	static bool Escape;
-	static bool escapeRealese();
-
 	static bool mouseLeftButton;
-	static bool mouseRealese();
+	static bool W;
+
+	static bool escapeRealesed();
+	static bool mouseRealesed();
+	static bool WRealesed();
 };
 
 class deltaTime

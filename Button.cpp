@@ -43,11 +43,13 @@ void Button::buttonHover(sf::RenderWindow* window)
 
 bool Button::isButtonClicked(sf::RenderWindow* window)
 {
+
 	if (m_buttonText.getGlobalBounds().contains(
 		sf::Mouse::getPosition(*window).x, sf::Mouse::getPosition(*window).y))
 	{
-		if (RealeseDetection::mouseRealese() == true)
+		if (RealeseDetection::mouseRealesed() == true)
 		{
+
 			return true;
 		}
 	}

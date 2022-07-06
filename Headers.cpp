@@ -2,12 +2,12 @@
 
 //TODO
 /*
-	Trzeba dokoñczyæ kolizje w hitbox component (RAY CASTING COLLISION)
+	W PhysicsComponent wysokoœæ skakania ró¿ni siê minimalnie w zale¿noœci od FPSów 
+	od 100 do 30 FPS s¹ wahania oko³o 20 pixeli (w 100 FPS skakanie o 20 pixeli wy¿ej)
 */
 
 /*
-	Po wystrzeleniu pocisku gdzieœ jest wyjœcie poza zasieg wektora zwi¹zanego z pociskami,
-	pociski maj¹ zostaæ ziszczone kiedy trafi¹ na blok trawy
+* 
 */
 
 

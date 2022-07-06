@@ -7,7 +7,8 @@ void Game::initWindow()
 	m_window = new sf::RenderWindow{ sf::VideoMode{Constants::WindowWidth, Constants::WindowHeigth} ,
 		"Incredible Game", sf::Style::Close | sf::Style::Titlebar };
 
-	m_window->setFramerateLimit(40);
+	//m_window->setFramerateLimit(30);
+	
 }
 
 void Game::initStates()
@@ -45,6 +46,7 @@ void Game::gameLoop()
 
 void Game::update()
 {
+	this->showFPS();
 	this->updateEvents();
 	if (!m_states.empty())
 	{
@@ -52,6 +54,7 @@ void Game::update()
 
 		if (m_states.top()->getQuit() == true)
 		{
+
 			delete m_states.top();
 			m_states.pop();
 		}
@@ -87,6 +90,17 @@ void Game::updateButtonRealese()
 	{
 		RealeseDetection::mouseLeftButton = true;
 	}
+	else if (m_event.type == sf::Event::KeyReleased &&
+		m_event.key.code == sf::Keyboard::W)
+	{
+
+		RealeseDetection::W = true;
+	}
+}
+
+void Game::showFPS()
+{
+	std::cout << "FPS: " << 1 / m_timePerFrame << '\n';
 }
 
 void Game::render()
@@ -108,4 +122,5 @@ void Game::realeseBoolsReset()
 {
 	RealeseDetection::Escape = false;
 	RealeseDetection::mouseLeftButton = false;
+	RealeseDetection::W = false;
 }

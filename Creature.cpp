@@ -20,22 +20,12 @@ void Creature::initPhysicsComponent()
 
 }
 
-void Creature::initSprite()
+void Creature::initSprite(sf::Texture& texture)
 {
 	m_sprite = new sf::Sprite{};
-	m_sprite->setTexture(*m_texture);
+	m_sprite->setTexture(texture);
 	m_sprite->setTextureRect(sf::IntRect{ 5,5,50,58 });
-	m_sprite->setPosition(500.0f, 1800.0f);
-}
-
-void Creature::initTexture(std::string textureDirectory)
-{
-
-	m_texture = new sf::Texture{};
-	if (!m_texture->loadFromFile(textureDirectory))
-	{
-		std::cout << "ERROR::CREATURE:: Texture could not load\n";
-	}
+	m_sprite->setPosition(Constants::gridSizeF * 4, Constants::gridSizeF * (Constants::mapSizeY - 4));
 }
 
 void Creature::initHitboxComponent()
@@ -45,20 +35,18 @@ void Creature::initHitboxComponent()
 
 
 //Constructors / Descructors
-Creature::Creature(std::string textureDirectory)
+Creature::Creature(sf::Texture& texture)
 {
-	this->initTexture(textureDirectory);
-	this->initSprite();
+	this->initSprite(texture);
 	this->initMovementComponent();
 	this->initHitboxComponent();
 	this->initAnimationComponent();
 	this->initPhysicsComponent();
-
 }
 
 Creature::~Creature()
 {
-	delete m_texture;
+	
 	delete m_sprite;
 	delete m_hitboxComponent;
 	delete m_animationComponent;
@@ -70,7 +58,7 @@ Creature::~Creature()
 void Creature::setScale(sf::Vector2f scale)
 {
 	m_sprite->setScale(scale);
-	//m_hitboxComponent->scaleHitboxSize(scale);
+	m_hitboxComponent->scaleHitboxSize(scale);
 	m_animationComponent->setScale(scale);
 }
 
@@ -82,14 +70,41 @@ void Creature::setBasicFrame(sf::IntRect basicFrame)
 
 }
 
+void Creature::setJumpingAndFallingFrame(sf::IntRect jumpingFrame, sf::IntRect fallingFrame)
+{
+	m_animationComponent->setJumpingAndFallingFrame(jumpingFrame, fallingFrame);
+}
+
+void Creature::setAnimationStateBounds(float walkNextFrameDIstance, float walkMaxBound, float topWalkBound,
+	float idleNextFrameDistance, float idleMaxBound, float topidleBound)
+{
+	m_animationComponent->setAnimationBounds(walkNextFrameDIstance, walkMaxBound, topWalkBound,
+		idleNextFrameDistance, idleMaxBound, topidleBound);
+}
+
+void Creature::setMaxHP(int maxHP)
+{
+	m_maxHP = maxHP;
+}
+
+const int& Creature::getHP()
+{
+	return m_currentHP;
+}
+
 const sf::Vector2f& Creature::getPosition() const
 {
 	return m_sprite->getPosition();
 }
 
-const sf::Vector2f Creature::getSize() const
+const sf::Vector2f& Creature::getSize() const
 {
 	return m_hitboxComponent->getHitbox().getSize();
+}
+
+const sf::FloatRect& Creature::getGlobalBounds() const
+{
+	return m_sprite->getGlobalBounds();
 }
 
 

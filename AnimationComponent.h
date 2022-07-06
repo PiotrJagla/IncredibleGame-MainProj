@@ -23,6 +23,15 @@ private:
 	sf::Vector2f m_spriteScale;
 
 	sf::IntRect m_basicFrame;
+	sf::IntRect m_fallingFrame;
+	sf::IntRect m_jumpingFrame;
+	float m_walkNextFrameDistance;
+	float m_walkMaxBound;
+	float m_topWalkBound;
+
+	float m_idleNextFrameDistance;
+	float m_idleMaxBound;
+	float m_topidleBound;
 
 
 	bool m_animationSwitch;
@@ -41,6 +50,9 @@ public:
 	void setSpriteRotation();
 	void setScale(sf::Vector2f scale);
 	void setBacisFrame(sf::IntRect basicFrame);
+	void setJumpingAndFallingFrame(sf::IntRect jumpingFrame, sf::IntRect fallingFrame);
+	void setAnimationBounds(float walkNextFrameDistance, float walkMaxBound, float topWalkBound,
+		float idleNextFrameDistance, float idleMaxBound, float topidleBound);
 };
 
 

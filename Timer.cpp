@@ -1,9 +1,8 @@
 #include "headers.h"
 #include "Timer.h"
 
-Timer::Timer(float timeMAX, float speed) 
+Timer::Timer(float timeMAX) 
 {
-	m_speed = speed;
 	m_timeMAX = timeMAX;
 }
 
@@ -13,7 +12,7 @@ Timer::~Timer()
 
 void Timer::update(const float& deltaTime)
 {
-	m_time += m_speed * deltaTime;
+	m_time += 1000.0f * deltaTime;
 }
 
 void Timer::restart(float restartPoint)
@@ -34,9 +33,4 @@ const float Timer::getTimeMAX() const
 void Timer::setMAXtime(float timeMAX)
 {
 	m_timeMAX = timeMAX;
-}
-
-void Timer::setSpeed(float speed)
-{
-	m_speed = speed;
 }

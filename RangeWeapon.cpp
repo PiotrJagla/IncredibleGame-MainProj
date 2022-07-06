@@ -5,8 +5,7 @@ void RangeWeapon::initVariables()
 {
 	m_ammunition = 1000;
 
-	m_cooldown.setMAXtime(10.0f);
-	m_cooldown.setSpeed(50.0f);
+	m_cooldown.setMAXtime(100.0f);
 
 	m_mousePositionMapPtr = nullptr;
 }
@@ -114,6 +113,12 @@ const int& RangeWeapon::firedBullets() const
 const RangeWeapon::Bullet& RangeWeapon::getBullet(int index) const
 {
 	return *m_bullets[index];
+}
+
+void RangeWeapon::deleteBullet(int bulletIndex)
+{
+	delete m_bullets[bulletIndex];
+	m_bullets.erase(m_bullets.begin() + bulletIndex);
 }
 
 

@@ -1,152 +1,147 @@
-﻿  Creature.cpp
+﻿  AnimationComponent.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(60,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(73,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(79,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(92,43): warning C4244: "+=": konwersja z "float" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+  AuxiliaryVariables.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\AuxiliaryVariables.cpp(23,33): warning C4305: "inicjowanie": obcięcie z "double" do "float"
+  Button.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(19,32): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(34,69): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(34,34): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(48,69): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(48,34): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(80,32): warning C4244: "argument": konwersja z "const float" do "unsigned int", możliwa utrata danych
+  Creature.cpp
+  Debug.cpp
   Enemy.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(7,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(7,21): error C3646: "m_hitbox": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(7,29): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(9,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(9,12): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(9,12): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(9,22): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(10,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(10,14): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(10,14): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(10,26): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(15,18): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(15,22): error C2061: błąd składniowy: identyfikator „Sprite”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(24,17): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(24,21): error C2061: błąd składniowy: identyfikator „RenderTarget”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(26,23): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(26,27): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(28,29): error C2061: błąd składniowy: identyfikator „Tile”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(29,28): error C2061: błąd składniowy: identyfikator „Tile”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(30,30): error C2061: błąd składniowy: identyfikator „Tile”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(32,8): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(32,26): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(32,26): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\HitboxComponent.h(32,45): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(7,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(7,12): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(7,12): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(7,22): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(9,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(9,14): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(9,14): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(9,27): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(10,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(10,14): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(10,14): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(10,26): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(19,20): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\MovementComponent.h(19,24): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(17,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(17,14): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(17,14): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(17,26): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(18,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(18,12): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(18,12): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(18,22): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(19,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(19,12): error C3646: "m_runningAnimationTimer": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(19,35): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(20,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(20,12): error C3646: "m_idleAnimationTimer": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(20,32): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(22,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(22,14): error C3646: "m_currentFrame": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(22,28): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(23,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(23,15): error C3646: "m_spriteScale": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(23,28): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(28,21): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(28,25): error C2061: błąd składniowy: identyfikator „Sprite”
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(34,21): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(34,25): error C2061: błąd składniowy: identyfikator „Clock”
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(37,16): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(37,20): error C2061: błąd składniowy: identyfikator „IntRect”
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(39,16): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.h(39,20): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(9,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(9,15): error C3646: "m_maxVelocity": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(9,28): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(19,3): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(19,7): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(24,3): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(24,7): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(26,3): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(26,7): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(27,45): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(27,49): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(29,3): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\PhysicsComponent.h(29,7): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(14,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(14,12): error C2143: błąd składniowy: brakuje „;” przed „*”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(14,12): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(14,22): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(15,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(15,13): error C2143: błąd składniowy: brakuje „;” przed „*”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(15,13): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(15,24): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(16,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(16,14): error C3646: "m_currentFrame": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(16,28): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(21,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(21,15): error C3646: "m_direction": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(21,26): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(22,2): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(22,15): error C3646: "m_velocity": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(22,25): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(34,24): error C2039: „string”: nie jest składową elementu „std”
-D:\Program Files (x86)\GitHub\IncredibleGame\predefined C++ types (compiler internal)(341): message : zobacz deklarację „std”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(34,31): error C2061: błąd składniowy: identyfikator „string”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(42,16): error C2039: „string”: nie jest składową elementu „std”
-D:\Program Files (x86)\GitHub\IncredibleGame\predefined C++ types (compiler internal)(341): message : zobacz deklarację „std”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(42,10): error C2061: błąd składniowy: identyfikator „string”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(53,22): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(53,26): error C2061: błąd składniowy: identyfikator „RenderTarget”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(57,29): error C2061: błąd składniowy: identyfikator „Tile”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(62,8): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(62,20): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(62,20): error C2143: błąd składniowy: brakuje „;” przed „&”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(62,41): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(63,8): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(63,21): error C4430: brak specyfikatora typu - założono, że int. Uwaga: C++ nie obsługuje domyślnie typu int
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(63,21): error C3646: "getSize": nieznany specyfikator przesłonięcia
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(63,29): error C2059: błąd składniowy: „)”
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(63,36): error C2238: nieoczekiwany(e) token(y) poprzedzający(e) ";"
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(66,16): error C2653: "sf": nie jest nazwą klasa lub nazwą przestrzeni nazw
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.h(66,20): error C2061: błąd składniowy: identyfikator „Vector2f”
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.h(12,1): error C2143: błąd składniowy: brakuje „;” przed „}”
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.h(11,7): error C2182: "update": niedozwolone użycie typu "void"
+D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(32,12): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(66,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   Game.cpp
+  GameResources.cpp
   GameState.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(25,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(25,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(318,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(57,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(57,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(511,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(321,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(514,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(324,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(517,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(327,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(520,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
+  Geometry.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(17,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(28,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(88,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(99,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
+  Headers.cpp
+  HitboxComponent.cpp
   Item.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\Item.cpp(50,58): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-  main.cpp
   MainMenuState.cpp
   MeleeWeapon.cpp
+  MovementComponent.cpp
+  PauseMenu.cpp
+  PhysicsComponent.cpp
   Player.cpp
   RangeWeapon.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\RangeWeapon.cpp(111,25): warning C4267: "return": konwersja z "size_t" do "const int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\RangeWeapon.cpp(110,25): warning C4267: "return": konwersja z "size_t" do "const int", możliwa utrata danych
+  Trwa kompilowanie...
+  State.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\State.cpp(47,42): warning C4244: "+=": konwersja z "T" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\State.cpp(48,42): warning C4244: "+=": konwersja z "T" do "T", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+  Tile.cpp
+  TileMap.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(46,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(50,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(54,93): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(54,65): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(89,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(91,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(146,28): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
+  Timer.cpp
+  main.cpp
+  Trwa generowanie kodu
+D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(203): warning C4715: "Enemy::getEnemyDamage”: niewszystkie ścieżki kodu zwracają wartość
+  333 of 1365 functions (24.4%) were compiled, the rest were copied from previous compilation.
+    27 functions were new in current compilation
+    116 functions had inline decision re-evaluated but remain unchanged
+  Zakończono generowanie kodu
+  StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Release\StyrtaSIePali.exe

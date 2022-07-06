@@ -5,24 +5,38 @@
 //Constants
 const unsigned Constants::WindowHeigth = 900;
 const unsigned Constants::WindowWidth = 1400;
+
 const float Constants::gridSizeF = 80.0f;
 const unsigned Constants::gridSizeU = static_cast<unsigned>(Constants::gridSizeF);
 const unsigned Constants::mapSizeX = 83;
 const unsigned Constants::mapSizeY = 30;
+
 const int Constants::spikeDamage = 15;
+const int Constants::rifleDamage = 4;
+const int Constants::batDamage = 5;
+const int Constants::ninjaDamage = 10;
+
+const int Constants::batMaxHP = 20;
+const int Constants::ninjaMaxHP = 30;
+const int Constants::playerMaxHP = 50;
 
 const float Constants::pi = 3.14;
 
 const float Constants::playerSizeX = 50.0f;
 const float Constants::playerSizeY = 58.0f;
+const sf::Vector2f Constants::playerScale = { 1.3f, 1.3f };
+const sf::Vector2f Constants::batScale = { 1.2f, 1.0f };
+const sf::Vector2f Constants::ninjaScale = { 1.9f, 2.2f };
+
 
 //Button realese detection
 bool RealeseDetection::Escape = false;
 bool RealeseDetection::mouseLeftButton = false;
+bool RealeseDetection::W = false;
 
 float deltaTime::timePerFrame = 0.0f;
 
-bool RealeseDetection::escapeRealese()
+bool RealeseDetection::escapeRealesed()
 {
 	bool isEscapeRealesed{ RealeseDetection::Escape };
 
@@ -31,13 +45,23 @@ bool RealeseDetection::escapeRealese()
 	return isEscapeRealesed;
 }
 
-bool RealeseDetection::mouseRealese()
+bool RealeseDetection::mouseRealesed()
 {
 	bool isMouseLeftButtonRealesed{ RealeseDetection::mouseLeftButton };
 
 	RealeseDetection::mouseLeftButton = false;
 
 	return isMouseLeftButtonRealesed;
+}
+
+bool RealeseDetection::WRealesed()
+{
+
+	bool isWRealesed{ RealeseDetection::W };
+
+	RealeseDetection::W = false;
+
+	return isWRealesed;
 }
 
 

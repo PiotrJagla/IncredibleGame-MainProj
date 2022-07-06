@@ -57,33 +57,29 @@ void AnimationComponent::updateAnimation()
 
 	if (m_animationState == Idle)
 	{
-		m_currentFrame.top = 5.0f;
-		this->playAnimation(m_idleAnimationTimer, 65.0f, 125.0f, 1000.0f);
+		m_currentFrame.top = m_topidleBound;
+		this->playAnimation(m_idleAnimationTimer, m_idleNextFrameDistance, m_idleMaxBound, 1000.0f);
 	}
 	else if (m_animationState == Jumping)
 	{
-		this->setFrame(sf::IntRect{ 5,136,50,58 });
-		this->setSpriteRotation();
+		this->setFrame(m_jumpingFrame);
 	}
 	else if (m_animationState == Falling)
 	{
-		this->setFrame(sf::IntRect{ 5,200,50,58 });
-		this->setSpriteRotation();
+		this->setFrame(m_fallingFrame);
 	}
 	else if (m_animationState == MovingRight)
 	{
-		m_currentFrame.top = 72.0f;
-		this->playAnimation(m_runningAnimationTimer, 65.0f, 210.0f, 70.0f);
-		this->setSpriteRotation();
+		m_currentFrame.top = m_topWalkBound;
+		this->playAnimation(m_runningAnimationTimer, m_walkNextFrameDistance, m_walkMaxBound, 70.0f);
 
 	}
 	else if (m_animationState == MovingLeft)
 	{
-		m_currentFrame.top = 72.0f;
-		this->playAnimation(m_runningAnimationTimer, 65.0f, 210.0f, 70.0f);
-		this->setSpriteRotation();
+		m_currentFrame.top = m_topWalkBound;
+		this->playAnimation(m_runningAnimationTimer, m_walkNextFrameDistance, m_walkMaxBound, 70.0f);
 	}
-
+	this->setSpriteRotation();
 }
 
 void AnimationComponent::playAnimation(sf::Clock& animationTimer,
@@ -136,4 +132,22 @@ void AnimationComponent::setBacisFrame(sf::IntRect basicFrame)
 {
 	m_basicFrame = basicFrame;
 	m_currentFrame = m_basicFrame;
+}
+
+void AnimationComponent::setJumpingAndFallingFrame(sf::IntRect jumpingFrame, sf::IntRect fallingFrame)
+{
+	m_jumpingFrame = jumpingFrame;
+	m_fallingFrame = fallingFrame;
+}
+
+void AnimationComponent::setAnimationBounds(float walkNextFrameDistance, float walkMaxBound, float topWalkBound,
+	float idleNextFrameDistance, float idleMaxBound, float topidleBound)
+{
+	m_walkNextFrameDistance = walkNextFrameDistance;
+	m_walkMaxBound = walkMaxBound;
+	m_topWalkBound = topWalkBound;
+
+	m_idleNextFrameDistance = idleNextFrameDistance;
+	m_idleMaxBound = idleMaxBound;
+	m_topidleBound = topidleBound;
 }

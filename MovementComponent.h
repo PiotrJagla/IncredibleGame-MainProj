@@ -24,6 +24,6 @@ public:
 	void updateMovement(const float& timePerFrame);
 	void moveSprite(const float& timePerFrame);
 
-
+	void setDirectionTowardsPoint(const float& timePerFrame,sf::Vector2f& point);
 };
 

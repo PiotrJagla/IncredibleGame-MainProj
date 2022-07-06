@@ -28,6 +28,14 @@ public:
 	void updateVelocity(const float& timePerFrame,
 		sf::Vector2f& velocity, sf::Vector2f& direction, bool& isGrounded);
 
+	void accelerateWithoutGravity(const float& timePerFrame,
+		sf::Vector2f& velocity, sf::Vector2f& direction);
+	void decelerateWithoutGravity(const float& timePerFrame,
+		sf::Vector2f& velocity, sf::Vector2f& direction);
+
+	void updateEnemyVelocity(sf::Vector2f& velocity, sf::Vector2f& direction,
+		bool& isGrounded, float playerEnemyAngle);
+
 	//Jumping
 	bool jumpKeyTime(const float& timePerFrame);
 	void resetJumpKeyTime();

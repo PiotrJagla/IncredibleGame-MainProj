@@ -44,5 +44,7 @@ public:
 
 	const int& firedBullets() const;
 	const RangeWeapon::Bullet& getBullet(int index) const;
+
+	void deleteBullet(int bulletIndex);
 };
 

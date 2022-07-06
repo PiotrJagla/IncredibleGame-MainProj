@@ -3,29 +3,62 @@
 
 class Enemy : public Creature
 {
+public:
+	enum class Type
+	{
+		flying,
+		walking
+	};
+
+	enum class AllEnemies
+	{
+		bat,
+		ninja
+	};
 private:
 	sf::Clock m_animationTimer;
 
+	sf::RectangleShape m_HPbar;
+	sf::RectangleShape m_HPbarBackground;
+
+	Type m_enemyType;
+	AllEnemies m_whatEnemy;
+	
+	void initHPbar();
+	void setRandomPosition();
+
+	
 public:
-	Enemy(std::string textureDirectory);
+	Enemy(sf::Texture& texture);
 	~Enemy();
 
 
 	//Update
 	void update(const float& timePerFrame) override;
-	void updatePhysicsComponent(const float& timePerFrame) override;
-	void updateMovementComponent(const float& timePerFrame) override;
+	void updatePhysicsComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection = nullptr) override;
+	void updateMovementComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection = nullptr) override;
 	void updateAnimationComponent() override;
 	void updateHitboxComponent() override;
+	void updateHPbar();
 
 	void updateCollision() override;
 
+	bool bulletCollision(sf::FloatRect bulletBounds);
+
 	//Render
 	void render(sf::RenderTarget* target) override;
+	void renderHPbar(sf::RenderTarget* target);
 
-	void tileCollision(Tile& collisionTile) override;
+	void tileCollision(std::vector<Tile>& tilesToCheckCollision) override;
 
 	void getDamage(int damage) override;
+
+	void giveEnemyType(Type enemyType);
+	void whatIsThisEnemy(AllEnemies whatEnemy);
+
+	const int& getEnemyDamage();
+	
+	
 
 
 };

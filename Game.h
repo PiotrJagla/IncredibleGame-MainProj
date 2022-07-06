@@ -33,6 +33,7 @@ public:
 	void update();
 	void updateEvents();
 	void updateButtonRealese();
+	void showFPS();
 
 	//Render
 	void render();

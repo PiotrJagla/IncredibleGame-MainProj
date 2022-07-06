@@ -4,13 +4,7 @@
 //Initialize Functions
 void PauseMenu::initButtons()
 {
-	m_buttons["quitButton"] = new Button
-	{ sf::Vector2f{Constants::WindowWidth / 2.0f - 100.0f , 250.0f},
-		"Quit", 50.0f };
 
-	m_buttons["resumeButton"] = new Button
-	{ sf::Vector2f{Constants::WindowWidth / 2.0f - 100.0f , 300.0f},
-		"Resume", 50.0f };
 }
 
 void PauseMenu::initGameVievDimmer()
@@ -32,8 +26,10 @@ PauseMenu::PauseMenu()
 
 PauseMenu::~PauseMenu()
 {
-	delete m_buttons["quitButton"];
-	delete m_buttons["resumeButton"];
+	for (int iii{ 0 }; iii < m_buttons.size(); ++iii)
+	{
+		delete m_buttons[m_buttonNames[iii]];
+	}
 }
 
 
@@ -45,8 +41,11 @@ void PauseMenu::update(sf::RenderWindow* window)
 
 void PauseMenu::updateButtons(sf::RenderWindow* window)
 {
-	m_buttons["quitButton"]->buttonHover(window);
-	m_buttons["resumeButton"]->buttonHover(window);
+	for (int iii{ 0 }; iii < m_buttons.size(); ++iii)
+	{
+		m_buttons[m_buttonNames[iii]]->buttonHover(window);
+	}
+
 }
 
 void PauseMenu::render(sf::RenderTarget* target)
@@ -57,11 +56,34 @@ void PauseMenu::render(sf::RenderTarget* target)
 
 void PauseMenu::renderButtons(sf::RenderTarget* target)
 {
-	m_buttons["quitButton"]->drawButton(target);
-	m_buttons["resumeButton"]->drawButton(target);
+	for (int iii{ 0 }; iii < m_buttons.size(); ++iii)
+	{
+		m_buttons[m_buttonNames[iii]]->drawButton(target);
+	}
 }
 
 const bool PauseMenu::isButtonPressed(std::string buttonName,sf::RenderWindow* window)
 {
 	return m_buttons[buttonName]->isButtonClicked(window);
+}
+
+void PauseMenu::addButton(std::string buttonName)
+{
+	m_buttons[buttonName] = new Button{};
+	m_buttonNames.push_back( buttonName );
+}
+
+void PauseMenu::setButtonText(std::string buttonToChange, std::string buttonText)
+{
+	m_buttons[buttonToChange]->setString(buttonText);
+}
+
+void PauseMenu::setButtonPosition(std::string buttonName, sf::Vector2f position)
+{
+	m_buttons[buttonName]->setPosition(position.x, position.y);
+}
+
+void PauseMenu::setButtonCharacterSize(std::string buttonName, float characterSize)
+{
+	m_buttons[buttonName]->setCharacterSize(characterSize);
 }

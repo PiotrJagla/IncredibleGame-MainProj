@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Creature.h"
+#include "Enemy.h"
 
 class Player : public Creature
 {
@@ -12,17 +13,18 @@ private:
 	//initialize private functions
 	void initHearts();
 public:
-	Player(std::string textureDirectory);
+	Player(sf::Texture& texture);
 	virtual ~Player();
 
 	void update(const float& timePerFrame) override;
 	void updateTimers(const float& timePerFrame);
 	void updateCollision() override;
-	void tileCollision(Tile& collisionTile) override;
+	void tileCollision(std::vector<Tile>& tilesToCheckCollision) override;
 	void playerSpikeCollision(Tile& collisionTile);
+	void playerEnemyCollision(const sf::FloatRect& enemyBounds, int enemyDamage);
 
-	void updatePhysicsComponent(const float& timePerFrame) override;
-	void updateMovementComponent(const float& timePerFrame) override;
+	void updatePhysicsComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection = nullptr) override;
+	void updateMovementComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection = nullptr) override;
 	void updateAnimationComponent() override;
 	void updateHitboxComponent() override;
 
@@ -32,10 +34,13 @@ public:
 
 	void blinkingAfterDamaged(sf::RenderTarget* target);
 	void regulateHPhearts();
-
-	
+	void respawn();
 
 	//Creature funkcjonality
 	void getDamage(int damage) override;
+
+	//Debug
+	void changeVelocity(sf::Vector2f velocity);
+
 };
 

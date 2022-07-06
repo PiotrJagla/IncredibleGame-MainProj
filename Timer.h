@@ -4,11 +4,8 @@ class Timer
 public:
 	float m_timeMAX;
 	float m_time;
-
-	float m_speed;
-
 public:
-	Timer(float timeMAX = 0, float speed = 0);
+	Timer(float timeMAX = 0);
 	~Timer();
 
 	void update(const float& deltaTime);
@@ -20,7 +17,6 @@ public:
 	
 
 	void setMAXtime(float maxTIME);
-	void setSpeed(float speed);
 
 
 };

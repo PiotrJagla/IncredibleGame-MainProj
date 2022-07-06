@@ -8,6 +8,9 @@ sf::Texture* GameResources::heartTexture = new sf::Texture;
 sf::Texture* GameResources::halfHeartTexture = new sf::Texture;
 sf::Texture* GameResources::emptyHeartTexture = new sf::Texture;
 sf::Texture* GameResources::rifleTexture = new sf::Texture;
+sf::Texture* GameResources::ninjaTexture = new sf::Texture;
+sf::Texture* GameResources::batTexture = new sf::Texture;
+sf::Texture* GameResources::playerTexture = new sf::Texture;
 
 sf::Texture* GameResources::spikeTexture = new sf::Texture;
 
@@ -53,6 +56,21 @@ void GameResources::initTextures()
 		std::cout << "GAME RESOURCES:: Rifle texture could not load\n";
 	}
 
+	if (!GameResources::ninjaTexture->loadFromFile("Textures/ninjaTexture.png"))
+	{
+		std::cout << "GAME RESOURCES:: Ninja texture could not load\n";
+	}
+
+	if (!GameResources::batTexture->loadFromFile("Textures/batTexture.png"))
+	{
+		std::cout << "GAME RESOURCES:: Bat texture could not load\n";
+	}
+
+	if (!GameResources::playerTexture->loadFromFile("Textures/playerTexture.png"))
+	{
+		std::cout << "GAME RESOURCES:: Player texture could not load\n";
+	}
+
 	
 }
 
@@ -71,4 +89,7 @@ void GameResources::deleteResources()
 	delete GameResources::halfHeartTexture;
 	delete GameResources::emptyHeartTexture;
 	delete GameResources::spikeTexture;
+	delete GameResources::ninjaTexture;
+	delete GameResources::batTexture;
+	delete GameResources::playerTexture;
 }

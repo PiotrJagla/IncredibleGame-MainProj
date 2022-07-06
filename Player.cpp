@@ -6,7 +6,7 @@
 //initialize private functions
 void Player::initHearts()
 {
-	m_maxHP = 50;
+	m_maxHP = Constants::playerMaxHP;
 	m_currentHP = m_maxHP;
 
 	for (int iii{ 0 }; iii < m_maxHP/10; ++iii)
@@ -23,15 +23,16 @@ void Player::initHearts()
 }
 
 //Constructors / Descructors
-Player::Player(std::string textureDirectory) 
-	: Creature{textureDirectory}
+Player::Player(sf::Texture& texture)
+	: Creature{texture}
 {
 	this->initHearts();
 	
 
-	m_afterDamageTimer.setSpeed(700.0f);
 	m_afterDamageTimer.setMAXtime(1600.0f);
 	m_afterDamageTimer.restart(m_afterDamageTimer.getTimeMAX() + 10.0f);
+
+	creatureType = Creature::Type::player;
 }
 
 Player::~Player()
@@ -57,10 +58,26 @@ void Player::updateCollision()
 
 }
 
-void Player::tileCollision(Tile& collisionTile)
+void Player::tileCollision(std::vector<Tile>& tilesToCheckCollision)
 {
-	this->playerSpikeCollision(collisionTile);
-	m_hitboxComponent->creatureTileCollision(collisionTile);
+
+	for (int iii{ 0 }; iii < tilesToCheckCollision.size(); ++iii)
+	{
+		if (tilesToCheckCollision[iii].m_tileType == Tile::Type::Spike)
+		{
+			this->playerSpikeCollision(tilesToCheckCollision[iii]);
+			tilesToCheckCollision.erase(tilesToCheckCollision.begin() + iii);
+			--iii;
+		}
+		else if (tilesToCheckCollision[iii].isObsticle == false)
+		{
+			tilesToCheckCollision.erase(tilesToCheckCollision.begin() + iii);
+			--iii;
+		}
+	}
+
+	
+	m_hitboxComponent->creatureTilesCollision(tilesToCheckCollision);
 }
 
 void Player::playerSpikeCollision(Tile& collisionTile)
@@ -71,6 +88,16 @@ void Player::playerSpikeCollision(Tile& collisionTile)
 		this->getDamage(Constants::spikeDamage);
 	}
 
+}
+
+void Player::playerEnemyCollision(const sf::FloatRect& enemyBounds, int enemyDamage)
+{
+	if (m_sprite->getGlobalBounds().intersects(enemyBounds) &&
+		m_afterDamageTimer.getElapsedTime() > m_afterDamageTimer.getTimeMAX())
+	{
+		this->getDamage(enemyDamage);
+		this->regulateHPhearts();
+	}
 }
 
 void Player::regulateHPhearts()
@@ -92,12 +119,20 @@ void Player::regulateHPhearts()
 	}
 }
 
-void Player::updatePhysicsComponent(const float& timePerFrame)
+void Player::respawn()
+{
+	m_currentHP = m_maxHP;
+	this->regulateHPhearts();
+
+	m_sprite->setPosition(3 * Constants::gridSizeF, (Constants::mapSizeY - 3) * Constants::gridSizeF);
+}
+
+void Player::updatePhysicsComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection)
 {
 	m_physicsComponent->update(timePerFrame, m_velocity, m_direction, m_isGrounded);
 }
 
-void Player::updateMovementComponent(const float& timePerFrame)
+void Player::updateMovementComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection)
 {
 
 	m_movementComponent->update(timePerFrame);
@@ -117,7 +152,7 @@ void Player::updateHitboxComponent()
 void Player::render(sf::RenderTarget* target)
 {
 	this->renderPlayer(target);
-	m_hitboxComponent->drawHitbx(target);
+	//m_hitboxComponent->drawHitbx(target);
 }
 
 void Player::renderHearts(sf::RenderTarget* target)
@@ -157,4 +192,11 @@ void Player::getDamage(int damage)
 	m_currentHP -= damage;
 	this->regulateHPhearts();
 	m_afterDamageTimer.restart(0.0f);
+}
+
+
+//Debug
+void Player::changeVelocity(sf::Vector2f velocity)
+{
+	m_velocity = velocity;
 }

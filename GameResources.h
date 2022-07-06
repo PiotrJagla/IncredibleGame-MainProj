@@ -20,6 +20,9 @@ public:
 	static sf::Texture* halfHeartTexture;
 	static sf::Texture* emptyHeartTexture;
 	static sf::Texture* rifleTexture;
+	static sf::Texture* ninjaTexture;
+	static sf::Texture* batTexture;
+	static sf::Texture* playerTexture;
 
 	static sf::Texture* spikeTexture;
 
