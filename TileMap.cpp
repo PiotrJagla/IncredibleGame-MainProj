@@ -151,3 +151,8 @@ Tile* TileMap::getTile(int indexI, int indexK)
 	return m_tileMap[indexI][indexK];
 }
 
+std::vector<std::vector<Tile*>>& TileMap::getTileMap()
+{
+	return m_tileMap;
+}
+

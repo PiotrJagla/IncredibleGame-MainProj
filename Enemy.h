@@ -32,6 +32,7 @@ public:
 	Enemy(sf::Texture& texture);
 	~Enemy();
 
+	void shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap, sf::Vector2f playerPos);
 
 	//Update
 	void update(const float& timePerFrame) override;
@@ -53,10 +54,13 @@ public:
 
 	void getDamage(int damage) override;
 
+	//Modifiers
 	void giveEnemyType(Type enemyType);
 	void whatIsThisEnemy(AllEnemies whatEnemy);
 
+	//Accesors
 	const int& getEnemyDamage();
+	const Type& getEnemyType();
 	
 	
 

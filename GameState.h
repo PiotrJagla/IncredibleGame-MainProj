@@ -81,6 +81,7 @@ public:
 	void updateCreatures(const float& timePerFrame);
 	void updatePlayerCamera();
 	void moveBackgroundProportionallyToMap();
+	void updateEnemyAI();
 
 	void updateEnemySpawn();
 

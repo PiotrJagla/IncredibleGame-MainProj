@@ -17,6 +17,11 @@ public:
 	Type m_tileType;
 
 	bool isObsticle;
+	bool isVisited;
+	float distanceToStart;
+	float globalGoal;
+	std::vector<Tile*> neighbors;
+	Tile* parentTile;
 
 	//Donstructors / Descructors
 	Tile();

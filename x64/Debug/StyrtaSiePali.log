@@ -1,33 +1,5 @@
 ﻿  Enemy.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(32,12): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(66,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-  Game.cpp
-  GameState.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(57,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(57,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(511,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(514,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(517,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(520,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-  MainMenuState.cpp
-  Player.cpp
-  main.cpp
-  Generowanie kodu...
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(203): warning C4715: "Enemy::getEnemyDamage”: niewszystkie ścieżki kodu zwracają wartość
+D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(81,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(219): warning C4715: "Enemy::getEnemyDamage”: niewszystkie ścieżki kodu zwracają wartość
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSIePali.exe

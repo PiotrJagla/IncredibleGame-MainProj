@@ -44,6 +44,21 @@ Enemy::~Enemy()
 
 }
 
+void Enemy::shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap, sf::Vector2f playerPos)
+{
+
+	Tile* shortestPathFirstTile{ Algorithms::getShortestPathFirstTile(tileMap, m_sprite->getPosition(), playerPos) };
+
+	std::cout << "ENEMY: ";
+	Debug::showPosition(m_sprite->getPosition().x, m_sprite->getPosition().y);
+	std::cout << "TILE: ";
+	Debug::showPosition(shortestPathFirstTile->m_tile.getPosition().x, shortestPathFirstTile->m_tile.getPosition().y);
+
+	sf::Vector2f tilePositiob{ shortestPathFirstTile->m_tile.getPosition() };
+
+	m_movementComponent->setDirectionTowardsPoint(deltaTime::timePerFrame, tilePositiob);
+}
+
 
 //Public Functions
 void Enemy::update(const float& timePerFrame)
@@ -73,8 +88,9 @@ void Enemy::updateMovementComponent(const float& timePerFrame, sf::Vector2f* poi
 {
 	if (m_enemyType == Type::flying)
 	{
-		m_movementComponent->setDirectionTowardsPoint(timePerFrame, *pointToSetDirection);
+		//m_movementComponent->setDirectionTowardsPoint(timePerFrame, *pointToSetDirection);
 	}
+
 	if (m_velocity.x >= 900.0f)
 	{
 		m_velocity.x = 900.0f;
@@ -200,4 +216,9 @@ const int& Enemy::getEnemyDamage()
 	{
 		return Constants::ninjaDamage;
 	}
+}
+
+const Enemy::Type& Enemy::getEnemyType()
+{
+	return m_enemyType;
 }

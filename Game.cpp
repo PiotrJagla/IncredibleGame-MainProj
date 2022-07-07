@@ -46,7 +46,7 @@ void Game::gameLoop()
 
 void Game::update()
 {
-	this->showFPS();
+	//this->showFPS();
 	this->updateEvents();
 	if (!m_states.empty())
 	{

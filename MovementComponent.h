@@ -25,5 +25,7 @@ public:
 	void moveSprite(const float& timePerFrame);
 
 	void setDirectionTowardsPoint(const float& timePerFrame,sf::Vector2f& point);
+	Tile* shortestPathFirstTile(std::vector<std::vector<Tile*>>& tileMap,
+		sf::Vector2f startPosition, sf::Vector2f endPosition);
 };
 

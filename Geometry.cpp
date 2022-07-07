@@ -99,3 +99,103 @@ namespace Geometry
 		return angleInDegrees;
 	}
 }
+
+namespace Algorithms
+{
+	Tile* getShortestPathFirstTile(std::vector<std::vector<Tile*>>& tileMap,
+		const sf::Vector2f& startPosition, const sf::Vector2f& endPosition)
+	{
+		setTilesDefaultValues(tileMap);
+
+		sf::Vector2i startGridPosition{ (int)(startPosition.x / Constants::gridSizeU), (int)(startPosition.y / Constants::gridSizeU) };
+		Tile* currentTile{ tileMap[startGridPosition.y][startGridPosition.x] };
+		Tile* startTile{ currentTile };
+
+		sf::Vector2i endGridPosition{ (int)(endPosition.x / Constants::gridSizeU), (int)(endPosition.y / Constants::gridSizeU) };
+		Tile* endTile{ tileMap[endGridPosition.y][endGridPosition.x] };
+
+		startTile->globalGoal = twoPointsDistance(startPosition, endPosition);
+		startTile->distanceToStart = 0.0f;
+
+		std::vector<Tile*> tilesToTest{};
+		tilesToTest.push_back(startTile);
+
+
+
+
+		while (!tilesToTest.empty() && currentTile != endTile)
+		{
+			std::sort(tilesToTest.begin(), tilesToTest.end(),
+				[](const Tile* a, const Tile* b)
+				{
+					return a->globalGoal < b->globalGoal;
+				});
+
+			while (!tilesToTest.empty() && tilesToTest[0]->isVisited == true)
+			{
+				tilesToTest.erase(tilesToTest.begin() + 0);
+			}
+
+			if (tilesToTest.empty())
+			{
+				break;
+			}
+
+			currentTile = tilesToTest[0];
+			currentTile->isVisited = true;
+
+			for (int iii{ 0 }; iii < currentTile->neighbors.size(); ++iii)
+			{
+				Tile* neighbourTile{ currentTile->neighbors[iii] };
+
+				if (neighbourTile->isVisited == false && neighbourTile->isObsticle == false)
+					tilesToTest.push_back(neighbourTile);
+
+				float lowestLocalGoal{currentTile->distanceToStart +
+					twoPointsDistance(currentTile->m_tile.getPosition(), neighbourTile->m_tile.getPosition())};
+
+				if (lowestLocalGoal < neighbourTile->distanceToStart)
+				{
+					neighbourTile->parentTile = currentTile;
+					neighbourTile->distanceToStart = lowestLocalGoal;
+					neighbourTile->globalGoal = neighbourTile->distanceToStart +
+						twoPointsDistance(neighbourTile->m_tile.getPosition(), endTile->m_tile.getPosition());
+				}
+
+
+			}
+
+		}
+
+		Tile* firstShortestPathTile{ currentTile };
+
+		while (firstShortestPathTile->parentTile == startTile)
+		{
+			firstShortestPathTile = firstShortestPathTile->parentTile;
+		}
+
+		return firstShortestPathTile;
+	}
+
+	void setTilesDefaultValues(std::vector<std::vector<Tile*>>& tileMap)
+	{
+		for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
+		{
+			for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
+			{
+				tileMap[iii][kkk]->isVisited = false;
+				tileMap[iii][kkk]->globalGoal = INFINITY;
+				tileMap[iii][kkk]->distanceToStart = INFINITY;
+				tileMap[iii][kkk]->parentTile = nullptr;
+			}
+		}
+	}
+	float twoPointsDistance(sf::Vector2f startPoint, sf::Vector2f endPoint)
+	{
+		sf::Vector2f vector{ endPoint.x - startPoint.x, endPoint.y - startPoint.y };
+
+		float length{ sqrt(vector.x * vector.x + vector.y * vector.y) };
+
+		return length;
+	}
+}

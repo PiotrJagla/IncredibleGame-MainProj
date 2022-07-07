@@ -371,6 +371,8 @@ void GameState::playerEnemyCollision()
 
 void GameState::updateCreatures(const float& timePerFrame)
 {
+
+	this->updateEnemyAI();
 	this->playerEnemyCollision();
 	sf::Vector2f pointToEnemyGoTowards{ m_player->getPosition() };
 
@@ -467,6 +469,17 @@ void GameState::moveBackgroundProportionallyToMap()
 			m_background.getPosition().x,
 			m_background.getPosition().y
 		);
+	}
+}
+
+void GameState::updateEnemyAI()
+{
+	for (int iii{ 0 }; iii < m_enemies.size(); ++iii)
+	{
+		if (m_enemies[iii]->getEnemyType() == Enemy::Type::flying)
+		{
+			m_enemies[iii]->shortestPathDirection(m_tileMap->getTileMap(), m_player->getPosition());
+		}
 	}
 }
 

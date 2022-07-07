@@ -27,6 +27,7 @@ public:
 	int size();
 	int size(int x);
 	Tile* getTile(int indexI, int indexK);
+	std::vector<std::vector<Tile*>>& getTileMap();
 
 
 };

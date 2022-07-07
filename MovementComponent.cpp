@@ -60,3 +60,13 @@ void MovementComponent::setDirectionTowardsPoint(const float& timePerFrame, sf::
 
 }
 
+Tile* MovementComponent::shortestPathFirstTile(std::vector<std::vector<Tile*>>& tileMap,
+	sf::Vector2f startPosition, sf::Vector2f endPosition)
+{
+
+
+
+
+	return nullptr;
+}
+
