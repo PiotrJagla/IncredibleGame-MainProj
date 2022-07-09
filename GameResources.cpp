@@ -11,6 +11,7 @@ sf::Texture* GameResources::rifleTexture = new sf::Texture;
 sf::Texture* GameResources::ninjaTexture = new sf::Texture;
 sf::Texture* GameResources::batTexture = new sf::Texture;
 sf::Texture* GameResources::playerTexture = new sf::Texture;
+sf::Texture* GameResources::birdTexture = new sf::Texture;
 
 sf::Texture* GameResources::spikeTexture = new sf::Texture;
 
@@ -71,6 +72,10 @@ void GameResources::initTextures()
 		std::cout << "GAME RESOURCES:: Player texture could not load\n";
 	}
 
+	if (!GameResources::birdTexture->loadFromFile("Textures/birdTexture.jpg"))
+	{
+		std::cout << "GAME RESOURCES:: Bird texture could not load\n";
+	}
 	
 }
 
@@ -92,4 +97,5 @@ void GameResources::deleteResources()
 	delete GameResources::ninjaTexture;
 	delete GameResources::batTexture;
 	delete GameResources::playerTexture;
+	delete GameResources::birdTexture;
 }

@@ -1,5 +1,2 @@
-﻿  Enemy.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(32,12): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(81,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(219): warning C4715: "Enemy::getEnemyDamage”: niewszystkie ścieżki kodu zwracają wartość
+﻿  Game.cpp
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSIePali.exe

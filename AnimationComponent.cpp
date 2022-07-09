@@ -99,6 +99,7 @@ void AnimationComponent::playAnimation(sf::Clock& animationTimer,
 		animationTimer.restart();
 		m_sprite.setTextureRect(m_currentFrame);
 	}
+	this->setSpriteRotation();
 
 }
 

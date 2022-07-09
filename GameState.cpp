@@ -93,6 +93,7 @@ void GameState::initVariables()
 	m_renderToY = 0;
 	m_isCameraOnLeftBound = false;
 	m_isCameraOnRightBound = false;
+
 }
 
 //Constructors / Descructors
@@ -117,6 +118,7 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 
 	//Spawn timer
 	m_enemySpawnTimer.setMAXtime(3000.0f);
+
 	
 }
 
@@ -476,7 +478,7 @@ void GameState::updateEnemyAI()
 {
 	for (int iii{ 0 }; iii < m_enemies.size(); ++iii)
 	{
-		if (m_enemies[iii]->getEnemyType() == Enemy::Type::flying)
+		if (m_enemies[iii]->whatIsThisEnemy() == Enemy::AllEnemies::bird)
 		{
 			m_enemies[iii]->shortestPathDirection(m_tileMap->getTileMap(), m_player->getPosition());
 		}
@@ -489,7 +491,7 @@ void GameState::updateEnemySpawn()
 	{
 		int spawnRandomEnemy{ getRandomInt(1,100) };
 
-		if (spawnRandomEnemy < 50)
+		if (spawnRandomEnemy < 25)
 		{
 
 			m_enemySpawnTimer.restart();
@@ -499,9 +501,10 @@ void GameState::updateEnemySpawn()
 			m_enemies.back()->giveEnemyType(Enemy::Type::flying);
 			m_enemies.back()->setMaxHP(Constants::batMaxHP);
 			m_enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bat);
+			m_enemies.back()->setSingleAnimationBounds(210.0f, 300.0f, 300.0f);
 			m_creatures.push_back(m_enemies.back());
 		}
-		else if (spawnRandomEnemy >= 51)
+		else if (spawnRandomEnemy >= 25 && spawnRandomEnemy < 49)
 		{
 			m_enemySpawnTimer.restart();
 			m_enemies.push_back(new Enemy{ *GameResources::ninjaTexture });
@@ -514,8 +517,23 @@ void GameState::updateEnemySpawn()
 			m_enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::ninja);
 			m_creatures.push_back(m_enemies.back());
 		}
+		else if (spawnRandomEnemy >= 50)
+		{
+			m_enemySpawnTimer.restart();
+			m_enemies.push_back(new Enemy{ *GameResources::birdTexture });
+			m_enemies.back()->setBasicFrame(sf::IntRect{ 1,1,65,63 });
+			m_enemies.back()->setScale(Constants::birdScale);
+			m_enemies.back()->setMaxHP(Constants::birdMaxHP);
+			m_enemies.back()->giveEnemyType(Enemy::Type::flying);
+			m_enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bird);
+			m_enemies.back()->setSingleAnimationBounds(70.0f, 640.0f, 100.0f);
+			m_creatures.push_back(m_enemies.back());
 
+		}
+		m_enemies.back()->spawnEnemy(m_tileMap->getTileMap());
 	}
+
+	
 }
 
 void GameState::updateRenderBounds()

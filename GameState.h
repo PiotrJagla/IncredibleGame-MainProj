@@ -26,6 +26,7 @@ private:
 	bool m_isCameraOnLeftBound;
 	bool m_isCameraOnRightBound;
 
+
 	sf::Texture m_backgroundTexture;
 	sf::RectangleShape m_background;
 

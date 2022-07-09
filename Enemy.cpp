@@ -17,8 +17,8 @@ void Enemy::initHPbar()
 
 void Enemy::setRandomPosition()
 {
-	int randomXpos(getRandomInt(1, Constants::mapSizeX));
-	int randomYpos(getRandomInt(1, Constants::mapSizeY));
+	int randomXpos(getRandomInt(2, Constants::mapSizeX-2));
+	int randomYpos(getRandomInt(2, Constants::mapSizeY-2));
 
 	m_sprite->setPosition(randomXpos * Constants::gridSizeF, randomYpos * Constants::gridSizeF);
 }
@@ -49,14 +49,51 @@ void Enemy::shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap, sf::
 
 	Tile* shortestPathFirstTile{ Algorithms::getShortestPathFirstTile(tileMap, m_sprite->getPosition(), playerPos) };
 
-	std::cout << "ENEMY: ";
+
+	/*std::cout << "ENEMY: ";
 	Debug::showPosition(m_sprite->getPosition().x, m_sprite->getPosition().y);
 	std::cout << "TILE: ";
-	Debug::showPosition(shortestPathFirstTile->m_tile.getPosition().x, shortestPathFirstTile->m_tile.getPosition().y);
+	Debug::showPosition(shortestPathFirstTile->m_tile.getPosition().x, shortestPathFirstTile->m_tile.getPosition().y);*/
 
-	sf::Vector2f tilePositiob{ shortestPathFirstTile->m_tile.getPosition() };
+	if (shortestPathFirstTile != nullptr)
+	{
+		sf::Vector2f spriteTileIntersection{
+			m_sprite->getPosition().x - (int)m_sprite->getPosition().x,
+			m_sprite->getPosition().y - (int)m_sprite->getPosition().y
+		};
+		sf::Vector2f tilePositiob{ 
+			shortestPathFirstTile->m_tile.getPosition().x + spriteTileIntersection.x,
+			shortestPathFirstTile->m_tile.getPosition().y + spriteTileIntersection.y
+		};
+		m_movementComponent->setDirectionTowardsPoint(deltaTime::timePerFrame, tilePositiob);
+	}
+	else
+	{
+		m_movementComponent->setDirectionTowardsPoint(deltaTime::timePerFrame, playerPos);
+	}
+}
 
-	m_movementComponent->setDirectionTowardsPoint(deltaTime::timePerFrame, tilePositiob);
+void Enemy::spawnEnemy(std::vector<std::vector<Tile*>>& tileMap)
+{
+	sf::Vector2i spriteGridPos{ 
+		static_cast<int>(m_sprite->getPosition().x / Constants::gridSizeU),
+		static_cast<int>(m_sprite->getPosition().y / Constants::gridSizeU) 
+	};
+
+	while (tileMap[spriteGridPos.y][spriteGridPos.x]->isObsticle == true)
+	{
+		this->setRandomPosition();
+
+		spriteGridPos.x = static_cast<int>(m_sprite->getPosition().x / Constants::gridSizeU);
+		spriteGridPos.y = static_cast<int>(m_sprite->getPosition().y / Constants::gridSizeU);
+	}
+}
+
+void Enemy::setSingleAnimationBounds(float nextFrameDistance, float maxBound, float delay)
+{
+	m_nextFrameDistance = nextFrameDistance;
+	m_maxBound = maxBound;
+	m_animationDelay = delay;
 }
 
 
@@ -70,6 +107,7 @@ void Enemy::updatePhysicsComponent(const float& timePerFrame, sf::Vector2f* poin
 {
 	if (m_enemyType == Type::flying)
 	{
+
 		m_physicsComponent->accelerateWithoutGravity(timePerFrame, m_velocity, m_direction);
 		m_physicsComponent->decelerateWithoutGravity(timePerFrame, m_velocity, m_direction);
 	}
@@ -82,24 +120,45 @@ void Enemy::updatePhysicsComponent(const float& timePerFrame, sf::Vector2f* poin
 		m_physicsComponent->decelerate(timePerFrame, m_velocity);
 		m_physicsComponent->gravity(timePerFrame, m_velocity, m_direction);
 	}
+
+	if (m_whatEnemy == AllEnemies::bird)
+	{
+		float maxVelocity = 400.0f;
+		m_velocity.x = maxVelocity * m_direction.x;
+		m_velocity.y = maxVelocity * m_direction.y;
+	}
 }
 
 void Enemy::updateMovementComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection)
 {
-	if (m_enemyType == Type::flying)
+	if (m_enemyType == Type::flying && m_whatEnemy != AllEnemies::bird)
 	{
-		//m_movementComponent->setDirectionTowardsPoint(timePerFrame, *pointToSetDirection);
+		float maxVelocity{ 900.0f };
+
+		if (m_velocity.x >= maxVelocity)
+		{
+			m_velocity.x = maxVelocity;
+		}
+
+		if (m_velocity.y >= maxVelocity)
+		{
+			m_velocity.y = maxVelocity;
+		}
+
+		if (m_velocity.x <= -maxVelocity)
+		{
+			m_velocity.x = -maxVelocity;
+		}
+
+		if (m_velocity.y <= -maxVelocity)
+		{
+			m_velocity.y = -maxVelocity;
+		}
+
+		m_movementComponent->setDirectionTowardsPoint(timePerFrame, *pointToSetDirection);
 	}
 
-	if (m_velocity.x >= 900.0f)
-	{
-		m_velocity.x = 900.0f;
-	}
-
-	if (m_velocity.y >= 900.0f)
-	{
-		m_velocity.y = 900.0f;
-	}
+	
 
 	m_movementComponent->moveSprite(timePerFrame);
 }
@@ -108,7 +167,7 @@ void Enemy::updateAnimationComponent()
 {
 	if (m_enemyType == Type::flying)
 	{
-		m_animationComponent->playAnimation(m_animationTimer, 210.0f, 300.0f, 300.0f);
+		m_animationComponent->playAnimation(m_animationTimer, m_nextFrameDistance, m_maxBound, m_animationDelay);
 	}
 	else if (m_enemyType == Type::walking)
 	{
@@ -119,6 +178,7 @@ void Enemy::updateAnimationComponent()
 
 void Enemy::updateHitboxComponent()
 {
+	//m_hitboxComponent->checkSceenBoundsCollision();
 	m_hitboxComponent->update();
 }
 
@@ -216,9 +276,18 @@ const int& Enemy::getEnemyDamage()
 	{
 		return Constants::ninjaDamage;
 	}
+	else if (m_whatEnemy == AllEnemies::bird)
+	{
+		return Constants::birdDamage;
+	}
 }
 
 const Enemy::Type& Enemy::getEnemyType()
 {
 	return m_enemyType;
+}
+
+const Enemy::AllEnemies& Enemy::whatIsThisEnemy()
+{
+	return m_whatEnemy;
 }

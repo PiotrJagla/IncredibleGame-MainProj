@@ -10,6 +10,7 @@ private:
 	
 	void initTileMap();
 	void makeMap();
+	void initNeighbours();
 public:
 	TileMap();
 	~TileMap();

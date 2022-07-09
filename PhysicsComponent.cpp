@@ -86,7 +86,7 @@ void PhysicsComponent::updateVelocity(const float& timePerFrame,
 		isGrounded = false;
 		direction.y = -1.0f;
 		
-		velocity.y = m_acceleration * direction.y * 0.7f;
+		velocity.y = m_acceleration * direction.y * 0.8f;
 	}
 
 	if (RealeseDetection::WRealesed() == true)
@@ -168,7 +168,7 @@ void PhysicsComponent::updateEnemyVelocity(sf::Vector2f& velocity, sf::Vector2f&
 		isGrounded = false;
 		direction.y = -1.0f;
 
-		velocity.y = m_acceleration * direction.y * 0.7f;
+		velocity.y = m_acceleration * direction.y * 0.8f;
 	}
 }
 

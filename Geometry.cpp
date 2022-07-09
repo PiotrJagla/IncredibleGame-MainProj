@@ -107,12 +107,21 @@ namespace Algorithms
 	{
 		setTilesDefaultValues(tileMap);
 
+
 		sf::Vector2i startGridPosition{ (int)(startPosition.x / Constants::gridSizeU), (int)(startPosition.y / Constants::gridSizeU) };
+		if (isOutsideMap(startGridPosition)) 
+		{ return nullptr; }
+
 		Tile* currentTile{ tileMap[startGridPosition.y][startGridPosition.x] };
+		//Tile* currentTile{ tileMap[28][1] };
 		Tile* startTile{ currentTile };
 
 		sf::Vector2i endGridPosition{ (int)(endPosition.x / Constants::gridSizeU), (int)(endPosition.y / Constants::gridSizeU) };
+		if (isOutsideMap(endGridPosition)) 
+		{ return nullptr; }
+
 		Tile* endTile{ tileMap[endGridPosition.y][endGridPosition.x] };
+		//Tile* endTile{ tileMap[28][70] };
 
 		startTile->globalGoal = twoPointsDistance(startPosition, endPosition);
 		startTile->distanceToStart = 0.0f;
@@ -120,11 +129,12 @@ namespace Algorithms
 		std::vector<Tile*> tilesToTest{};
 		tilesToTest.push_back(startTile);
 
-
-
+		if (startGridPosition.x == endGridPosition.x && startGridPosition.y == endGridPosition.y) 
+		{ return nullptr; }
 
 		while (!tilesToTest.empty() && currentTile != endTile)
 		{
+
 			std::sort(tilesToTest.begin(), tilesToTest.end(),
 				[](const Tile* a, const Tile* b)
 				{
@@ -167,10 +177,12 @@ namespace Algorithms
 
 		}
 
-		Tile* firstShortestPathTile{ currentTile };
+		Tile* firstShortestPathTile{ endTile };
 
-		while (firstShortestPathTile->parentTile == startTile)
+		while (firstShortestPathTile->parentTile != nullptr && firstShortestPathTile->parentTile->parentTile != nullptr)
 		{
+
+			//firstShortestPathTile->m_tile.setFillColor(sf::Color::Black);
 			firstShortestPathTile = firstShortestPathTile->parentTile;
 		}
 
@@ -190,6 +202,7 @@ namespace Algorithms
 			}
 		}
 	}
+
 	float twoPointsDistance(sf::Vector2f startPoint, sf::Vector2f endPoint)
 	{
 		sf::Vector2f vector{ endPoint.x - startPoint.x, endPoint.y - startPoint.y };
@@ -197,5 +210,22 @@ namespace Algorithms
 		float length{ sqrt(vector.x * vector.x + vector.y * vector.y) };
 
 		return length;
+	}
+
+	bool isOutsideMap(const sf::Vector2i& gridPosition)
+	{
+		if (gridPosition.x > Constants::mapSizeX)
+			return true;
+
+		if (gridPosition.x < 0)
+			return true;
+
+		if (gridPosition.y > Constants::mapSizeY)
+			return true;
+
+		if (gridPosition.y < 0)
+			return true;
+
+		return false;
 	}
 }

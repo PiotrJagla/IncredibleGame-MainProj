@@ -23,6 +23,7 @@ public:
 	static sf::Texture* ninjaTexture;
 	static sf::Texture* batTexture;
 	static sf::Texture* playerTexture;
+	static sf::Texture* birdTexture;
 
 	static sf::Texture* spikeTexture;
 

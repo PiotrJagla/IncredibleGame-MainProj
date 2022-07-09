@@ -3,7 +3,7 @@
 
 namespace Geometry
 {
-	//Cztery prze³adowane funkcje dla równych typów (int i float)
+	//Cztery prze³adowane funkcje dla ró¿nych typów (int i float)
 	int getAngleRelativelyToGround(
 		const sf::Vector2i& pointOne, const sf::Vector2i& pointTwo);
 
@@ -25,5 +25,7 @@ namespace Algorithms
 	void setTilesDefaultValues(std::vector<std::vector<Tile*>>& tileMap);
 
 	float twoPointsDistance(sf::Vector2f startPoint, sf::Vector2f endPoint);
+
+	bool isOutsideMap(const sf::Vector2i& gridPosition);
 }
 

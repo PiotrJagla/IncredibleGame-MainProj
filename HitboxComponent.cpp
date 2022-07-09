@@ -28,7 +28,7 @@ void HitboxComponent::update()
 
 void HitboxComponent::updateHitboxPosition()
 {
-	m_hitbox.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y );
+	m_hitbox.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
 }
 
 void HitboxComponent::checkSceenBoundsCollision()

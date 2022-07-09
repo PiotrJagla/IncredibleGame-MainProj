@@ -25,7 +25,7 @@ void Creature::initSprite(sf::Texture& texture)
 	m_sprite = new sf::Sprite{};
 	m_sprite->setTexture(texture);
 	m_sprite->setTextureRect(sf::IntRect{ 5,5,50,58 });
-	m_sprite->setPosition(Constants::gridSizeF * 4, Constants::gridSizeF * (Constants::mapSizeY - 4));
+	m_sprite->setPosition(Constants::gridSizeF * 65, Constants::gridSizeF * 27);
 }
 
 void Creature::initHitboxComponent()

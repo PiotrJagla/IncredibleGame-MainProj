@@ -13,7 +13,8 @@ public:
 	enum class AllEnemies
 	{
 		bat,
-		ninja
+		ninja,
+		bird
 	};
 private:
 	sf::Clock m_animationTimer;
@@ -23,21 +24,29 @@ private:
 
 	Type m_enemyType;
 	AllEnemies m_whatEnemy;
+
+	//Flying creature single animation bounds
+	float m_nextFrameDistance;
+	float m_maxBound;
+	float m_animationDelay;
 	
 	void initHPbar();
 	void setRandomPosition();
-
 	
 public:
 	Enemy(sf::Texture& texture);
 	~Enemy();
 
 	void shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap, sf::Vector2f playerPos);
+	void spawnEnemy(std::vector<std::vector<Tile*>>& tileMap);
+	void setSingleAnimationBounds(float nextFrameDistance, float maxBound, float delay);
 
 	//Update
 	void update(const float& timePerFrame) override;
-	void updatePhysicsComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection = nullptr) override;
-	void updateMovementComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection = nullptr) override;
+	void updatePhysicsComponent(const float& timePerFrame,
+		sf::Vector2f* pointToSetDirection = nullptr) override;
+	void updateMovementComponent(const float& timePerFrame,
+		sf::Vector2f* pointToSetDirection = nullptr) override;
 	void updateAnimationComponent() override;
 	void updateHitboxComponent() override;
 	void updateHPbar();
@@ -61,6 +70,7 @@ public:
 	//Accesors
 	const int& getEnemyDamage();
 	const Type& getEnemyType();
+	const AllEnemies& whatIsThisEnemy();
 	
 	
 
