@@ -160,6 +160,7 @@
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AuxiliaryVariables.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CaveLevel.cpp" />
     <ClCompile Include="Creature.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -175,6 +176,7 @@
     </ClCompile>
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MeleeWeapon.cpp" />
@@ -187,11 +189,13 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="ValleyLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AuxiliaryVariables.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CaveLevel.h" />
     <ClInclude Include="Creature.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Enemy.h" />
@@ -202,6 +206,7 @@
     <ClInclude Include="Headers.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MeleeWeapon.h" />
     <ClInclude Include="MovementComponent.h" />
@@ -213,6 +218,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileMap.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="ValleyLevel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

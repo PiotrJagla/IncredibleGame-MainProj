@@ -7,8 +7,15 @@
 */
 
 /*
-* 
+*	
 */
 
 
 
+//PLANY NA ROZWÓJ GRY
+
+/*
+	Dodaæ mechanike œwiat³a, shadow casting
+
+	Pracowaæ nad CaveGameState (hmmmm)
+*/

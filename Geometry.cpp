@@ -113,7 +113,7 @@ namespace Algorithms
 		{ return nullptr; }
 
 		Tile* currentTile{ tileMap[startGridPosition.y][startGridPosition.x] };
-		//Tile* currentTile{ tileMap[28][1] };
+		//Tile* currentTile{ tileMap[24][10] };
 		Tile* startTile{ currentTile };
 
 		sf::Vector2i endGridPosition{ (int)(endPosition.x / Constants::gridSizeU), (int)(endPosition.y / Constants::gridSizeU) };
@@ -121,7 +121,7 @@ namespace Algorithms
 		{ return nullptr; }
 
 		Tile* endTile{ tileMap[endGridPosition.y][endGridPosition.x] };
-		//Tile* endTile{ tileMap[28][70] };
+		//Tile* endTile{ tileMap[28][15] };
 
 		startTile->globalGoal = twoPointsDistance(startPosition, endPosition);
 		startTile->distanceToStart = 0.0f;

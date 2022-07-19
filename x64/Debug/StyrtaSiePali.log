@@ -1,2 +1,24 @@
-﻿  Game.cpp
+﻿  GameState.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(57,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(57,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(528,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(531,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(534,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(537,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+          with
+          [
+              T=float
+          ]
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSIePali.exe

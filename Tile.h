@@ -7,6 +7,7 @@ public:
 	{
 		Grass,
 		Spike,
+		Stone,
 		Air
 	};
 private:
@@ -22,6 +23,9 @@ public:
 	float globalGoal;
 	std::vector<Tile*> neighbors;
 	Tile* parentTile;
+
+	bool edgeExist[4];
+	int edgeID[4];
 
 	//Donstructors / Descructors
 	Tile();

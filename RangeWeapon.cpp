@@ -65,7 +65,7 @@ void RangeWeapon::renderBullets(sf::RenderTarget* target)
 bool RangeWeapon::bulletTileMapCollision(Tile& collisionTile, int bulletIndex)
 {
 	if (collisionTile.m_tile.getGlobalBounds().intersects(m_bullets[bulletIndex]->m_bullet.getGlobalBounds()) &&
-		collisionTile.m_tileType == Tile::Type::Grass)
+		collisionTile.isObsticle == true)
 	{
 
 		delete m_bullets[bulletIndex];

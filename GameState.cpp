@@ -61,28 +61,13 @@ void GameState::initPlayer()
 
 void GameState::initBackground()
 {
-	sf::VideoMode screenSize{ sf::VideoMode::getDesktopMode() };
-
-
-	if (!m_backgroundTexture.loadFromFile("Textures/GameStateBackground.jpg"))
-	{
-		std::cout << "ERROR::GAMESTATE::Background texture could not load\n";
-	}
-
- 	m_background.setSize(sf::Vector2f{
-		static_cast<float>(screenSize.width) * 1.5f, 
-		static_cast<float>(screenSize.height) * 1.5f
-		}
-	);
-
+	m_levels.top()->initBackground(m_background, m_backgroundTexture);
 	this->moveBackgroundProportionallyToMap();
-
-	m_background.setTexture(&m_backgroundTexture);
 }
 
 void GameState::initTileMap()
 {
-	m_tileMap = new TileMap{};
+	m_tileMap = new TileMap{m_levels.top()->tileMapNumber};
 }
 
 void GameState::initVariables()
@@ -93,13 +78,14 @@ void GameState::initVariables()
 	m_renderToY = 0;
 	m_isCameraOnLeftBound = false;
 	m_isCameraOnRightBound = false;
-
 }
 
 //Constructors / Descructors
 GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window) 
 	: State{states, window}
 {
+	m_levels.push(new CaveLevel{});
+
 	this->initVariables();
 	this->initButtons();
 	this->initPauseMenu();
@@ -155,7 +141,7 @@ void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 			this->updatePlayerCamera();
 			this->updateButtons(window);
 			this->updateItems(timePerFrame);
-			this->updateEnemySpawn();
+			//this->updateEnemySpawn();
 		}
 		else
 		{

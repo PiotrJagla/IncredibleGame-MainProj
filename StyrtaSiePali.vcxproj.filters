@@ -76,6 +76,15 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Creatures</Filter>
     </ClCompile>
+    <ClCompile Include="CaveLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ValleyLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState.h">
@@ -150,6 +159,15 @@
     <ClInclude Include="Enemy.h">
       <Filter>Creatures</Filter>
     </ClInclude>
+    <ClInclude Include="CaveLevel.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ValleyLevel.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="States">
@@ -187,6 +205,9 @@
     </Filter>
     <Filter Include="Auxiliary Resources">
       <UniqueIdentifier>{109cd2c1-e8b7-433f-858c-867ca0634530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Levels">
+      <UniqueIdentifier>{bb792ffa-0822-405f-a8a8-30467691d80a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

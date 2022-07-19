@@ -8,10 +8,15 @@
 #include "Item.h"
 #include "RangeWeapon.h"
 #include "Enemy.h"
+#include "Level.h"
+#include "ValleyLevel.h"
+#include "CaveLevel.h"
 
 class GameState : public State
 {
 private:
+	//Levels
+	std::stack<Level*> m_levels;
 
 	//GUI
 	std::map<sf::String, Button*> m_buttons;

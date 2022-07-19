@@ -11,6 +11,7 @@ void MainMenuState::initButtons()
 	m_buttons["quitButton"] = new Button{ sf::Vector2f{
 		Constants::WindowWidth / 2.0f - 100, 320.0f},
 		"Quit game", 60.0f };
+
 }
 
 void MainMenuState::initBackground()
@@ -40,7 +41,6 @@ MainMenuState::MainMenuState(std::stack<State*>* states, sf::RenderWindow* windo
 
 MainMenuState::~MainMenuState()
 {
-
 	delete m_buttons["newGameButton"];
 	delete m_buttons["quitButton"];
 }
@@ -68,13 +68,13 @@ void MainMenuState::updateButtonClickDetection(sf::RenderWindow* window)
 {
 	if (m_buttons["newGameButton"]->isButtonClicked(window))
 	{
-
 		m_states->push(new GameState{ m_states, m_window });
 	}
 	else if (m_buttons["quitButton"]->isButtonClicked(window))
 	{
 		this->endState();
 	}
+
 }
 
 void MainMenuState::render(sf::RenderTarget* target)

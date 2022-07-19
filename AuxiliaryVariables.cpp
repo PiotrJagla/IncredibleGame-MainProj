@@ -29,7 +29,7 @@ const float Constants::playerSizeY = 58.0f;
 const sf::Vector2f Constants::playerScale = { 1.3f, 1.3f };
 const sf::Vector2f Constants::batScale = { 1.2f, 1.0f };
 const sf::Vector2f Constants::ninjaScale = { 1.9f, 2.2f };
-const sf::Vector2f Constants::birdScale = { 0.6f, 0.5f };
+const sf::Vector2f Constants::birdScale = { 0.9f, 0.9f };
 
 
 //Button realese detection
