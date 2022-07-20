@@ -16,11 +16,13 @@ public:
 	static const int batDamage;
 	static const int ninjaDamage;
 	static const int birdDamage;
+	static const int cometDamage;
 
 	static const int batMaxHP;
 	static const int ninjaMaxHP;
 	static const int playerMaxHP;
 	static const int birdMaxHP;
+	static const int cometMaxHP;
 
 	static const float pi;
 
@@ -30,6 +32,7 @@ public:
 	static const sf::Vector2f batScale;
 	static const sf::Vector2f ninjaScale;
 	static const sf::Vector2f birdScale;
+	static const sf::Vector2f cometScale;
 };
 
 class RealeseDetection

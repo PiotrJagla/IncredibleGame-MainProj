@@ -65,6 +65,7 @@ public:
 	//Update
 	void update(sf::RenderWindow* window, const float& timePerFrame) override;
 	void updateInput();
+	void levelDependentUpdate();
 
 	//Buttons
 	void updateButtons(sf::RenderWindow* window);
@@ -104,6 +105,8 @@ public:
 	void renderCreatures(sf::RenderTarget* target);
 	void renderGUI(sf::RenderTarget* target);
 	void renderItems(sf::RenderTarget* target);
+	void caveLevelRender(sf::RenderTarget* target);
+	void valleyLevelRender(sf::RenderTarget* target);
 
 	void checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY);
 	void checkPlayerCameraBounds();

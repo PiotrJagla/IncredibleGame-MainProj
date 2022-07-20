@@ -16,11 +16,13 @@ const int Constants::rifleDamage = 4;
 const int Constants::batDamage = 5;
 const int Constants::ninjaDamage = 10;
 const int Constants::birdDamage = 3;
+const int Constants::cometDamage = 7;
 
 const int Constants::batMaxHP = 20;
 const int Constants::ninjaMaxHP = 30;
 const int Constants::playerMaxHP = 50;
 const int Constants::birdMaxHP = 15;
+const int Constants::cometMaxHP = 30;
 
 const float Constants::pi = 3.14;
 
@@ -30,6 +32,7 @@ const sf::Vector2f Constants::playerScale = { 1.3f, 1.3f };
 const sf::Vector2f Constants::batScale = { 1.2f, 1.0f };
 const sf::Vector2f Constants::ninjaScale = { 1.9f, 2.2f };
 const sf::Vector2f Constants::birdScale = { 0.9f, 0.9f };
+const sf::Vector2f Constants::cometScale = { 0.4f, 0.4f };
 
 
 //Button realese detection

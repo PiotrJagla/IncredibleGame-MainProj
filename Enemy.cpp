@@ -213,8 +213,11 @@ void Enemy::render(sf::RenderTarget* target)
 
 void Enemy::renderHPbar(sf::RenderTarget* target)
 {
-	target->draw(m_HPbarBackground);
-	target->draw(m_HPbar);
+	if (m_whatEnemy != AllEnemies::bird)
+	{
+		target->draw(m_HPbarBackground);
+		target->draw(m_HPbar);
+	}
 }
 
 void Enemy::tileCollision(std::vector<Tile>& tilesToCheckCollision)

@@ -25,6 +25,7 @@ public:
 	static sf::Texture* playerTexture;
 	static sf::Texture* birdTexture;
 	static sf::Texture* stoneTexture;
+	static sf::Texture* blackCometTexture;
 
 	static sf::Texture* spikeTexture;
 

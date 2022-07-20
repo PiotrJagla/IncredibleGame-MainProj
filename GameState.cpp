@@ -84,6 +84,7 @@ void GameState::initVariables()
 GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window) 
 	: State{states, window}
 {
+
 	m_levels.push(new CaveLevel{});
 
 	this->initVariables();
@@ -119,9 +120,10 @@ GameState::~GameState()
 
 //Public functions
 
-//Update
+//		@ Update @
 void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 {
+
 	m_enemySpawnTimer.update(timePerFrame);
 
 	if (this->isPlayerDead() == false)
@@ -135,13 +137,16 @@ void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 
 		if (m_isPaused == false)
 		{
+
 			m_tileMap->update(m_mouseGridPosition);
 			//this->updateCollision();
 			this->updateCreatures(timePerFrame);
 			this->updatePlayerCamera();
 			this->updateButtons(window);
 			this->updateItems(timePerFrame);
-			//this->updateEnemySpawn();
+			this->updateEnemySpawn();
+
+			this->levelDependentUpdate();
 		}
 		else
 		{
@@ -167,6 +172,11 @@ void GameState::updateInput()
 		else
 			this->pauseON();
 	}
+}
+
+void GameState::levelDependentUpdate()
+{
+	
 }
 
 void GameState::updateButtons(sf::RenderWindow* window)
@@ -473,53 +483,13 @@ void GameState::updateEnemyAI()
 
 void GameState::updateEnemySpawn()
 {
-	if (m_enemySpawnTimer.getElapsedTime() > m_enemySpawnTimer.getTimeMAX())
+	Enemy* newEnemy{ m_levels.top()->spawnEnemies(m_enemySpawnTimer, m_enemies) };
+
+	if (newEnemy != nullptr)
 	{
-		int spawnRandomEnemy{ getRandomInt(1,100) };
-
-		if (spawnRandomEnemy < 25)
-		{
-
-			m_enemySpawnTimer.restart();
-			m_enemies.push_back(new Enemy{ *GameResources::batTexture });
-			m_enemies.back()->setBasicFrame(sf::IntRect{ 2,4,139,69 });
-			m_enemies.back()->setScale(Constants::batScale);
-			m_enemies.back()->giveEnemyType(Enemy::Type::flying);
-			m_enemies.back()->setMaxHP(Constants::batMaxHP);
-			m_enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bat);
-			m_enemies.back()->setSingleAnimationBounds(210.0f, 300.0f, 300.0f);
-			m_creatures.push_back(m_enemies.back());
-		}
-		else if (spawnRandomEnemy >= 25 && spawnRandomEnemy < 49)
-		{
-			m_enemySpawnTimer.restart();
-			m_enemies.push_back(new Enemy{ *GameResources::ninjaTexture });
-			m_enemies.back()->setBasicFrame(sf::IntRect{ 2,2,45,43 });
-			m_enemies.back()->setJumpingAndFallingFrame(sf::IntRect{1,46,45,43}, sf::IntRect{1,99,45,43});
-			m_enemies.back()->setAnimationStateBounds(50.0f,330.0f, 1.0f,50.0f ,20.0f ,154.0f);
-			m_enemies.back()->setScale(Constants::ninjaScale);
-			m_enemies.back()->setMaxHP(Constants::ninjaMaxHP);
-			m_enemies.back()->giveEnemyType(Enemy::Type::walking);
-			m_enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::ninja);
-			m_creatures.push_back(m_enemies.back());
-		}
-		else if (spawnRandomEnemy >= 50)
-		{
-			m_enemySpawnTimer.restart();
-			m_enemies.push_back(new Enemy{ *GameResources::birdTexture });
-			m_enemies.back()->setBasicFrame(sf::IntRect{ 1,1,65,63 });
-			m_enemies.back()->setScale(Constants::birdScale);
-			m_enemies.back()->setMaxHP(Constants::birdMaxHP);
-			m_enemies.back()->giveEnemyType(Enemy::Type::flying);
-			m_enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bird);
-			m_enemies.back()->setSingleAnimationBounds(70.0f, 640.0f, 100.0f);
-			m_creatures.push_back(m_enemies.back());
-
-		}
 		m_enemies.back()->spawnEnemy(m_tileMap->getTileMap());
+		m_creatures.push_back(newEnemy);
 	}
-
-	
 }
 
 void GameState::updateRenderBounds()
@@ -555,18 +525,19 @@ void GameState::calculateCollisionBounds(sf::Vector2f point, int& fromX, int& to
 	toY = fromY + 8;
 }
 
-//Render
+//		@ Render @
 void GameState::render(sf::RenderTarget* target)
 {
-	target->draw(m_background);
 
-	target->setView(m_playerCamera);
+	if (m_levels.top()->levelType == Level::Type::Valley)
+	{
+		this->valleyLevelRender(target);
+	}
+	else if (m_levels.top()->levelType == Level::Type::Cave)
+	{
+		this->caveLevelRender(target);
+	}
 
-	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
-	this->renderCreatures(target);
-	this->renderItems(target);
-
-	m_window->setView(m_window->getDefaultView());
 
 	//Render GUI
 	this->renderGUI(target);
@@ -608,6 +579,41 @@ void GameState::renderItems(sf::RenderTarget* target)
 	{
 		item->render(target);
 	}
+}
+
+void GameState::caveLevelRender(sf::RenderTarget* target)
+{
+	m_levels.top()->calculateVisibilityPolygon(m_player->getPosition(), m_tileMap->getEdgesVector(), 1000.0f);
+
+	//Render visibility polygon
+	target->setView(m_playerCamera);
+
+	m_levels.top()->render(target, m_player->getPosition());
+
+	m_window->setView(m_window->getDefaultView());
+
+	target->draw(m_background, sf::BlendMultiply);
+
+	//Render everything else
+	target->setView(m_playerCamera);
+
+	this->renderCreatures(target);
+	this->renderItems(target);
+
+	m_window->setView(m_window->getDefaultView());
+}
+
+void GameState::valleyLevelRender(sf::RenderTarget* target)
+{
+	target->draw(m_background);
+
+	target->setView(m_playerCamera);
+
+	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
+	this->renderCreatures(target);
+	this->renderItems(target);
+
+	m_window->setView(m_window->getDefaultView());
 }
 
 void GameState::checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY)
