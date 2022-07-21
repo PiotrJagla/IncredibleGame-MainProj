@@ -1,234 +1,219 @@
-﻿  CaveLevel.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(75,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
-  TileMap.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(85,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(87,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(108,16): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(118,16): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(133,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(135,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(139,19): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+﻿  TileMap.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(146,19): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(139,44): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(146,44): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(140,19): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(147,19): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(140,44): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(147,44): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(146,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(149,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(161,35): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(168,35): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(161,55): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(168,55): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(163,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(170,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(163,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(170,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(165,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(172,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(165,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(172,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(166,77): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(173,77): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(166,97): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(173,97): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(178,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(186,34): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(185,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(193,34): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(186,53): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(193,53): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(188,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(195,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(188,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(195,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(190,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(197,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(190,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(197,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(191,77): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(198,77): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(191,97): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(198,97): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(203,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(211,35): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(210,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(218,35): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(211,55): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(218,55): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(213,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(220,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(213,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(220,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(216,50): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(223,50): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(216,70): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(223,70): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(217,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(224,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(217,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(224,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(218,78): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(225,78): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(218,98): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(225,98): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(231,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(239,35): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(238,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(246,35): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(239,55): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(246,55): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(241,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(248,36): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(241,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(248,56): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(244,50): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(251,50): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(244,70): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(251,70): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(245,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(252,41): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(245,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(252,61): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(246,78): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(253,78): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(246,98): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(253,98): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(258,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(277,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(281,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(285,93): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(285,65): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(329,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(331,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(385,28): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(405,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(407,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(416,25): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(420,26): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(424,93): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(424,65): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(265,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(292,93): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(292,65): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(388,34): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(393,28): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(433,93): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(433,65): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
   Trwa generowanie kodu
-  1 of 1712 functions (<0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+D:\Program Files (x86)\GitHub\IncredibleGame\Creature.cpp(107): warning C4172: zwracanie adresu lokalnej zmiennej lub tymczasowej
+D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(286): warning C4715: "Enemy::getEnemyDamage”: niewszystkie ścieżki kodu zwracają wartość
+D:\Program Files (x86)\GitHub\IncredibleGame\RangeWeapon.cpp(110): warning C4172: zwracanie adresu lokalnej zmiennej lub tymczasowej
+  All 1718 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Zakończono generowanie kodu
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Release\StyrtaSIePali.exe

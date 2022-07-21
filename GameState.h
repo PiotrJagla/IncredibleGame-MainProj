@@ -59,7 +59,8 @@ private:
 	void initVariables();
 public:
 	//Constructors / Descructors
-	GameState(std::stack<State*>* states, sf::RenderWindow* window);
+	GameState(std::stack<State*>* states, sf::RenderWindow* window,
+		PopUpText* popUpText);
 	virtual ~GameState();
 
 	//Update

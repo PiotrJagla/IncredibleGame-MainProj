@@ -15,7 +15,5 @@
 //PLANY NA ROZWÓJ GRY
 
 /*
-	Dodaæ mechanike œwiat³a, shadow casting
-
-	Pracowaæ nad CaveGameState (hmmmm)
+*	Nie da siê powróciæ z Cave level do valley level trzeba to naprawiæ
 */

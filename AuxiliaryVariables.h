@@ -8,8 +8,10 @@ public:
 	static const unsigned gridSizeU;
 	static const float gridSizeF;
 
-	static const unsigned mapSizeX;
-	static const unsigned mapSizeY;
+	static const unsigned ValleyMapSizeX;
+	static const unsigned ValleyMapSizeY;
+	static const unsigned CaveMapSizeX;
+	static const unsigned CaveMapSizeY;
 
 	static const int spikeDamage;
 	static const int rifleDamage;

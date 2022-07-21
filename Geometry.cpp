@@ -191,9 +191,9 @@ namespace Algorithms
 
 	void setTilesDefaultValues(std::vector<std::vector<Tile*>>& tileMap)
 	{
-		for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
+		for (int iii{ 0 }; iii < Constants::ValleyMapSizeY; ++iii)
 		{
-			for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
+			for (int kkk{ 0 }; kkk < Constants::ValleyMapSizeX; ++kkk)
 			{
 				tileMap[iii][kkk]->isVisited = false;
 				tileMap[iii][kkk]->globalGoal = INFINITY;
@@ -214,13 +214,13 @@ namespace Algorithms
 
 	bool isOutsideMap(const sf::Vector2i& gridPosition)
 	{
-		if (gridPosition.x > Constants::mapSizeX)
+		if (gridPosition.x > Constants::ValleyMapSizeX)
 			return true;
 
 		if (gridPosition.x < 0)
 			return true;
 
-		if (gridPosition.y > Constants::mapSizeY)
+		if (gridPosition.y > Constants::ValleyMapSizeY)
 			return true;
 
 		if (gridPosition.y < 0)

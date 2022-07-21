@@ -14,6 +14,8 @@ protected:
 	float m_keyTime;
 	float m_keyTimeMax;
 
+	PopUpText* m_popUpText;
+
 	//Mouse positions
 	sf::Vector2i m_mousePositionWindow;
 	sf::Vector2f m_mousePositionView;
@@ -22,7 +24,8 @@ protected:
 
 public:
 	//Constructors / Descructors
-	State(std::stack<State*>* states, sf::RenderWindow* window);
+	State(std::stack<State*>* states, sf::RenderWindow* window,
+		PopUpText* popUpText);
 	virtual ~State();
 
 

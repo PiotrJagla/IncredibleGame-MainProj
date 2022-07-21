@@ -168,7 +168,7 @@ Enemy* CaveLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)
 {
 	if (spawnTimer.getElapsedTime() > spawnTimer.getTimeMAX())
 	{
-		//return nullptr;
+		return nullptr;
 
 		//int spawnRandomEnemy{ getRandomInt(1,100) };
 

@@ -13,12 +13,14 @@ void Game::initWindow()
 
 void Game::initStates()
 {
-	m_states.push(new MainMenuState{ &m_states, m_window});
+	m_states.push(new MainMenuState{ &m_states, m_window, m_popUpText});
 }
 
 //Constructors / Descructors
 Game::Game()
 {
+	m_popUpText = new PopUpText{};
+
 	GameResources::initResources();
 	this->initWindow();
 	this->initStates();
@@ -28,6 +30,7 @@ Game::~Game()
 {
 	GameResources::deleteResources();
 	delete m_window;
+	delete m_popUpText;
 }
 
 
@@ -50,6 +53,7 @@ void Game::update()
 	this->updateEvents();
 	if (!m_states.empty())
 	{
+		m_popUpText->update(m_timePerFrame);
 		m_states.top()->update(m_window, m_timePerFrame);
 
 		if (m_states.top()->getQuit() == true)
@@ -106,15 +110,14 @@ void Game::showFPS()
 void Game::render()
 {
 	m_window->clear();
-	//Draw things from here
 
 	if (!m_states.empty())
 	{
-
 		m_states.top()->render(m_window);
 	}
 
-	//to here
+	m_popUpText->render(m_window);
+
 	m_window->display();
 }
 

@@ -85,6 +85,9 @@
     <ClCompile Include="Level.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
+    <ClCompile Include="PopUpText.cpp">
+      <Filter>Libraries\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState.h">
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="PopUpText.h">
+      <Filter>Libraries\GUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

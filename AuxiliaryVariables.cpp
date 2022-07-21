@@ -8,8 +8,10 @@ const unsigned Constants::WindowWidth = 1400;
 
 const float Constants::gridSizeF = 80.0f;
 const unsigned Constants::gridSizeU = static_cast<unsigned>(Constants::gridSizeF);
-const unsigned Constants::mapSizeX = 83;
-const unsigned Constants::mapSizeY = 30;
+const unsigned Constants::ValleyMapSizeX = 83;
+const unsigned Constants::ValleyMapSizeY = 30;
+const unsigned Constants::CaveMapSizeX = 30;
+const unsigned Constants::CaveMapSizeY = 30;
 
 const int Constants::spikeDamage = 15;
 const int Constants::rifleDamage = 4;

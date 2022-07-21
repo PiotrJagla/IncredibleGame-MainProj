@@ -86,8 +86,8 @@ void GameState::initVariables()
 }
 
 //Constructors / Descructors
-GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window) 
-	: State{states, window}
+GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window, PopUpText* popUpText)
+	: State{states, window, popUpText}
 {
 
 	m_levels.push(new ValleyLevel{});
@@ -97,8 +97,8 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 	this->initPauseMenu();
 	this->initPlayer();
 
-	this->initBackground();
 	this->initTileMap();
+	this->initBackground();
 
 	//Init item
 	m_rifle = new RangeWeapon{ GameResources::rifleTexture };
@@ -111,7 +111,8 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 	//Spawn timer
 	m_enemySpawnTimer.setMAXtime(3000.0f);
 
-	
+	m_popUpText->showText("Its Done!", 1900.0f);
+
 }
 
 GameState::~GameState()
@@ -228,6 +229,8 @@ void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
 			m_player->respawn();
 			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
 		}
+		this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
+		this->deleteAllEnemies();
 	}
 }
 
@@ -258,11 +261,7 @@ void GameState::deleteAllEnemies()
 		}
 	}
 
-	for (int iii{ 0 }; iii < m_enemies.size(); ++iii)
-	{
-		m_enemies.erase(m_enemies.begin() + iii);
-	}
-
+	m_enemies.clear();
 	
 }
 
@@ -451,14 +450,14 @@ void GameState::updatePlayerCamera()
 void GameState::moveBackgroundProportionallyToMap()
 {
 	sf::Vector2f playerDistanceFromBottomMiddle{
-		((Constants::mapSizeX / 2.0f) * Constants::gridSizeF) - m_player->getPosition().x,
-		(Constants::mapSizeY * Constants::gridSizeF) - m_player->getPosition().y
+		((m_tileMap->size(0) / 2.0f) * Constants::gridSizeF) - m_player->getPosition().x,
+		(m_tileMap->size() * Constants::gridSizeF) - m_player->getPosition().y
 	};
 
 
 	sf::Vector2f Map_Background_DistanceProportion{
-		(playerDistanceFromBottomMiddle.x / (Constants::mapSizeX * Constants::gridSizeF)) * m_background.getSize().x,
-		(playerDistanceFromBottomMiddle.y / (Constants::mapSizeY * Constants::gridSizeF)) * m_background.getSize().y
+		(playerDistanceFromBottomMiddle.x / (m_tileMap->size(0) * Constants::gridSizeF)) * m_background.getSize().x,
+		(playerDistanceFromBottomMiddle.y / (m_tileMap->size() * Constants::gridSizeF)) * m_background.getSize().y
 	};
 
 	Map_Background_DistanceProportion *= 0.55f;
@@ -677,10 +676,10 @@ void GameState::checkPlayerCameraBounds()
 
 		m_isCameraOnRightBound = true;
 	}
-	else if (rightCameraBound > Constants::mapSizeX * Constants::gridSizeF)
+	else if (rightCameraBound > m_tileMap->size(0) * Constants::gridSizeF)
 	{
 		m_playerCamera.setCenter(
-			Constants::mapSizeX * Constants::gridSizeF - m_playerCamera.getSize().x / 2.0f,
+			m_tileMap->size(0) * Constants::gridSizeF - m_playerCamera.getSize().x / 2.0f,
 			m_playerCamera.getCenter().y
 		);
 
@@ -697,11 +696,11 @@ void GameState::checkPlayerCameraBounds()
 
 		m_isCameraOnLeftBound = true;
 	}
-	else if (downCameraBound > Constants::mapSizeY * Constants::gridSizeF)
+	else if (downCameraBound > m_tileMap->size() * Constants::gridSizeF)
 	{
 		m_playerCamera.setCenter(
 			m_playerCamera.getCenter().x,
-			Constants::mapSizeY * Constants::gridSizeF - m_playerCamera.getSize().y / 2.0f
+			m_tileMap->size() * Constants::gridSizeF - m_playerCamera.getSize().y / 2.0f
 		);
 
 		m_isCameraOnLeftBound = true;

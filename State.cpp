@@ -3,13 +3,14 @@
 
 
 //Constructors / Descrutors
-State::State(std::stack<State*>* states, sf::RenderWindow* window) :
-	m_states{ states }, m_window{window}
+State::State(std::stack<State*>* states, sf::RenderWindow* window, PopUpText* popUpText) :
+	m_states{ states }, m_window{window}, m_popUpText{popUpText}
 {
 	m_quit = false;
 	m_isPaused = false;
 	m_keyTime = 0.0f;
 	m_keyTimeMax = 10.0f;
+
 }
 
 State::~State()

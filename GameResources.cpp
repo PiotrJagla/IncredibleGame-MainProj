@@ -84,9 +84,9 @@ void GameResources::initTextures()
 		std::cout << "GAME RESOURCES:: Stone texture could not load\n";
 	}
 	
-	if (!GameResources::stoneTexture->loadFromFile("Textures/blackCometTexture.png"))
+	if (!GameResources::blackCometTexture->loadFromFile("Textures/blackCometTexture.png"))
 	{
-		std::cout << "GAME RESOURCES:: Stone texture could not load\n";
+		std::cout << "GAME RESOURCES:: Stone texture could not load\n"; 
 	}
 }
 

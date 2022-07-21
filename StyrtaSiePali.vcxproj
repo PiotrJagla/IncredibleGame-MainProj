@@ -184,6 +184,7 @@
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PopUpText.cpp" />
     <ClCompile Include="RangeWeapon.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PopUpText.h" />
     <ClInclude Include="RangeWeapon.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Tile.h" />

@@ -17,8 +17,8 @@ void Enemy::initHPbar()
 
 void Enemy::setRandomPosition()
 {
-	int randomXpos(getRandomInt(2, Constants::mapSizeX-2));
-	int randomYpos(getRandomInt(2, Constants::mapSizeY-2));
+	int randomXpos(getRandomInt(2, Constants::ValleyMapSizeX-2));
+	int randomYpos(getRandomInt(2, Constants::ValleyMapSizeY-2));
 
 	m_sprite->setPosition(randomXpos * Constants::gridSizeF, randomYpos * Constants::gridSizeF);
 }
