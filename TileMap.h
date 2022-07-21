@@ -48,6 +48,8 @@ public:
 	std::vector<std::vector<Tile*>>& getTileMap();
 	std::vector<Edge>& getEdgesVector();
 
+	void changeTileMap(int tileMapNumber);
+
 
 };
 

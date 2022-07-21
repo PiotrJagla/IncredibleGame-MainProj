@@ -4,6 +4,7 @@
 
 void TileMap::makeMap(int tileMapNumber)
 {
+	m_mapVisualization.clear();
 	m_mapVisualization.resize(Constants::mapSizeY, std::wstring{});
 	if (tileMapNumber == 1)
 	{
@@ -397,5 +398,58 @@ std::vector<std::vector<Tile*>>& TileMap::getTileMap()
 std::vector<Edge>& TileMap::getEdgesVector()
 {
 	return m_edges;
+}
+
+void TileMap::changeTileMap(int tileMapNumber)
+{
+	for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
+	{
+		for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
+		{
+			delete m_tileMap[iii][kkk];
+		}
+	}
+
+	m_tileMap.clear();
+	this->makeMap(tileMapNumber);
+
+	for (int iii{ 0 }; iii < Constants::mapSizeY; ++iii)
+	{
+
+		m_tileMap.resize(Constants::mapSizeX, std::vector<Tile*>{});
+		for (int kkk{ 0 }; kkk < Constants::mapSizeX; ++kkk)
+		{
+
+			m_tileMap[iii].push_back(new Tile{});
+			m_tileMap[iii][kkk]->m_tile.setPosition(Constants::gridSizeU * kkk, Constants::gridSizeU * iii);
+			if (m_mapVisualization[iii].at(kkk) == '.')
+			{
+				m_tileMap[iii][kkk]->m_tile.setFillColor(sf::Color::Transparent);
+				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Air;
+				m_tileMap[iii][kkk]->isObsticle = false;
+			}
+			else if (m_mapVisualization[iii].at(kkk) == '#')
+			{
+				//m_tileMap[iii][kkk]->m_tile.setFillColor(sf::Color::Black);
+				m_tileMap[iii][kkk]->m_tile.setTexture(GameResources::grassTexture);
+				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Grass;
+				m_tileMap[iii][kkk]->isObsticle = true;
+			}
+			else if (m_mapVisualization[iii].at(kkk) == '^')
+			{
+				m_tileMap[iii][kkk]->m_tile.setTexture(GameResources::spikeTexture);
+				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Spike;
+				m_tileMap[iii][kkk]->isObsticle = false;
+			}
+			else if (m_mapVisualization[iii].at(kkk) == '&')
+			{
+				m_tileMap[iii][kkk]->m_tile.setTexture(GameResources::stoneTexture);
+				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Stone;
+				m_tileMap[iii][kkk]->isObsticle = true;
+			}
+		}
+	}
+	this->initNeighbours();
+	this->convertTileMapToEdgeMap();
 }
 

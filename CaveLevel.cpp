@@ -168,7 +168,9 @@ Enemy* CaveLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)
 {
 	if (spawnTimer.getElapsedTime() > spawnTimer.getTimeMAX())
 	{
-		int spawnRandomEnemy{ getRandomInt(1,100) };
+		//return nullptr;
+
+		//int spawnRandomEnemy{ getRandomInt(1,100) };
 
 
 		enemies.push_back(new Enemy{ *GameResources::blackCometTexture });
@@ -178,12 +180,12 @@ Enemy* CaveLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)
 		enemies.back()->giveEnemyType(Enemy::Type::flying);
 		enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bird);
 		enemies.back()->setSingleAnimationBounds(1000.0f, 100.0f, 100000.0f);
+		
 
 		
-		//enemies.back()->spawnEnemy(m_tileMap->getTileMap());
-		//m_creatures.push_back(enemies.back());
 		spawnTimer.restart();
 		return enemies.back();
+
 	}
 	else
 		return nullptr;

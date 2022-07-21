@@ -15,17 +15,22 @@ void GameState::initPauseMenu()
 
 	m_pauseMenu->addButton("quitButton");
 	m_pauseMenu->addButton("resumeButton");
+	m_pauseMenu->addButton("goToAnotherLevel");
 
 	m_pauseMenu->setButtonPosition("quitButton",
 		sf::Vector2f{ Constants::WindowWidth / 2.0f - 50.0f, Constants::WindowHeigth / 2.0f });
 	m_pauseMenu->setButtonPosition("resumeButton",
 		sf::Vector2f{ Constants::WindowWidth / 2.0f - 50.0f, Constants::WindowHeigth / 2.0f - 50.0f });
+	m_pauseMenu->setButtonPosition("goToAnotherLevel",
+		sf::Vector2f{ Constants::WindowWidth / 2.0f - 50.0f, Constants::WindowHeigth / 2.0f - 100.0f });
 
 	m_pauseMenu->setButtonCharacterSize("quitButton", 50.0f);
 	m_pauseMenu->setButtonCharacterSize("resumeButton", 50.0f);
+	m_pauseMenu->setButtonCharacterSize("goToAnotherLevel", 50.0f);
 
 	m_pauseMenu->setButtonText("quitButton", "Quit");
 	m_pauseMenu->setButtonText("resumeButton", "Resume");
+	m_pauseMenu->setButtonText("goToAnotherLevel", "Skip to next level");
 
 	//After death Menu
 	m_afterDeathMenu = new PauseMenu{};
@@ -85,7 +90,7 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window)
 	: State{states, window}
 {
 
-	m_levels.push(new CaveLevel{});
+	m_levels.push(new ValleyLevel{});
 
 	this->initVariables();
 	this->initButtons();
@@ -205,6 +210,24 @@ void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
 	else if (m_pauseMenu->isButtonPressed("resumeButton", window))
 	{
 		this->pauseOFF();
+	}
+	else if (m_pauseMenu->isButtonPressed("goToAnotherLevel", window))
+	{
+		if (m_levels.top()->levelType == Level::Type::Valley)
+		{
+			m_levels.push(new CaveLevel{});
+			m_levels.top()->initBackground(m_background, m_backgroundTexture);
+			m_player->respawn();
+			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
+		}
+		else if (m_levels.top()->levelType == Level::Type::Cave)
+		{
+			delete m_levels.top();
+			m_levels.pop();
+			m_levels.top()->initBackground(m_background, m_backgroundTexture);
+			m_player->respawn();
+			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
+		}
 	}
 }
 

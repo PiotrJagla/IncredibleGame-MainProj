@@ -52,7 +52,6 @@ void ValleyLevel::update()
 void ValleyLevel::render(sf::RenderTarget* target, const sf::Vector2f& lightSource)
 {
 
-
 }
 
 void ValleyLevel::calculateVisibilityPolygon(const sf::Vector2f& lightSource, const std::vector<Edge>& edges, float radius)
