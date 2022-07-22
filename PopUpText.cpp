@@ -16,6 +16,7 @@ PopUpText::PopUpText(float delay)
 	m_popUpText->setString("");
 	m_popUpText->setCharacterSize(100.0f);
 	m_isTextShown = false;
+	m_smoothPooping = true;
 }
 
 PopUpText::~PopUpText()
@@ -36,12 +37,24 @@ void PopUpText::update(float& timePerFrame)
 	}
 	else
 	{
-		sf::Color textColor{ m_popUpText->getFillColor() };
-		if (textColor.a < 255)
+		if (m_smoothPooping == true)
 		{
-			textColor.a += (int)100*timePerFrame + 1;
-			m_popUpText->setFillColor(textColor);
+			sf::Color textColor{ m_popUpText->getFillColor() };
+			if (textColor.a < 255)
+			{
+				textColor.a += (int)100 * timePerFrame + 1;
+				m_popUpText->setFillColor(textColor);
+				if (textColor.a >= 255)
+				{
+					m_popUpText->setFillColor(sf::Color{ 255,255,255,255 });
+				}
+			}
 		}
+		else
+		{
+			m_popUpText->setFillColor(sf::Color{ 255,255,255,255 });
+		}
+
 	
 	}
 
@@ -67,13 +80,15 @@ void PopUpText::render(sf::RenderTarget* target)
 	}
 }
 
-void PopUpText::showText(std::string textToShow, float delay)
+void PopUpText::showText(std::string textToShow, float delay, bool showSmoothly)
 {
+
 	m_popUpText->setString(textToShow);
-	m_popUpText->setFillColor(sf::Color{ 255,255,255,50 });
+	m_popUpText->setFillColor(sf::Color{ 255,255,255,0 });
 	m_popUpTimer->setMAXtime(delay);
-	m_popUpTimer->restart();
+	m_popUpTimer->restart(0.0f);
 	m_isTextShown = true;
+	m_smoothPooping = showSmoothly;
 
 	m_popUpText->setPosition(
 		Constants::WindowWidth / 2.0f - m_popUpText->getGlobalBounds().width / 2.0f,
@@ -88,5 +103,11 @@ void PopUpText::hideText(float& timePerFrame)
 	{
 		textColor.a -= (int)100 * timePerFrame + 1;
 		m_popUpText->setFillColor(textColor);
+
+		if (textColor.a <= 40)
+		{
+			m_popUpText->setFillColor(sf::Color{ 255,255,255,0 });
+		}
 	}
+
 }

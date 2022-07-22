@@ -30,6 +30,8 @@ public:
 
 	//Variables
 	int tileMapNumber;
+	int monstersToKill;
+	int killedMonsters;
 	Type levelType;
 };
 

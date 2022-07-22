@@ -38,7 +38,7 @@ public:
 		int& fromX, int& toX, int& fromY, int& toY);
 
 	void placeTile(sf::Vector2u& mouseGridPosition);
-
+	void freeTileMapMemory();
 	
 
 	//Accesros

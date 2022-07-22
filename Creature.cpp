@@ -104,7 +104,7 @@ const sf::Vector2f& Creature::getSize() const
 
 const sf::FloatRect& Creature::getGlobalBounds() const
 {
-	return m_sprite->getGlobalBounds();
+	return m_hitboxComponent->getHitbox().getGlobalBounds();
 }
 
 

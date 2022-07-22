@@ -14,6 +14,7 @@ sf::Texture* GameResources::playerTexture = new sf::Texture;
 sf::Texture* GameResources::birdTexture = new sf::Texture;
 sf::Texture* GameResources::stoneTexture = new sf::Texture;
 sf::Texture* GameResources::blackCometTexture = new sf::Texture;
+sf::Texture* GameResources::doorTexture = new sf::Texture;
 
 sf::Texture* GameResources::spikeTexture = new sf::Texture;
 
@@ -86,7 +87,12 @@ void GameResources::initTextures()
 	
 	if (!GameResources::blackCometTexture->loadFromFile("Textures/blackCometTexture.png"))
 	{
-		std::cout << "GAME RESOURCES:: Stone texture could not load\n"; 
+		std::cout << "GAME RESOURCES:: Comet texture could not load\n"; 
+	}
+
+	if (!GameResources::doorTexture->loadFromFile("Textures/doorTexture.png"))
+	{
+		std::cout << "GAME RESOURCES:: Door texture could not load\n";
 	}
 }
 
@@ -111,4 +117,6 @@ void GameResources::deleteResources()
 	delete GameResources::birdTexture;
 	delete GameResources::stoneTexture;
 	delete GameResources::blackCometTexture;
+	delete GameResources::doorTexture;
+	
 }

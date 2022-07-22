@@ -83,15 +83,22 @@ void GameState::initVariables()
 	m_renderToY = 0;
 	m_isCameraOnLeftBound = false;
 	m_isCameraOnRightBound = false;
+	m_isLevelCompleted = false;
+}
+
+void GameState::initLevels()
+{
+	m_levels.push(new ValleyLevel{});
+	m_nextLevelDoors.setSize(sf::Vector2f{ Constants::gridSizeF, Constants::gridSizeF * 2.0f });
+	m_nextLevelDoors.setTexture(GameResources::doorTexture);
+	m_nextLevelDoors.setPosition(40 * Constants::gridSizeF, 19 * Constants::gridSizeF);
 }
 
 //Constructors / Descructors
 GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window, PopUpText* popUpText)
 	: State{states, window, popUpText}
 {
-
-	m_levels.push(new ValleyLevel{});
-
+	this->initLevels();
 	this->initVariables();
 	this->initButtons();
 	this->initPauseMenu();
@@ -111,7 +118,7 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window, PopUp
 	//Spawn timer
 	m_enemySpawnTimer.setMAXtime(3000.0f);
 
-	m_popUpText->showText("Its Done!", 1900.0f);
+	m_popUpText->showText("Kill All Monsters", 1900.0f, true);
 
 }
 
@@ -130,7 +137,7 @@ GameState::~GameState()
 void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 {
 
-	m_enemySpawnTimer.update(timePerFrame);
+ 	m_enemySpawnTimer.update(timePerFrame);
 
 	if (this->isPlayerDead() == false)
 	{
@@ -182,7 +189,32 @@ void GameState::updateInput()
 
 void GameState::levelDependentUpdate()
 {
-	
+	if (m_levels.top()->monstersToKill == m_levels.top()->killedMonsters)
+	{
+
+		m_isLevelCompleted = true;
+		m_popUpText->showText("Go to doors", 1900.0f, true);
+	}
+
+	if (m_isLevelCompleted == true)
+	{
+
+		if (m_nextLevelDoors.getGlobalBounds().intersects(m_player->getGlobalBounds()))
+		{
+
+			m_popUpText->showText("Press E to Go", 1900.0f, false);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+			{
+				m_levels.push(new CaveLevel{});
+				m_levels.top()->initBackground(m_background, m_backgroundTexture);
+				m_player->respawn();
+				m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
+				this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
+				this->deleteAllEnemies();
+				m_enemySpawnTimer.setMAXtime(3000.0f);
+			}
+		}
+	}
 }
 
 void GameState::updateButtons(sf::RenderWindow* window)
@@ -231,6 +263,7 @@ void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
 		}
 		this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 		this->deleteAllEnemies();
+		m_enemySpawnTimer.setMAXtime(3000.0f);
 	}
 }
 
@@ -605,7 +638,8 @@ void GameState::renderItems(sf::RenderTarget* target)
 
 void GameState::caveLevelRender(sf::RenderTarget* target)
 {
-	m_levels.top()->calculateVisibilityPolygon(m_player->getPosition(), m_tileMap->getEdgesVector(), 1000.0f);
+	m_levels.top()->calculateVisibilityPolygon(
+		m_player->getPosition(), m_tileMap->getEdgesVector(), 1000.0f);
 
 	//Render visibility polygon
 	target->setView(m_playerCamera);
@@ -634,6 +668,9 @@ void GameState::valleyLevelRender(sf::RenderTarget* target)
 	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 	this->renderCreatures(target);
 	this->renderItems(target);
+
+	if(m_isLevelCompleted == true) { target->draw(m_nextLevelDoors); }
+		
 
 	m_window->setView(m_window->getDefaultView());
 }
@@ -727,6 +764,7 @@ void GameState::deleteDeadEnemy()
 	{
 		if (m_creatures[iii]->creatureType == Creature::Type::enemy && m_creatures[iii]->getHP() <= 0)
 		{
+			m_levels.top()->killedMonsters += 1;
 			delete m_creatures[iii];
 			m_creatures.erase(m_creatures.begin() + iii);
 		}

@@ -6,6 +6,7 @@
 
 Level::Level()
 {
+	killedMonsters = 0;
 }
 
 

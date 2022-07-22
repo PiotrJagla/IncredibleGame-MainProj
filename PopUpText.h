@@ -7,6 +7,7 @@ private:
 	sf::Text* m_popUpText;
 
 	bool m_isTextShown;
+	bool m_smoothPooping;
 
 public:
 	PopUpText(float delay = 1000.0f);
@@ -15,7 +16,8 @@ public:
 	void update(float& timePerFrame);
 	void render(sf::RenderTarget* target);
 
-	void showText(std::string textToShow, float delay);
+	void showText(std::string textToShow, float delay,
+		bool showSmoothly);
 	void hideText(float& timePerFrame);
 };
 

@@ -8,6 +8,7 @@ ValleyLevel::ValleyLevel()
 {
 	tileMapNumber = 1;
 	levelType = Type::Valley;
+	monstersToKill = 1;
 }
 
 ValleyLevel::~ValleyLevel()

@@ -17,6 +17,8 @@ class GameState : public State
 private:
 	//Levels
 	std::stack<Level*> m_levels;
+	bool m_isLevelCompleted;
+	sf::RectangleShape m_nextLevelDoors;
 
 	//GUI
 	std::map<sf::String, Button*> m_buttons;
@@ -57,6 +59,7 @@ private:
 	void initBackground();
 	void initTileMap();
 	void initVariables();
+	void initLevels();
 public:
 	//Constructors / Descructors
 	GameState(std::stack<State*>* states, sf::RenderWindow* window,

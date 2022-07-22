@@ -15,5 +15,6 @@
 //PLANY NA ROZWÓJ GRY
 
 /*
-*	Nie da siê powróciæ z Cave level do valley level trzeba to naprawiæ
+*	naprawiæ renderownie ¿eby punkty w wektorze m_visibilityPolygonPoints nie siêga³y poza ekran 
+* co bardzo zoptymalizuje gierke
 */

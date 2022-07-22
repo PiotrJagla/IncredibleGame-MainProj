@@ -5,7 +5,7 @@
 void TileMap::makeMap(int tileMapNumber)
 {
 	m_mapVisualization.clear();
-	//m_mapVisualization.resize(m_mapVisualization.size(), std::wstring{});
+	//m_mapVisualization.resize(m_mapVisualization.size(), std::wstring{}); 39 20
 	if (tileMapNumber == 1)
 	{
 		m_mapVisualization.push_back( L"###################################################################################" );
@@ -280,7 +280,7 @@ void TileMap::convertTileMapToEdgeMap()
 
 void TileMap::initTileMap()
 {
-
+	m_tileMap.clear();
 	for (int iii{ 0 }; iii < m_mapVisualization.size(); ++iii)
 	{
 
@@ -327,19 +327,12 @@ TileMap::TileMap(int tileMapNumber)
 	this->initTileMap();
 	this->initNeighbours();
 	this->convertTileMapToEdgeMap();
-
 }
 
 TileMap::~TileMap()
 {
 
-	for (int iii{ 0 }; iii < m_mapVisualization.size(); ++iii)
-	{
-		for (int kkk{ 0 }; kkk < m_tileMap[0].size(); ++kkk)
-		{
-			delete m_tileMap[iii][kkk];
-		}
-	}
+	this->freeTileMapMemory();
 }
 
 void TileMap::update(sf::Vector2u& mouseGridPosition)
@@ -380,6 +373,17 @@ void TileMap::placeTile(sf::Vector2u& mouseGridPosition)
 	}
 }
 
+void TileMap::freeTileMapMemory()
+{
+	for (int iii{ 0 }; iii < m_mapVisualization.size(); ++iii)
+	{
+		for (int kkk{ 0 }; kkk < m_mapVisualization[0].size(); ++kkk)
+		{
+			delete m_tileMap[iii][kkk];
+		}
+	}
+}
+
 int TileMap::size()
 {
 
@@ -410,54 +414,8 @@ std::vector<Edge>& TileMap::getEdgesVector()
 
 void TileMap::changeTileMap(int tileMapNumber)
 {
-
-	for (int iii{ 0 }; iii < m_mapVisualization.size(); ++iii)
-	{
-		for (int kkk{ 0 }; kkk < m_mapVisualization[0].size(); ++kkk)
-		{
-			delete m_tileMap[iii][kkk];
-		}
-	}
-
-	m_tileMap.clear();
 	this->makeMap(tileMapNumber);
-
-	for (int iii{ 0 }; iii < m_mapVisualization.size(); ++iii)
-	{
-
-		m_tileMap.resize(m_mapVisualization[0].size(), std::vector<Tile*>{});
-		for (int kkk{ 0 }; kkk < m_mapVisualization[0].size(); ++kkk)
-		{
-
-			m_tileMap[iii].push_back(new Tile{});
-			m_tileMap[iii][kkk]->m_tile.setPosition(Constants::gridSizeU * kkk, Constants::gridSizeU * iii);
-			if (m_mapVisualization[iii].at(kkk) == '.')
-			{
-				m_tileMap[iii][kkk]->m_tile.setFillColor(sf::Color::Transparent);
-				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Air;
-				m_tileMap[iii][kkk]->isObsticle = false;
-			}
-			else if (m_mapVisualization[iii].at(kkk) == '#')
-			{
-				//m_tileMap[iii][kkk]->m_tile.setFillColor(sf::Color::Black);
-				m_tileMap[iii][kkk]->m_tile.setTexture(GameResources::grassTexture);
-				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Grass;
-				m_tileMap[iii][kkk]->isObsticle = true;
-			}
-			else if (m_mapVisualization[iii].at(kkk) == '^')
-			{
-				m_tileMap[iii][kkk]->m_tile.setTexture(GameResources::spikeTexture);
-				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Spike;
-				m_tileMap[iii][kkk]->isObsticle = false;
-			}
-			else if (m_mapVisualization[iii].at(kkk) == '&')
-			{
-				m_tileMap[iii][kkk]->m_tile.setTexture(GameResources::stoneTexture);
-				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Stone;
-				m_tileMap[iii][kkk]->isObsticle = true;
-			}
-		}
-	}
+	this->initTileMap();
 	this->initNeighbours();
 	this->convertTileMapToEdgeMap();
 }

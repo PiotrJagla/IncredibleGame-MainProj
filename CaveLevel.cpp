@@ -149,7 +149,7 @@ void CaveLevel::render(sf::RenderTarget* target, const sf::Vector2f& lightSource
 		sf::Vertex{sf::Vector2f{std::get<1>(m_visibilityPolygonPoints[iii]), std::get<2>(m_visibilityPolygonPoints[iii])}},
 		sf::Vertex{sf::Vector2f{std::get<1>(m_visibilityPolygonPoints[iii + 1]), std::get<2>(m_visibilityPolygonPoints[iii + 1]) }}
 		};
-
+		
 		target->draw(triangle, 3, sf::TriangleFan);
 	}
 
@@ -159,7 +159,7 @@ void CaveLevel::render(sf::RenderTarget* target, const sf::Vector2f& lightSource
 				std::get<2>(m_visibilityPolygonPoints[m_visibilityPolygonPoints.size() - 1])}},
 		sf::Vertex{sf::Vector2f{ std::get<1>(m_visibilityPolygonPoints[0]),std::get<2>(m_visibilityPolygonPoints[0])}}
 	};
-
+	
 	target->draw(triangle, 3, sf::TriangleFan);
 	
 }

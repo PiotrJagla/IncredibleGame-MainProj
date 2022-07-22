@@ -49,7 +49,6 @@ void Game::gameLoop()
 
 void Game::update()
 {
-	this->showFPS();
 	this->updateEvents();
 	if (!m_states.empty())
 	{
@@ -69,6 +68,7 @@ void Game::update()
 	}
 
 	this->realeseBoolsReset();
+	this->showFPS();
 }
 
 void Game::updateEvents()
@@ -104,7 +104,8 @@ void Game::updateButtonRealese()
 
 void Game::showFPS()
 {
-	std::cout << "FPS: " << static_cast<int>(1 / m_timePerFrame) << '\n';
+	float deltaTime{ m_timePerFrame };
+	std::cout << "FPS: " << static_cast<int>(1 / deltaTime) << '\n';
 }
 
 void Game::render()
