@@ -49,6 +49,7 @@ public:
 	std::vector<Edge>& getEdgesVector();
 
 	void changeTileMap(int tileMapNumber);
+	void addScreenEdgesToEdgeVector(const sf::Vector2f& viewCenter);
 
 
 };

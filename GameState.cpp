@@ -638,13 +638,14 @@ void GameState::renderItems(sf::RenderTarget* target)
 
 void GameState::caveLevelRender(sf::RenderTarget* target)
 {
-	m_levels.top()->calculateVisibilityPolygon(
-		m_player->getPosition(), m_tileMap->getEdgesVector(), 1000.0f);
+	//m_tileMap->addScreenEdgesToEdgeVector(m_playerCamera.getCenter());
+
+	m_levels.top()->calculateVisibilityPolygon(m_player->getPosition(), m_tileMap->getEdgesVector(), m_playerCamera.getCenter());
 
 	//Render visibility polygon
 	target->setView(m_playerCamera);
 
-	m_levels.top()->render(target, m_player->getPosition());
+	m_levels.top()->render(target, m_player->getPosition(), m_playerCamera.getCenter());
 
 	m_window->setView(m_window->getDefaultView());
 

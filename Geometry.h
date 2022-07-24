@@ -15,6 +15,14 @@ namespace Geometry
 
 	int getAngleRelativelyToGround(
 		const sf::Vector2i& pointOne, const sf::Vector2f& pointTwo);
+
+	float calculateVectorLength(
+		const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo);
+
+	bool isPointOutsideScreen(const sf::Vector2f& pointToCheck, const sf::Vector2f& viewCenter);
+
+	bool isVectorOutsideScreen(const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo,
+		const sf::Vector2f& viewCenter);
 }
 
 namespace Algorithms

@@ -15,9 +15,13 @@ public:
 	void update() override;
 
 	void calculateVisibilityPolygon(const sf::Vector2f& lightSource,
-		const std::vector<Edge>& edges, float radius) override;
+		const std::vector<Edge>& edges, const sf::Vector2f& viewCenter) override;
 
-	void render(sf::RenderTarget* target, const sf::Vector2f& lightSource) override;
+	void render(sf::RenderTarget* target, const sf::Vector2f& lightSource,
+		const sf::Vector2f& viewCenter) override;
+
+	void changePolygonPointsPosition(sf::RenderTarget* target,
+		const sf::Vector2f& viewCenter, const sf::Vector2f& lightSource);
 
 	Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) override;
 };

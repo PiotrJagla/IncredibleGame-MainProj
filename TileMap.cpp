@@ -80,6 +80,8 @@ void TileMap::makeMap(int tileMapNumber)
 		m_mapVisualization.push_back( L"&&..........&..........&&&.............................................&&&..&&.........................&&&................&&");
 		m_mapVisualization.push_back( L"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"); 
 		m_mapVisualization.push_back( L"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"); 
+
+
 	}
 
 	//std::cout << m_mapVisualization[0]->size();
@@ -274,7 +276,10 @@ void TileMap::convertTileMapToEdgeMap()
 		}
 	}
 		
-	
+	//m_edges.push_back(Edge{});
+	//m_edges.push_back(Edge{});
+	//m_edges.push_back(Edge{});
+	//m_edges.push_back(Edge{});
 
 }
 
@@ -418,5 +423,32 @@ void TileMap::changeTileMap(int tileMapNumber)
 	this->initTileMap();
 	this->initNeighbours();
 	this->convertTileMapToEdgeMap();
+}
+
+void TileMap::addScreenEdgesToEdgeVector(const sf::Vector2f& viewCenter)
+{
+
+	sf::Vector2f leftUpCorner{viewCenter.x - Constants::WindowWidth/2.0f, viewCenter.y - Constants::WindowHeigth/ 2.0f };
+	sf::Vector2f leftDownCorner{ leftUpCorner.x, leftUpCorner.y + Constants::WindowHeigth };
+	sf::Vector2f rightUpCorner{ leftUpCorner.x + Constants::WindowWidth , leftUpCorner.y };
+	sf::Vector2f rightDownCorner{ leftUpCorner.x + Constants::WindowWidth, leftUpCorner.y + Constants::WindowHeigth };
+
+	/*sf::Vector2f leftUpCorner{ viewCenter.x - target->getSize().x *2.0f, viewCenter.y - target->getSize().y *2.0f };
+	sf::Vector2f leftDownCorner{ leftUpCorner.x, leftUpCorner.y + target->getSize().y * 4.0f };
+	sf::Vector2f rightUpCorner{ leftUpCorner.x + target->getSize().x * 4.0f, leftUpCorner.y };
+	sf::Vector2f rightDownCorner{ leftUpCorner.x + target->getSize().x * 4.0f, leftUpCorner.y + target->getSize().y * 4.0f };*/
+
+	
+	m_edges[m_edges.size() - 4].startPoint = leftUpCorner;
+	m_edges[m_edges.size() - 4].endPoint = leftDownCorner;
+
+	m_edges[m_edges.size() - 3].startPoint = leftUpCorner;
+	m_edges[m_edges.size() - 3].endPoint = rightUpCorner;
+
+	m_edges[m_edges.size() - 2].startPoint = rightUpCorner;
+	m_edges[m_edges.size() - 2].endPoint = rightDownCorner;
+
+	m_edges[m_edges.size() - 1].startPoint = leftDownCorner;
+	m_edges[m_edges.size() - 1].endPoint = rightDownCorner;
 }
 

@@ -15,6 +15,6 @@
 //PLANY NA ROZWÓJ GRY
 
 /*
-*	naprawiæ renderownie ¿eby punkty w wektorze m_visibilityPolygonPoints nie siêga³y poza ekran 
-* co bardzo zoptymalizuje gierke
+*	Sprawdziæ czy musze sprawdzaæ czy krawedz intersektuje z krawiêdziami ekrany czy samo sprawdzanie ma³ych wektorów wystarczy
+*	aby dobrze zoptymaliwaæ
 */

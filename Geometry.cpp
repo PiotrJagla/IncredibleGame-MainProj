@@ -98,6 +98,89 @@ namespace Geometry
 
 		return angleInDegrees;
 	}
+
+	float calculateVectorLength(const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo)
+	{
+		return sqrt((pointTwo.x - pointOne.x)*(pointTwo.x - pointOne.x) + (pointTwo.y - pointOne.y)*(pointTwo.y - pointOne.y));
+	}
+
+	bool isPointOutsideScreen(const sf::Vector2f& pointToCheck, const sf::Vector2f& viewCenter)
+	{
+		sf::Vector2f leftUpCorner{ viewCenter.x - Constants::WindowWidth / 2.0f, viewCenter.y - Constants::WindowHeigth / 2.0f };
+		sf::Vector2f leftDownCorner{ leftUpCorner.x, leftUpCorner.y + Constants::WindowHeigth };
+		sf::Vector2f rightUpCorner{ leftUpCorner.x + Constants::WindowWidth , leftUpCorner.y };
+		sf::Vector2f rightDownCorner{ leftUpCorner.x + Constants::WindowWidth, leftUpCorner.y + Constants::WindowHeigth };
+
+		if (pointToCheck.x < leftUpCorner.x || pointToCheck.x > rightUpCorner.x)
+		{
+			return true;
+		}
+		else if (pointToCheck.y < leftUpCorner.y || pointToCheck.y > leftDownCorner.y)
+		{
+			return true;
+		}
+
+
+		return false;
+	}
+	bool isVectorOutsideScreen(const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo, const sf::Vector2f& viewCenter)
+	{
+		sf::Vector2f leftUpCorner{ viewCenter.x - Constants::WindowWidth / 2.0f, viewCenter.y - Constants::WindowHeigth / 2.0f };
+		sf::Vector2f leftDownCorner{ leftUpCorner.x, leftUpCorner.y + Constants::WindowHeigth };
+		sf::Vector2f rightUpCorner{ leftUpCorner.x + Constants::WindowWidth , leftUpCorner.y };
+		sf::Vector2f rightDownCorner{ leftUpCorner.x + Constants::WindowWidth, leftUpCorner.y + Constants::WindowHeigth };
+
+		if (!isPointOutsideScreen(pointOne, viewCenter) || !isPointOutsideScreen(pointTwo, viewCenter))
+		{
+			return false;
+		}
+
+
+		sf::Vector2f vectorDir{
+				pointTwo.x - pointOne.x,
+				pointTwo.y - pointOne.y
+		};
+
+		float angle{ atan2f(vectorDir.y, vectorDir.x) };
+
+		vectorDir.x = 1.0f * cosf(angle);
+		vectorDir.y = 1.0f * sinf(angle);
+
+		for (int kkk{ 0 }; kkk < 4; ++kkk)
+		{//Left Edge, Right Edge, Up Edge, Down Edge
+			sf::Vector2f screenEdgeStart{};
+			sf::Vector2f screenEdgeEnd{};
+
+			if (kkk == 0) { screenEdgeStart = leftUpCorner; screenEdgeEnd = leftDownCorner; }
+			else if (kkk == 1) { screenEdgeStart = rightUpCorner; screenEdgeEnd = rightDownCorner; }
+			else if (kkk == 2) { screenEdgeStart = leftUpCorner; screenEdgeEnd = rightUpCorner; }
+			else if (kkk == 3) { screenEdgeStart = leftDownCorner; screenEdgeEnd = rightDownCorner; }
+
+			sf::Vector2f lineSegVec{
+				screenEdgeEnd.x - screenEdgeStart.x,
+				screenEdgeEnd.y - screenEdgeStart.y
+			};
+
+			if (std::fabs(lineSegVec.x - vectorDir.x) > 0.0f && std::fabs(lineSegVec.y - vectorDir.y) > 0.0f)
+			{
+				float tedge{
+					(vectorDir.x * (screenEdgeEnd.y - screenEdgeStart.y) +
+					(vectorDir.y * (screenEdgeStart.x - screenEdgeEnd.x))) / (lineSegVec.x * vectorDir.y - lineSegVec.y * vectorDir.x)
+				};
+
+				float tray{ (screenEdgeEnd.x + lineSegVec.x * tedge - screenEdgeStart.x) / vectorDir.x };
+
+				if (tray > 0 && tedge >= 0 && tedge <= 1.0f)
+				{
+					return false;
+				}
+			}
+		}
+
+		
+
+		return true;
+	}
 }
 
 namespace Algorithms

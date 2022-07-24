@@ -21,10 +21,10 @@ public:
 
 	virtual void update() = 0;
 
-	virtual void render(sf::RenderTarget* target, const sf::Vector2f& lightSource) = 0;
+	virtual void render(sf::RenderTarget* target, const sf::Vector2f& lightSource, const sf::Vector2f& viewCenter) = 0;
 
 	virtual void calculateVisibilityPolygon(const sf::Vector2f& lightSource,
-		const std::vector<Edge>& edges, float radius) = 0;
+		const std::vector<Edge>& edge, const sf::Vector2f& viewCenter) = 0;
 
 	virtual Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) = 0;
 

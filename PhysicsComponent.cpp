@@ -86,7 +86,7 @@ void PhysicsComponent::updateVelocity(const float& timePerFrame,
 		isGrounded = false;
 		direction.y = -1.0f;
 		
-		velocity.y = m_acceleration * direction.y * 0.8f;
+		velocity.y = m_acceleration * direction.y * 1.2f;
 	}
 
 	if (RealeseDetection::WRealesed() == true)
