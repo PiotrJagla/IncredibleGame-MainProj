@@ -43,7 +43,7 @@ void MovementComponent::moveSprite(const float& timePerFrame)
 	m_sprite.move(m_velocity.x * timePerFrame,m_velocity.y * timePerFrame);
 }
 
-void MovementComponent::setDirectionTowardsPoint(const float& timePerFrame, sf::Vector2f& point)
+void MovementComponent::setDirectionTowardsPoint(const float& timePerFrame,const sf::Vector2f& point)
 {
 	sf::Vector2f directionVector{
 		point.x - m_sprite.getPosition().x,
@@ -61,7 +61,7 @@ void MovementComponent::setDirectionTowardsPoint(const float& timePerFrame, sf::
 }
 
 Tile* MovementComponent::shortestPathFirstTile(std::vector<std::vector<Tile*>>& tileMap,
-	sf::Vector2f startPosition, sf::Vector2f endPosition)
+	const sf::Vector2f& startPosition,const sf::Vector2f& endPosition)
 {
 
 

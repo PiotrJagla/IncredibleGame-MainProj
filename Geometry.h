@@ -28,12 +28,12 @@ namespace Geometry
 namespace Algorithms
 {
 	Tile* getShortestPathFirstTile(std::vector<std::vector<Tile*>>& tileMap,
-		const sf::Vector2f& startPosition, const sf::Vector2f& endPosition);
+		const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, const sf::Vector2i& tileMapSize);
 
-	void setTilesDefaultValues(std::vector<std::vector<Tile*>>& tileMap);
+	void setTilesDefaultValues(std::vector<std::vector<Tile*>>& tileMap, const sf::Vector2i& tileMapSize);
 
 	float twoPointsDistance(sf::Vector2f startPoint, sf::Vector2f endPoint);
 
-	bool isOutsideMap(const sf::Vector2i& gridPosition);
+	bool isOutsideMap(const sf::Vector2i& gridPosition, const sf::Vector2i& tileMapSize);
 }
 

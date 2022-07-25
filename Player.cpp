@@ -119,7 +119,7 @@ void Player::regulateHPhearts()
 	}
 }
 
-void Player::respawn()
+void Player::respawn(const sf::Vector2i& spawnGridPosition)
 {
 	m_currentHP = m_maxHP;
 	this->regulateHPhearts();

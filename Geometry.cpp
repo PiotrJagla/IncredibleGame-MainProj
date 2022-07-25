@@ -187,13 +187,13 @@ namespace Geometry
 namespace Algorithms
 {
 	Tile* getShortestPathFirstTile(std::vector<std::vector<Tile*>>& tileMap,
-		const sf::Vector2f& startPosition, const sf::Vector2f& endPosition)
+		const sf::Vector2f& startPosition, const sf::Vector2f& endPosition, const sf::Vector2i& tileMapSize)
 	{
-		setTilesDefaultValues(tileMap);
+		setTilesDefaultValues(tileMap, tileMapSize);
 
 
 		sf::Vector2i startGridPosition{ (int)(startPosition.x / Constants::gridSizeU), (int)(startPosition.y / Constants::gridSizeU) };
-		if (isOutsideMap(startGridPosition)) 
+		if (isOutsideMap(startGridPosition, tileMapSize))
 		{ return nullptr; }
 
 		Tile* currentTile{ tileMap[startGridPosition.y][startGridPosition.x] };
@@ -201,7 +201,7 @@ namespace Algorithms
 		Tile* startTile{ currentTile };
 
 		sf::Vector2i endGridPosition{ (int)(endPosition.x / Constants::gridSizeU), (int)(endPosition.y / Constants::gridSizeU) };
-		if (isOutsideMap(endGridPosition)) 
+		if (isOutsideMap(endGridPosition, tileMapSize))
 		{ return nullptr; }
 
 		Tile* endTile{ tileMap[endGridPosition.y][endGridPosition.x] };
@@ -273,11 +273,11 @@ namespace Algorithms
 		return firstShortestPathTile;
 	}
 
-	void setTilesDefaultValues(std::vector<std::vector<Tile*>>& tileMap)
+	void setTilesDefaultValues(std::vector<std::vector<Tile*>>& tileMap, const sf::Vector2i& tileMapSize)
 	{
-		for (int iii{ 0 }; iii < Constants::ValleyMapSizeY; ++iii)
+		for (int iii{ 0 }; iii < tileMapSize.y; ++iii)
 		{
-			for (int kkk{ 0 }; kkk < Constants::ValleyMapSizeX; ++kkk)
+			for (int kkk{ 0 }; kkk < tileMapSize.x; ++kkk)
 			{
 				tileMap[iii][kkk]->isVisited = false;
 				tileMap[iii][kkk]->globalGoal = INFINITY;
@@ -296,15 +296,15 @@ namespace Algorithms
 		return length;
 	}
 
-	bool isOutsideMap(const sf::Vector2i& gridPosition)
+	bool isOutsideMap(const sf::Vector2i& gridPosition, const sf::Vector2i& tileMapSize)
 	{
-		if (gridPosition.x > Constants::ValleyMapSizeX)
+		if (gridPosition.x > tileMapSize.x)
 			return true;
 
 		if (gridPosition.x < 0)
 			return true;
 
-		if (gridPosition.y > Constants::ValleyMapSizeY)
+		if (gridPosition.y > tileMapSize.y)
 			return true;
 
 		if (gridPosition.y < 0)

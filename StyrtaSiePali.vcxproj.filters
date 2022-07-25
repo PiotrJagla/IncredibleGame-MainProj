@@ -88,6 +88,9 @@
     <ClCompile Include="PopUpText.cpp">
       <Filter>Libraries\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="ParkourValleyLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState.h">
@@ -173,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="PopUpText.h">
       <Filter>Libraries\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ParkourValleyLevel.h">
+      <Filter>Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

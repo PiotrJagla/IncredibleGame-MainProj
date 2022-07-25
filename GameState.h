@@ -11,6 +11,7 @@
 #include "Level.h"
 #include "ValleyLevel.h"
 #include "CaveLevel.h"
+#include "ParkourValleyLevel.h"
 
 class GameState : public State
 {
@@ -26,6 +27,7 @@ private:
 	std::map<sf::String, Button*> m_buttons;
 	PauseMenu* m_pauseMenu;
 	PauseMenu* m_afterDeathMenu;
+	ParkourValleyLevel* m_parkourValleyLevel;
 
 	//Creatures
 	std::vector<Creature*> m_creatures;
@@ -113,6 +115,7 @@ public:
 	void renderItems(sf::RenderTarget* target);
 	void caveLevelRender(sf::RenderTarget* target);
 	void valleyLevelRender(sf::RenderTarget* target);
+	void parkourValleyLevelRender(sf::RenderTarget* target);
 
 	void checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY);
 	void checkPlayerCameraBounds();

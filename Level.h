@@ -9,7 +9,8 @@ public:
 	enum class Type
 	{
 		Cave,
-		Valley
+		Valley,
+		ParkourValley
 	};
 private:
 

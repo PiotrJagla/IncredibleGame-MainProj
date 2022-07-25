@@ -44,10 +44,10 @@ Enemy::~Enemy()
 
 }
 
-void Enemy::shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap, sf::Vector2f playerPos)
+void Enemy::shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap,const sf::Vector2f& playerPos, const sf::Vector2i& tileMapSize)
 {
 
-	Tile* shortestPathFirstTile{ Algorithms::getShortestPathFirstTile(tileMap, m_sprite->getPosition(), playerPos) };
+	Tile* shortestPathFirstTile{ Algorithms::getShortestPathFirstTile(tileMap, m_sprite->getPosition(), playerPos, tileMapSize) };
 
 
 	/*std::cout << "ENEMY: ";
@@ -267,6 +267,11 @@ void Enemy::giveEnemyType(Type enemyType)
 void Enemy::whatIsThisEnemy(AllEnemies whatEnemy)
 {
 	m_whatEnemy = whatEnemy;
+}
+
+void Enemy::setPosition(sf::Vector2f position)
+{
+	m_sprite->setPosition(position);
 }
 
 const int& Enemy::getEnemyDamage()

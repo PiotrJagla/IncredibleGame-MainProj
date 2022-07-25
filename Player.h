@@ -34,7 +34,7 @@ public:
 
 	void blinkingAfterDamaged(sf::RenderTarget* target);
 	void regulateHPhearts();
-	void respawn();
+	void respawn(const sf::Vector2i& spawnGridPosition);
 
 	//Creature funkcjonality
 	void getDamage(int damage) override;

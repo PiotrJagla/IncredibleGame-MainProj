@@ -62,7 +62,6 @@ CaveLevel::CaveLevel(PopUpText* popUpText) :
 	tileMapNumber = 2;
 	levelType = Type::Cave;
 
-	m_popUpText->showText("Find and destroy nests", 1900.0f, true);
 	this->initBombsPositions();
 	this->initBombs();
 }
@@ -279,8 +278,10 @@ void CaveLevel::renderBombs(sf::RenderTarget* target)
 
 bool CaveLevel::isLevelCompleted()
 {
-	if (m_bombs.size() <= 0)
+	if (m_bombs.empty() == true)
 	{
+		//m_popUpText->showText("All Nests Destroyed", 1900.0f, true);
+		m_popUpText->showText("Go to doors", 1900.0f, true);
 		return true;
 	}
 	else
@@ -293,18 +294,21 @@ Enemy* CaveLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)
 {
 	if (spawnTimer.getElapsedTime() > spawnTimer.getTimeMAX())
 	{
-		return nullptr;
+		//return nullptr;
 
 		//int spawnRandomEnemy{ getRandomInt(1,100) };
 
-
-		enemies.push_back(new Enemy{ *GameResources::blackCometTexture });
-		enemies.back()->setBasicFrame(sf::IntRect{ 110,110,619,619 });
-		enemies.back()->setScale(Constants::cometScale);
-		enemies.back()->setMaxHP(Constants::cometMaxHP);
-		enemies.back()->giveEnemyType(Enemy::Type::flying);
-		enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bird);
-		enemies.back()->setSingleAnimationBounds(1000.0f, 100.0f, 100000.0f);
+		for (int iii{ 0 }; iii < m_bombs.size(); ++iii)
+		{
+			enemies.push_back(new Enemy{ *GameResources::blackCometTexture });
+			enemies.back()->setBasicFrame(sf::IntRect{ 110,110,619,619 });
+			enemies.back()->setScale(Constants::cometScale);
+			enemies.back()->setMaxHP(Constants::cometMaxHP);
+			enemies.back()->giveEnemyType(Enemy::Type::flying);
+			enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bird);
+			enemies.back()->setSingleAnimationBounds(1000.0f, 100.0f, 100000.0f);
+			enemies.back()->setPosition( m_bombs[iii]->m_sprite->getPosition());
+		}
 		
 
 		

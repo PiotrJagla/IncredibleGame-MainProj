@@ -37,7 +37,8 @@ public:
 	Enemy(sf::Texture& texture);
 	~Enemy();
 
-	void shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap, sf::Vector2f playerPos);
+	void shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap,
+		const sf::Vector2f& playerPos, const sf::Vector2i& tileMapSize);
 	void spawnEnemy(std::vector<std::vector<Tile*>>& tileMap);
 	void setSingleAnimationBounds(float nextFrameDistance, float maxBound, float delay);
 
@@ -66,6 +67,7 @@ public:
 	//Modifiers
 	void giveEnemyType(Type enemyType);
 	void whatIsThisEnemy(AllEnemies whatEnemy);
+	void setPosition(sf::Vector2f position);
 
 	//Accesors
 	const int& getEnemyDamage();

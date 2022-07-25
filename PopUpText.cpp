@@ -68,13 +68,6 @@ void PopUpText::update(float& timePerFrame)
 
 void PopUpText::render(sf::RenderTarget* target)
 {
-
-	/*if (m_isTextShown == true)
-	{
-
-		target->draw(*m_popUpText);
-	}*/
-
 	if (m_popUpText->getFillColor() != sf::Color{255, 255, 255, 0})
 	{
 		target->draw(*m_popUpText);
@@ -94,7 +87,6 @@ void PopUpText::showText(std::string textToShow, float delay, bool showSmoothly)
 		Constants::WindowWidth / 2.0f - m_popUpText->getGlobalBounds().width / 2.0f,
 		Constants::WindowHeigth / 2.0f - m_popUpText->getGlobalBounds().height / 2.0f
 	);
-	
 }
 
 void PopUpText::hideText(float& timePerFrame)
