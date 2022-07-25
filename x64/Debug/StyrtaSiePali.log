@@ -1,3 +1,4 @@
 ﻿  CaveLevel.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(83,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(52,63): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(179,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSIePali.exe

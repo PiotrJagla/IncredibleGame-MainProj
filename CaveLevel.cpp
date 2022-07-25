@@ -5,15 +5,71 @@
 
 
 
-//Constructors / Descructors
-CaveLevel::CaveLevel()
+void CaveLevel::initBombs()
 {
+
+	for (int iii{ 0 }; iii < m_bombsNumber; ++iii)
+	{
+		m_bombs.push_back(new Bomb{
+			sf::Vector2f{
+				m_bombsPositions[iii].y * Constants::gridSizeF,
+				m_bombsPositions[iii].x * Constants::gridSizeF }}
+		);
+	}
+}
+
+void CaveLevel::initBombsPositions()
+{
+	m_bombsPositions.push_back(sf::Vector2i{ 2,99 });
+	m_bombsPositions.push_back(sf::Vector2i{ 2,101 });
+	m_bombsPositions.push_back(sf::Vector2i{ 4,119 });
+	m_bombsPositions.push_back(sf::Vector2i{ 5,43 });
+	m_bombsPositions.push_back(sf::Vector2i{ 5,68 });
+	m_bombsPositions.push_back(sf::Vector2i{ 6,8 });
+	m_bombsPositions.push_back(sf::Vector2i{ 6,9 });
+	m_bombsPositions.push_back(sf::Vector2i{ 8,4 });
+	m_bombsPositions.push_back(sf::Vector2i{ 11,30 });
+	m_bombsPositions.push_back(sf::Vector2i{ 18,2 });
+	m_bombsPositions.push_back(sf::Vector2i{ 19,52 });
+	m_bombsPositions.push_back(sf::Vector2i{ 19,57 });
+	m_bombsPositions.push_back(sf::Vector2i{ 24,84 });
+	m_bombsPositions.push_back(sf::Vector2i{ 28,36 });
+	m_bombsPositions.push_back(sf::Vector2i{ 28,76 });
+	m_bombsPositions.push_back(sf::Vector2i{ 30,13 });
+	m_bombsPositions.push_back(sf::Vector2i{ 33,13 });
+	m_bombsPositions.push_back(sf::Vector2i{ 33,107 });
+	m_bombsPositions.push_back(sf::Vector2i{ 35,76 });
+	m_bombsPositions.push_back(sf::Vector2i{ 36,2 });
+	m_bombsPositions.push_back(sf::Vector2i{ 36,75 });
+	m_bombsPositions.push_back(sf::Vector2i{ 36,106 });
+	this->shufflePosition();
+}
+
+void CaveLevel::shufflePosition()
+{
+	for (int iii{ 0 }; iii < m_bombsPositions.size(); ++iii)
+	{
+		int randomNumber{ getRandomInt(0,m_bombsPositions.size() - 1) };
+		std::swap(m_bombsPositions[iii], m_bombsPositions[randomNumber]);
+	}
+}
+
+//Constructors / Descructors
+CaveLevel::CaveLevel(PopUpText* popUpText) :
+	Level{popUpText}
+{
+	m_bombsNumber = 1;
 	tileMapNumber = 2;
 	levelType = Type::Cave;
+
+	m_popUpText->showText("Find and destroy nests", 1900.0f, true);
+	this->initBombsPositions();
+	this->initBombs();
 }
 
 CaveLevel::~CaveLevel()
 {
+
 }
 
 
@@ -46,21 +102,60 @@ void CaveLevel::update()
 {
 }
 
+void CaveLevel::bombsBulletsCollision(std::vector<RangeWeapon::Bullet*>& bullets)
+{
+	for (int bulletIndex{ 0 }; bulletIndex < bullets.size(); ++bulletIndex)
+	{
+
+		bool doesCollisionOccur{ false };
+		sf::Vector2f bulletPosition{bullets[bulletIndex]->m_bullet.getPosition() };
+
+		for (int iii{ 0 }; iii < m_bombs.size(); ++iii)
+		{
+			if (abs(m_bombs[iii]->m_sprite->getPosition().x - bulletPosition.x) <= 300.0f &&
+				abs(m_bombs[iii]->m_sprite->getPosition().y - bulletPosition.y) <= 300.0f)
+			{
+				if (bullets[bulletIndex]->m_bullet.getGlobalBounds().intersects(m_bombs[iii]->m_sprite->getGlobalBounds()))
+				{
+					doesCollisionOccur = true;
+					delete bullets[bulletIndex];
+					bullets.erase(bullets.begin() + bulletIndex);
+					--bulletIndex;
+					
+					m_bombs[iii]->m_currentHP -= Constants::rifleDamage;
+				}
+			}
+
+			if (m_bombs[iii]->m_currentHP <= 0)
+			{
+				delete m_bombs[iii];
+				m_bombs.erase(m_bombs.begin() + iii);
+				--iii;
+			}
+
+		}
+	}
+}
+
 void CaveLevel::calculateVisibilityPolygon(const sf::Vector2f& lightSource, const std::vector<Edge>& edges,
 	const sf::Vector2f& viewCenter)
 {
-	int edgesChecked{ (int)edges.size() };
 	m_visibilityPolygonPoints.clear();
 
 	for (int edgei{ 0 }; edgei < edges.size(); ++edgei)
 	{
-		if (Geometry::calculateVectorLength(edges[edgei].startPoint, edges[edgei].endPoint) <= (4*Constants::gridSizeF)&&
+		if (Geometry::calculateVectorLength(edges[edgei].startPoint, edges[edgei].endPoint) <= (5*Constants::gridSizeF)&&
 			Geometry::isVectorOutsideScreen(edges[edgei].startPoint, edges[edgei].endPoint, viewCenter))
 		{
-			
-			--edgesChecked;
 			continue;
 		}
+
+		/*if (Geometry::isVectorOutsideScreen(edges[edgei].startPoint, edges[edgei].endPoint, viewCenter))
+		{
+
+			--edgesChecked;
+			continue;
+		}*/
 
 		for (int iii{ 0 }; iii < 2; ++iii)
 		{
@@ -145,7 +240,6 @@ void CaveLevel::calculateVisibilityPolygon(const sf::Vector2f& lightSource, cons
 
 	m_visibilityPolygonPoints.resize(std::distance(m_visibilityPolygonPoints.begin(), removeDuplicates));
 
-	//std::cout << "all edges: " << edges.size() << " edges Checked: " << edgesChecked << '\n';
 
 }
 
@@ -173,71 +267,25 @@ void CaveLevel::render(sf::RenderTarget* target, const sf::Vector2f& lightSource
 	};
 	
 	target->draw(triangle, 3, sf::TriangleFan);
-	
 }
 
-void CaveLevel::changePolygonPointsPosition(sf::RenderTarget* target, const sf::Vector2f& viewCenter, const sf::Vector2f& lightSource)
+void CaveLevel::renderBombs(sf::RenderTarget* target)
 {
-
-	//TODO: napisac algorytm który sprawi ¿e punkty nie bêd¹ wychodzi³o poza widoczn¹ kamere gracza
-	/*sf::Vector2f leftUpCorner{viewCenter.x - target->getSize().x/2.0f, viewCenter.y - target->getSize().y / 2.0f };
-	sf::Vector2f leftDownCorner{ leftUpCorner.x, leftUpCorner.y + target->getSize().y };
-	sf::Vector2f rightUpCorner{ leftUpCorner.x + target->getSize().x , leftUpCorner.y };
-	sf::Vector2f rightDownCorner{ leftUpCorner.x + target->getSize().x, leftUpCorner.y + target->getSize().y };*/
-
-	sf::Vector2f leftUpCorner{ viewCenter.x - target->getSize().x, viewCenter.y - target->getSize().y};
-	sf::Vector2f leftDownCorner{ leftUpCorner.x, leftUpCorner.y + target->getSize().y * 1.5f };
-	sf::Vector2f rightUpCorner{ leftUpCorner.x + target->getSize().x * 1.5f , leftUpCorner.y };
-	sf::Vector2f rightDownCorner{ leftUpCorner.x + target->getSize().x * 1.5f, leftUpCorner.y + target->getSize().y * 1.5f };
-
-	for (int iii{ 0 }; iii < m_visibilityPolygonPoints.size(); ++iii)
+	for (auto& bomb : m_bombs)
 	{
-		bool doesHit{ false };
+		target->draw(*bomb->m_sprite);
+	}
+}
 
-		for (int kkk{ 0 }; kkk < 4; ++kkk)
-		{//Left Edge, Right Edge, Up Edge, Down Edge
-			sf::Vector2f screenEdgeStart{};
-			sf::Vector2f screenEdgeEnd{};
-
-			if (kkk == 0) { screenEdgeStart = leftUpCorner; screenEdgeEnd = leftDownCorner; }
-			else if (kkk == 1) { screenEdgeStart = rightUpCorner; screenEdgeEnd = rightDownCorner; }
-			else if (kkk == 2) { screenEdgeStart = leftUpCorner; screenEdgeEnd = rightUpCorner; }
-			else if (kkk == 3) { screenEdgeStart = leftDownCorner; screenEdgeEnd = rightDownCorner; }
-
-			sf::Vector2f rayStart{ lightSource };
-			sf::Vector2f rayEnd{ std::get<1>(m_visibilityPolygonPoints[iii]), std::get<2>(m_visibilityPolygonPoints[iii]) };
-
-			//float rayLength{ sqrt((rayEnd.x - rayStart.x) * (rayEnd.x - rayStart.x) + (rayEnd.y - rayStart.y) * (rayEnd.y - rayStart.y)) };
-			//float screenEdgeLength{ sqrt((screenEdgeEnd.x - screenEdgeStart.x) * (screenEdgeEnd.x - screenEdgeStart.x) + (screenEdgeEnd.y - screenEdgeStart.y) * (screenEdgeEnd.y - screenEdgeStart.y)) };
-
-			sf::Vector2f screenEdgeSegment{ screenEdgeEnd.x - screenEdgeStart.x, screenEdgeEnd.y - screenEdgeStart.y };
-			sf::Vector2f raySegment{rayEnd.x - rayStart.x, rayEnd.y - rayStart.y};
-
-
-			sf::Vector2f ray_minus_edge{rayStart.x - screenEdgeStart.x, rayStart.y - screenEdgeStart.y};
-			float rMe_cross_raySeg{ray_minus_edge.x * raySegment.y - ray_minus_edge.y * raySegment.x };
-
-			float screenSeg_cross_raySeg{ screenEdgeSegment.x * raySegment.y - screenEdgeSegment.y * raySegment.x };
-
-			float t_screenEdge{rMe_cross_raySeg / screenSeg_cross_raySeg};
-
-			
-			sf::Vector2f edge_minus_ray{ screenEdgeStart.x - rayStart.x, screenEdgeStart.y - rayStart.y };
-			float eMr_cross_screenEdgeSeg{ edge_minus_ray.x * screenEdgeSegment.y - edge_minus_ray.y * screenEdgeSegment.x };
-
-			float raySeg_cross_screenSeg{ raySegment.x * screenEdgeSegment.y - raySegment.y * screenEdgeSegment.x };
-
-			float t_ray{eMr_cross_screenEdgeSeg / raySeg_cross_screenSeg};
-
-			if (raySeg_cross_screenSeg != 0 && t_ray >= 0 && t_ray <= 1 && t_screenEdge >= 0 && t_screenEdge <= 1)
-			{
-				//Wtedy jak jestem tutaj to znaczy ¿e odcinki przecianj¹ siê
-				std::get<1>(m_visibilityPolygonPoints[iii]) = lightSource.x + t_ray * raySegment.x;
-				std::get<2>(m_visibilityPolygonPoints[iii]) = lightSource.y + t_ray * raySegment.y;
-				doesHit = true;
-			}
-		}
-		//axb = ax*by - ay*bx
+bool CaveLevel::isLevelCompleted()
+{
+	if (m_bombs.size() <= 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 

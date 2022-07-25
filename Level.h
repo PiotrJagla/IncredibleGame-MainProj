@@ -13,8 +13,11 @@ public:
 	};
 private:
 
+protected:
+	PopUpText* m_popUpText;
+
 public:
-	Level();
+	Level(PopUpText* popUpText);
 	~Level();
 
 	virtual void initBackground(sf::RectangleShape& background, sf::Texture& backgroundTexture) = 0;
@@ -23,8 +26,7 @@ public:
 
 	virtual void render(sf::RenderTarget* target, const sf::Vector2f& lightSource, const sf::Vector2f& viewCenter) = 0;
 
-	virtual void calculateVisibilityPolygon(const sf::Vector2f& lightSource,
-		const std::vector<Edge>& edge, const sf::Vector2f& viewCenter) = 0;
+	virtual bool isLevelCompleted() = 0;
 
 	virtual Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) = 0;
 

@@ -4,11 +4,13 @@
 
 
 //Constructors / Descructors
-ValleyLevel::ValleyLevel()
+ValleyLevel::ValleyLevel(PopUpText* popUpText) :
+	Level{popUpText}
 {
 	tileMapNumber = 1;
 	levelType = Type::Valley;
-	monstersToKill = 1;
+	monstersToKill = 3;
+	m_popUpText->showText("Kill All Monsters", 1900.0f, true);
 }
 
 ValleyLevel::~ValleyLevel()
@@ -56,9 +58,18 @@ void ValleyLevel::render(sf::RenderTarget* target, const sf::Vector2f& lightSour
 
 }
 
-void ValleyLevel::calculateVisibilityPolygon(const sf::Vector2f& lightSource, const std::vector<Edge>& edges,
-	const sf::Vector2f& viewCenter)
+bool ValleyLevel::isLevelCompleted()
 {
+	if (killedMonsters >= monstersToKill)
+	{
+
+		m_popUpText->showText("Go to doors", 1900.0f, true);
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 Enemy* ValleyLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)

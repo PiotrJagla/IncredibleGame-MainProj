@@ -19,6 +19,8 @@ private:
 	std::stack<Level*> m_levels;
 	bool m_isLevelCompleted;
 	sf::RectangleShape m_nextLevelDoors;
+	CaveLevel* m_caveLevel;
+	ValleyLevel* m_valleyLevel;
 
 	//GUI
 	std::map<sf::String, Button*> m_buttons;

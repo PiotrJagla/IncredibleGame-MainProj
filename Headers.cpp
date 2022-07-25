@@ -15,6 +15,5 @@
 //PLANY NA ROZWÓJ GRY
 
 /*
-*	Sprawdziæ czy musze sprawdzaæ czy krawedz intersektuje z krawiêdziami ekrany czy samo sprawdzanie ma³ych wektorów wystarczy
-*	aby dobrze zoptymaliwaæ
+*	
 */

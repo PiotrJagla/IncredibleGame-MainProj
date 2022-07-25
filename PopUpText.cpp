@@ -37,6 +37,7 @@ void PopUpText::update(float& timePerFrame)
 	}
 	else
 	{
+
 		if (m_smoothPooping == true)
 		{
 			sf::Color textColor{ m_popUpText->getFillColor() };
@@ -82,7 +83,6 @@ void PopUpText::render(sf::RenderTarget* target)
 
 void PopUpText::showText(std::string textToShow, float delay, bool showSmoothly)
 {
-
 	m_popUpText->setString(textToShow);
 	m_popUpText->setFillColor(sf::Color{ 255,255,255,0 });
 	m_popUpTimer->setMAXtime(delay);
@@ -94,6 +94,7 @@ void PopUpText::showText(std::string textToShow, float delay, bool showSmoothly)
 		Constants::WindowWidth / 2.0f - m_popUpText->getGlobalBounds().width / 2.0f,
 		Constants::WindowHeigth / 2.0f - m_popUpText->getGlobalBounds().height / 2.0f
 	);
+	
 }
 
 void PopUpText::hideText(float& timePerFrame)
@@ -110,4 +111,9 @@ void PopUpText::hideText(float& timePerFrame)
 		}
 	}
 
+}
+
+const bool& PopUpText::isTextShown()
+{
+	return m_isTextShown;
 }

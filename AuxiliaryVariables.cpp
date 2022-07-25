@@ -48,7 +48,7 @@ bool RealeseDetection::escapeRealesed()
 {
 	bool isEscapeRealesed{ RealeseDetection::Escape };
 
-	RealeseDetection::Escape = false;
+	//RealeseDetection::Escape = false;
 
 	return isEscapeRealesed;
 }
@@ -57,7 +57,7 @@ bool RealeseDetection::mouseRealesed()
 {
 	bool isMouseLeftButtonRealesed{ RealeseDetection::mouseLeftButton };
 
-	RealeseDetection::mouseLeftButton = false;
+	//RealeseDetection::mouseLeftButton = false;
 
 	return isMouseLeftButtonRealesed;
 }
@@ -67,7 +67,7 @@ bool RealeseDetection::WRealesed()
 
 	bool isWRealesed{ RealeseDetection::W };
 
-	RealeseDetection::W = false;
+	//RealeseDetection::W = false;
 
 	return isWRealesed;
 }

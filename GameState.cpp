@@ -88,7 +88,10 @@ void GameState::initVariables()
 
 void GameState::initLevels()
 {
-	m_levels.push(new ValleyLevel{});
+	m_caveLevel = new CaveLevel{ m_popUpText };
+	m_valleyLevel = new ValleyLevel{ m_popUpText };
+
+	m_levels.push(m_valleyLevel);
 	m_nextLevelDoors.setSize(sf::Vector2f{ Constants::gridSizeF, Constants::gridSizeF * 2.0f });
 	m_nextLevelDoors.setTexture(GameResources::doorTexture);
 	m_nextLevelDoors.setPosition(40 * Constants::gridSizeF, 19 * Constants::gridSizeF);
@@ -117,8 +120,6 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window, PopUp
 
 	//Spawn timer
 	m_enemySpawnTimer.setMAXtime(3000.0f);
-
-	m_popUpText->showText("Kill All Monsters", 1900.0f, true);
 
 }
 
@@ -189,31 +190,57 @@ void GameState::updateInput()
 
 void GameState::levelDependentUpdate()
 {
-	if (m_levels.top()->monstersToKill == m_levels.top()->killedMonsters)
-	{
 
+	if (m_isLevelCompleted == false && m_levels.top()->isLevelCompleted() == true)
+	{
 		m_isLevelCompleted = true;
-		m_popUpText->showText("Go to doors", 1900.0f, true);
 	}
 
 	if (m_isLevelCompleted == true)
 	{
-
-		if (m_nextLevelDoors.getGlobalBounds().intersects(m_player->getGlobalBounds()))
+		if (m_levels.top()->levelType == Level::Type::Cave)
 		{
-
-			m_popUpText->showText("Press E to Go", 1900.0f, false);
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+			m_popUpText->showText("All neststs destroyed", 1900.0f, false);
+		}
+		else if (m_levels.top()->levelType == Level::Type::Valley)
+		{
+			if (m_nextLevelDoors.getGlobalBounds().intersects(m_player->getGlobalBounds()))
 			{
-				m_levels.push(new CaveLevel{});
-				m_levels.top()->initBackground(m_background, m_backgroundTexture);
-				m_player->respawn();
-				m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-				this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
-				this->deleteAllEnemies();
-				m_enemySpawnTimer.setMAXtime(3000.0f);
+
+				if (m_popUpText->isTextShown() == false)
+				{
+					m_popUpText->showText("Press E to Go", 1900.0f, false);
+				}
+
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+				{
+					if (m_levels.top()->levelType == Level::Type::Valley)
+					{
+						m_levels.push(m_caveLevel);
+						m_levels.top()->initBackground(m_background, m_backgroundTexture);
+						m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
+					}
+					else if (m_levels.top()->levelType == Level::Type::Cave)
+					{
+
+					}
+					m_player->respawn();
+					this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
+					this->deleteAllEnemies();
+					m_enemySpawnTimer.setMAXtime(3000.0f);
+					m_isLevelCompleted = false;
+				}
 			}
 		}
+	}
+
+	if (m_levels.top()->levelType == Level::Type::Cave)
+	{
+		m_caveLevel->bombsBulletsCollision(m_rifle->getFiredBulletsVector());
+	}
+	else if (m_levels.top()->levelType == Level::Type::Valley)
+	{
+
 	}
 }
 
@@ -248,14 +275,13 @@ void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
 	{
 		if (m_levels.top()->levelType == Level::Type::Valley)
 		{
-			m_levels.push(new CaveLevel{});
+			m_levels.push(m_caveLevel);
 			m_levels.top()->initBackground(m_background, m_backgroundTexture);
 			m_player->respawn();
 			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
 		}
 		else if (m_levels.top()->levelType == Level::Type::Cave)
 		{
-			delete m_levels.top();
 			m_levels.pop();
 			m_levels.top()->initBackground(m_background, m_backgroundTexture);
 			m_player->respawn();
@@ -538,12 +564,15 @@ void GameState::updateEnemyAI()
 
 void GameState::updateEnemySpawn()
 {
-	Enemy* newEnemy{ m_levels.top()->spawnEnemies(m_enemySpawnTimer, m_enemies) };
-
-	if (newEnemy != nullptr)
+	if (m_isLevelCompleted == false)
 	{
-		m_enemies.back()->spawnEnemy(m_tileMap->getTileMap());
-		m_creatures.push_back(newEnemy);
+		Enemy* newEnemy{ m_levels.top()->spawnEnemies(m_enemySpawnTimer, m_enemies) };
+
+		if (newEnemy != nullptr)
+		{
+			m_enemies.back()->spawnEnemy(m_tileMap->getTileMap());
+			m_creatures.push_back(newEnemy);
+		}
 	}
 }
 
@@ -640,7 +669,7 @@ void GameState::caveLevelRender(sf::RenderTarget* target)
 {
 	//m_tileMap->addScreenEdgesToEdgeVector(m_playerCamera.getCenter());
 
-	m_levels.top()->calculateVisibilityPolygon(m_player->getPosition(), m_tileMap->getEdgesVector(), m_playerCamera.getCenter());
+	m_caveLevel->calculateVisibilityPolygon(m_player->getPosition(), m_tileMap->getEdgesVector(), m_playerCamera.getCenter());
 
 	//Render visibility polygon
 	target->setView(m_playerCamera);
@@ -656,6 +685,7 @@ void GameState::caveLevelRender(sf::RenderTarget* target)
 
 	this->renderCreatures(target);
 	this->renderItems(target);
+	m_caveLevel->renderBombs(target);
 
 	m_window->setView(m_window->getDefaultView());
 }

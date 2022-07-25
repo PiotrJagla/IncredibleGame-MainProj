@@ -4,8 +4,9 @@
 
 
 
-Level::Level()
+Level::Level(PopUpText* popUpText)
 {
+	m_popUpText = popUpText;
 	killedMonsters = 0;
 }
 

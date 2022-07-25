@@ -115,6 +115,11 @@ const RangeWeapon::Bullet& RangeWeapon::getBullet(int index) const
 	return *m_bullets[index];
 }
 
+std::vector<RangeWeapon::Bullet*>& RangeWeapon::getFiredBulletsVector()
+{
+	return m_bullets;
+}
+
 void RangeWeapon::deleteBullet(int bulletIndex)
 {
 	delete m_bullets[bulletIndex];
@@ -131,7 +136,7 @@ void RangeWeapon::deleteBullet(int bulletIndex)
 //Bullet class
 RangeWeapon::Bullet::Bullet()
 {
-	m_gravity = 900;
+	m_gravity = 400;
 	m_speed = 1700;
 	
 	m_bullet.setRadius(6.0f);

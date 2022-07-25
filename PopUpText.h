@@ -19,5 +19,7 @@ public:
 	void showText(std::string textToShow, float delay,
 		bool showSmoothly);
 	void hideText(float& timePerFrame);
+
+	const bool& isTextShown();
 };
 

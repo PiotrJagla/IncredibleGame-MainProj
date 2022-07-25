@@ -3,6 +3,7 @@
 class RangeWeapon : public Item
 {
 public:
+
 	class Bullet
 	{
 	public:
@@ -19,6 +20,8 @@ public:
 		void updatePosition();
 		void renderBullet(sf::RenderTarget* target);
 	};
+private:
+
 
 	std::vector<Bullet*> m_bullets;
 	int m_ammunition;
@@ -44,6 +47,7 @@ public:
 
 	const int& firedBullets() const;
 	const RangeWeapon::Bullet& getBullet(int index) const;
+	std::vector<Bullet*>& getFiredBulletsVector();
 
 	void deleteBullet(int bulletIndex);
 };
