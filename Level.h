@@ -36,5 +36,7 @@ public:
 	int monstersToKill;
 	int killedMonsters;
 	Type levelType;
+	sf::Vector2f playerSpawnPosition;
+	sf::Vector2f doorsPosition;
 };
 

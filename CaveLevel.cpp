@@ -61,6 +61,8 @@ CaveLevel::CaveLevel(PopUpText* popUpText) :
 	m_bombsNumber = 1;
 	tileMapNumber = 2;
 	levelType = Type::Cave;
+	doorsPosition = sf::Vector2f{ 60 * Constants::gridSizeF, 35 * Constants::gridSizeF };
+	playerSpawnPosition = sf::Vector2f{4 * Constants::gridSizeF, 32 * Constants::gridSizeF};
 
 	this->initBombsPositions();
 	this->initBombs();
@@ -127,6 +129,7 @@ void CaveLevel::bombsBulletsCollision(std::vector<RangeWeapon::Bullet*>& bullets
 
 			if (m_bombs[iii]->m_currentHP <= 0)
 			{
+				m_popUpText->showText("Nest Destroyed", 1900.0f, true);
 				delete m_bombs[iii];
 				m_bombs.erase(m_bombs.begin() + iii);
 				--iii;
@@ -280,8 +283,6 @@ bool CaveLevel::isLevelCompleted()
 {
 	if (m_bombs.empty() == true)
 	{
-		//m_popUpText->showText("All Nests Destroyed", 1900.0f, true);
-		m_popUpText->showText("Go to doors", 1900.0f, true);
 		return true;
 	}
 	else

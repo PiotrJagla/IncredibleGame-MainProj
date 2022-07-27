@@ -74,6 +74,10 @@ public:
 	void update(sf::RenderWindow* window, const float& timePerFrame) override;
 	void updateInput();
 	void levelDependentUpdate();
+	void isLevelCompleted();
+	void caveLevelUpdate();
+	void valleyLevelUpdate();
+	void parkourLevelUpdate();
 
 	//Buttons
 	void updateButtons(sf::RenderWindow* window);

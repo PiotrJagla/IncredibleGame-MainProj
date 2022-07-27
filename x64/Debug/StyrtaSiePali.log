@@ -1,24 +1,30 @@
-﻿  GameState.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(62,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(62,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(618,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+﻿  CaveLevel.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(52,63): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(181,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
+  GameState.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(63,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(63,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(641,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(621,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(644,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(624,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(647,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(627,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(650,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
+  ParkourValleyLevel.cpp
+  ValleyLevel.cpp
+  Generowanie kodu...
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Debug\StyrtaSIePali.exe

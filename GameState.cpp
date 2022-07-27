@@ -56,6 +56,7 @@ void GameState::initPlayer()
 	m_player->setScale(sf::Vector2f{Constants::playerScale});
 	m_player->setJumpingAndFallingFrame(sf::IntRect{ 5,136,50,58 }, sf::IntRect{ 5,200,50,58 });
 	m_player->setAnimationStateBounds(65.0f, 210.0f, 72.0f, 65.0f, 125.0f, 5.0f);
+	m_player->respawn(m_levels.top()->playerSpawnPosition);
 	m_creatures.push_back(m_player);
 	
 
@@ -195,8 +196,27 @@ void GameState::updateInput()
 void GameState::levelDependentUpdate()
 {
 
+	if (m_levels.top()->levelType == Level::Type::Cave)
+	{
+		this->caveLevelUpdate();
+	}
+	else if (m_levels.top()->levelType == Level::Type::Valley)
+	{
+		this->valleyLevelUpdate();
+	}
+	else if (m_levels.top()->levelType == Level::Type::ParkourValley)
+	{
+		this->parkourLevelUpdate();
+	}
+
+	this->isLevelCompleted();
+}
+
+void GameState::isLevelCompleted()
+{
 	if (m_isLevelCompleted == false && m_levels.top()->isLevelCompleted() == true)
 	{
+		m_popUpText->showText("Go to doors", 1900.0f, true);
 		m_isLevelCompleted = true;
 	}
 
@@ -227,19 +247,29 @@ void GameState::levelDependentUpdate()
 					m_levels.top()->initBackground(m_background, m_backgroundTexture);
 					m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
 					m_popUpText->showText("Find and destroy nests", 1900.0f, true);
-					m_nextLevelDoors.setPosition(60 * Constants::gridSizeF, 35 * Constants::gridSizeF);
+					m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
 				}
 				else if (m_levels.top()->levelType == Level::Type::Cave)
 				{
+					m_levels.push(m_parkourValleyLevel);
+					m_levels.top()->initBackground(m_background, m_backgroundTexture);
+					m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
+					m_popUpText->showText("Find and collect Stars", 1900.0f, true);
+					m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
+				}
+				else if (m_levels.top()->levelType == Level::Type::ParkourValley)
+				{
+					m_levels.pop();
 					m_levels.pop();
 					m_levels.top()->initBackground(m_background, m_backgroundTexture);
 					m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-					m_popUpText->showText("Kill all Monsters", 1900.0f, true);
-					m_nextLevelDoors.setPosition(40 * Constants::gridSizeF, 19 * Constants::gridSizeF);
+					m_player->respawn(m_levels.top()->playerSpawnPosition);
+					m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
+
 				}
 
 
-				m_player->respawn(sf::Vector2i{ 3, m_tileMap->size() - 4 });
+				m_player->respawn(m_levels.top()->playerSpawnPosition);
 				this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 				this->deleteAllEnemies();
 				m_enemySpawnTimer.setMAXtime(3000.0f);
@@ -247,15 +277,20 @@ void GameState::levelDependentUpdate()
 			}
 		}
 	}
+}
 
-	if (m_levels.top()->levelType == Level::Type::Cave)
-	{
-		m_caveLevel->bombsBulletsCollision(m_rifle->getFiredBulletsVector());
-	}
-	else if (m_levels.top()->levelType == Level::Type::Valley)
-	{
+void GameState::caveLevelUpdate()
+{
+	m_caveLevel->bombsBulletsCollision(m_rifle->getFiredBulletsVector());
+}
 
-	}
+void GameState::valleyLevelUpdate()
+{
+}
+
+void GameState::parkourLevelUpdate()
+{
+	m_parkourValleyLevel->playerStarsCollision(m_player->getGlobalBounds());
 }
 
 void GameState::updateButtons(sf::RenderWindow* window)
@@ -290,36 +325,24 @@ void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
 		if (m_levels.top()->levelType == Level::Type::Valley)
 		{
 			m_levels.push(m_caveLevel);
-			m_levels.top()->initBackground(m_background, m_backgroundTexture);
-			m_player->respawn(sf::Vector2i{ 3, m_tileMap->size() - 4 });
-			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-			m_nextLevelDoors.setPosition(60 * Constants::gridSizeF, 35 * Constants::gridSizeF);
+			m_popUpText->showText("Destroy all nests", 1900.0f, true);
 		}
 		else if (m_levels.top()->levelType == Level::Type::Cave)
 		{
-			/*m_levels.pop();
-			m_levels.top()->initBackground(m_background, m_backgroundTexture);
-			m_player->respawn(sf::Vector2i{ 3, m_tileMap->size() - 4 });
-			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-			m_nextLevelDoors.setPosition(40 * Constants::gridSizeF, 19 * Constants::gridSizeF);*/
-
 			m_levels.push(m_parkourValleyLevel);
-			m_levels.top()->initBackground(m_background, m_backgroundTexture); 
-			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-			m_player->respawn(sf::Vector2i{ 3, m_tileMap->size() - 4 });//
-			m_nextLevelDoors.setPosition(60 * Constants::gridSizeF, 35 * Constants::gridSizeF);
-			m_popUpText->showText("Jump", 1900.0f, true);
+			m_popUpText->showText("Collect all stars", 1900.0f, true);
 		}
 		else if (m_levels.top()->levelType == Level::Type::ParkourValley)
 		{
 			m_levels.pop();
 			m_levels.pop();
-			m_levels.top()->initBackground(m_background, m_backgroundTexture);
-			m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-			m_player->respawn(sf::Vector2i{ 3, m_tileMap->size() - 4 });
-			m_nextLevelDoors.setPosition(40 * Constants::gridSizeF, 19 * Constants::gridSizeF);
-			
+			m_popUpText->showText("Kill all monsters", 1900.0f, true);
 		}
+
+		m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
+		m_levels.top()->initBackground(m_background, m_backgroundTexture);
+		m_player->respawn(m_levels.top()->playerSpawnPosition);
+		m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
 		this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 		this->deleteAllEnemies();
 		m_enemySpawnTimer.setMAXtime(3000.0f);
@@ -336,7 +359,7 @@ void GameState::updateAfterDeathMenuButtons(sf::RenderWindow* window)
 	else if (m_afterDeathMenu->isButtonPressed("respawnButton", window))
 	{
 
-		m_player->respawn(sf::Vector2i{ 3, m_tileMap->size() - 4 });
+		m_player->respawn(m_levels.top()->playerSpawnPosition);
 		this->deleteAllEnemies();
 	}
 }
@@ -759,6 +782,7 @@ void GameState::parkourValleyLevelRender(sf::RenderTarget* target)
 
 	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 	this->renderCreatures(target);
+	m_levels.top()->render(target, m_player->getPosition(), m_playerCamera.getCenter());
 	//this->renderItems(target);
 
 

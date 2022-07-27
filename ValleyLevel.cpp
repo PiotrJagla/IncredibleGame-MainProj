@@ -11,6 +11,8 @@ ValleyLevel::ValleyLevel(PopUpText* popUpText) :
 	levelType = Type::Valley;
 	monstersToKill = 3;
 	m_popUpText->showText("Kill All Monsters", 1900.0f, true);
+	doorsPosition = sf::Vector2f{ 40 * Constants::gridSizeF, 19 * Constants::gridSizeF };
+	playerSpawnPosition = sf::Vector2f{ 8 * Constants::gridSizeF, 26 * Constants::gridSizeF };
 }
 
 ValleyLevel::~ValleyLevel()
@@ -62,8 +64,6 @@ bool ValleyLevel::isLevelCompleted()
 {
 	if (killedMonsters >= monstersToKill)
 	{
-
-		m_popUpText->showText("Go to doors", 1900.0f, true);
 		return true;
 	}
 	else

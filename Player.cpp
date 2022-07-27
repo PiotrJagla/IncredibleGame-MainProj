@@ -119,12 +119,12 @@ void Player::regulateHPhearts()
 	}
 }
 
-void Player::respawn(const sf::Vector2i& spawnGridPosition)
+void Player::respawn(const sf::Vector2f& spawnPosition)
 {
 	m_currentHP = m_maxHP;
 	this->regulateHPhearts();
 
-	m_sprite->setPosition(3 * Constants::gridSizeF, (Constants::ValleyMapSizeY - 3) * Constants::gridSizeF);
+	m_sprite->setPosition(spawnPosition);
 }
 
 void Player::updatePhysicsComponent(const float& timePerFrame, sf::Vector2f* pointToSetDirection)

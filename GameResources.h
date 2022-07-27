@@ -28,6 +28,7 @@ public:
 	static sf::Texture* blackCometTexture;
 	static sf::Texture* doorTexture;
 	static sf::Texture* blackBombTexture;
+	static sf::Texture* starTexture;
 
 	static sf::Texture* spikeTexture;
 

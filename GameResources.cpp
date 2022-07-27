@@ -16,7 +16,7 @@ sf::Texture* GameResources::stoneTexture = new sf::Texture;
 sf::Texture* GameResources::blackCometTexture = new sf::Texture;
 sf::Texture* GameResources::doorTexture = new sf::Texture;
 sf::Texture* GameResources::blackBombTexture = new sf::Texture;
-
+sf::Texture* GameResources::starTexture = new sf::Texture;
 sf::Texture* GameResources::spikeTexture = new sf::Texture;
 
 void GameResources::initFont()
@@ -100,6 +100,11 @@ void GameResources::initTextures()
 	{
 		std::cout << "GAME RESOURCES:: Black bomb texture could not load\n";
 	}
+
+	if (!GameResources::starTexture->loadFromFile("Textures/starTexture.png"))
+	{
+		std::cout << "GAME RESOURCES:: Star texture could not load\n";
+	}
 }
 
 
@@ -125,4 +130,5 @@ void GameResources::deleteResources()
 	delete GameResources::blackCometTexture;
 	delete GameResources::doorTexture;
 	delete GameResources::blackBombTexture;
+	delete GameResources::starTexture;
 }
