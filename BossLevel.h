@@ -1,6 +1,7 @@
 #pragma once
 #include "Level.h"
 #include "RangeWeapon.h"
+#include "Player.h"
 
 class BossLevel : public Level
 {
@@ -38,12 +39,17 @@ private:
 private:
 	Boss* m_boss;
 	sf::Vector2f m_bossPosition;
+	
+	std::vector<std::tuple<float, float, float>> m_visibilityPolygonPoints;
+	Timer m_attackCoooldown;
+	Timer m_firstAttackDuration;
 
 public:
 	BossLevel(PopUpText* popUpText);
 	~BossLevel();
 
 	void initBackground(sf::RectangleShape& background, sf::Texture& backgroundTexture) override;
+	void initBossVisibilityPolygon(const std::vector<Edge>& edges);
 
 	void update() override;
 
@@ -57,6 +63,8 @@ public:
 
 	void setBossPosition(sf::Vector2f bossPosition);
 	void bulletsBossCollision(std::vector<RangeWeapon::Bullet*>& bullets);
+	void drawBossHitPolygon(sf::RenderTarget* target);
+	void attackPlayer(Player& player, const std::vector<Edge>& edges);
 
 	Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) override;
 

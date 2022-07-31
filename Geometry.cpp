@@ -182,6 +182,26 @@ namespace Geometry
 		//	}
 		//}
 	}
+
+	bool get_line_intersection(const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo,
+		const sf::Vector2f& pointThree, const sf::Vector2f& pointFour)
+	{
+		float s1_x, s1_y, s2_x, s2_y;
+		s1_x = pointTwo.x - pointOne.x;     s1_y = pointTwo.y - pointOne.y;
+		s2_x = pointFour.x - pointThree.x;     s2_y = pointFour.y - pointThree.y;
+
+		float s, t;
+		s = (-s1_y * (pointOne.x - pointThree.x) + s1_x * (pointOne.y - pointThree.y)) / (-s2_x * s1_y + s1_x * s2_y);
+		t = (s2_x * (pointOne.y - pointThree.y) - s2_y * (pointOne.x - pointThree.x)) / (-s2_x * s1_y + s1_x * s2_y);
+
+		if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
+		{
+			// Collision detected
+			return true;
+		}
+
+		return false; // No collision
+	}
 }
 
 namespace Algorithms

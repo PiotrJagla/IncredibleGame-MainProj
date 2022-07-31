@@ -124,6 +124,9 @@ GameState::GameState(std::stack<State*>* states, sf::RenderWindow* window, PopUp
 	//Spawn timer
 	m_enemySpawnTimer.setMAXtime(3000.0f);
 
+	//Levels
+	m_bossLevel->initBossVisibilityPolygon(m_tileMap->getEdgesVector());
+
 }
 
 GameState::~GameState()
@@ -229,15 +232,6 @@ void GameState::isLevelCompleted()
 
 	if (m_isLevelCompleted == true)
 	{
-		if (m_currentLevel->levelType == Level::Type::Cave)
-		{
-
-		}
-		else if (m_currentLevel->levelType == Level::Type::Valley)
-		{
-
-		}
-
 		if (m_nextLevelDoors.getGlobalBounds().intersects(m_player->getGlobalBounds()))
 		{
 
@@ -259,6 +253,7 @@ void GameState::isLevelCompleted()
 					this->setLevelAfterBoss();
 				}
 				this->resetLevel();
+				//m_bossLevel->initBossVisibilityPolygon(m_tileMap->getEdgesVector());
 			}
 		}
 	}
@@ -287,6 +282,7 @@ void GameState::parkourLevelUpdate()
 void GameState::bossLevelUpdate()
 {
 	m_bossLevel->bulletsBossCollision(m_rifle->getFiredBulletsVector());
+	m_bossLevel->attackPlayer(*m_player, m_tileMap->getEdgesVector());
 }
 
 void GameState::updateButtons(sf::RenderWindow* window)
@@ -906,6 +902,9 @@ void GameState::resetLevel()
 	this->deleteAllEnemies();
 	m_enemySpawnTimer.setMAXtime(3000.0f);
 	m_isLevelCompleted = false;
+
+	if(m_currentLevel->levelType == Level::Type::BossLevel)
+		m_bossLevel->initBossVisibilityPolygon(m_tileMap->getEdgesVector());
 }
 
 void GameState::setLevelAfterBoss()

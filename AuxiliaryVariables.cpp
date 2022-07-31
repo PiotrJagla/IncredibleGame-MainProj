@@ -19,6 +19,7 @@ const int Constants::batDamage = 5;
 const int Constants::ninjaDamage = 10;
 const int Constants::birdDamage = 3;
 const int Constants::cometDamage = 7;
+const int Constants::bigBatShockwaveDamage = 30;
 
 const int Constants::batMaxHP = 20;
 const int Constants::ninjaMaxHP = 30;

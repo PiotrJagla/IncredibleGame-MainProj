@@ -125,20 +125,20 @@ void TileMap::makeMap(int tileMapNumber)
 	else if (tileMapNumber == 4)
 	{
 		m_mapVisualization.push_back(L"#############################################");
-		m_mapVisualization.push_back(L"#...........................................#");
-		m_mapVisualization.push_back(L"#...........................................#");
-		m_mapVisualization.push_back(L"#.......###........#######........###.......#");
-		m_mapVisualization.push_back(L"#...........................................#");
-		m_mapVisualization.push_back(L"#...........................................#");
+		m_mapVisualization.push_back(L"#############################################");
+		m_mapVisualization.push_back(L"##.........................................##");
+		m_mapVisualization.push_back(L"##.........................................##");
+		m_mapVisualization.push_back(L"##......####.......#######.......####......##");
+		m_mapVisualization.push_back(L"##......#...........................#......##");
 		m_mapVisualization.push_back(L"####.....................................####");
-		m_mapVisualization.push_back(L"#...........................................#");
-		m_mapVisualization.push_back(L"#...........................................#");
+		m_mapVisualization.push_back(L"##.........................................##");
+		m_mapVisualization.push_back(L"##.........................................##");
 		m_mapVisualization.push_back(L"########.............................########");
-		m_mapVisualization.push_back(L"#...........................................#");
-		m_mapVisualization.push_back(L"#...........................................#");
+		m_mapVisualization.push_back(L"##.....#.............................#.....##");
+		m_mapVisualization.push_back(L"##.........................................##");
 		m_mapVisualization.push_back(L"##########.......####...####.......##########");
-		m_mapVisualization.push_back(L"#...............##..##.##..##...............#");
-		m_mapVisualization.push_back(L"#..............##....###....##..............#");
+		m_mapVisualization.push_back(L"##..............##..##.##..##..............##");
+		m_mapVisualization.push_back(L"#############################################");
 		m_mapVisualization.push_back(L"#############################################");
 	}
 
@@ -343,7 +343,6 @@ void TileMap::convertTileMapToEdgeMap()
 
 void TileMap::initTileMap()
 {
-	std::vector<sf::Vector2i> starPosis;
 	m_tileMap.clear();
 	for (int iii{ 0 }; iii < m_mapVisualization.size(); ++iii)
 	{
@@ -378,12 +377,6 @@ void TileMap::initTileMap()
 				m_tileMap[iii][kkk]->m_tile.setTexture(GameResources::stoneTexture);
 				m_tileMap[iii][kkk]->m_tileType = Tile::Type::Stone;
 				m_tileMap[iii][kkk]->isObsticle = true;
-			}
-
-			if (m_mapVisualization[iii].at(kkk) == '*')
-			{
-
-				starPosis.push_back({ kkk,iii });
 			}
 		}
 	}
@@ -486,6 +479,7 @@ std::vector<Edge>& TileMap::getEdgesVector()
 
 void TileMap::changeTileMap(int tileMapNumber)
 {
+	this->freeTileMapMemory();
 	this->makeMap(tileMapNumber);
 	this->initTileMap();
 	this->initNeighbours();

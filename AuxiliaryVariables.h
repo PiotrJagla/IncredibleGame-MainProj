@@ -19,6 +19,7 @@ public:
 	static const int ninjaDamage;
 	static const int birdDamage;
 	static const int cometDamage;
+	static const int bigBatShockwaveDamage;
 
 	static const int batMaxHP;
 	static const int ninjaMaxHP;

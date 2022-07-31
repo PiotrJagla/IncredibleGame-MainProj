@@ -23,6 +23,9 @@ namespace Geometry
 
 	bool isVectorOutsideScreen(const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo,
 		const sf::Vector2f& viewCenter);
+
+	bool get_line_intersection(const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo,
+		const sf::Vector2f& pointThree, const sf::Vector2f& pointFour);
 }
 
 namespace Algorithms
