@@ -3,6 +3,16 @@
 
 
 
+void ParkourValleyLevel::initStars()
+{
+	for (int iii{ 0 }; iii < m_starsPositions.size(); ++iii)
+	{
+		m_stars.push_back(sf::RectangleShape{ sf::Vector2f{Constants::gridSizeF, Constants::gridSizeF} });
+		m_stars.back().setPosition(m_starsPositions[iii].x * Constants::gridSizeF, m_starsPositions[iii].y * Constants::gridSizeF);
+		m_stars.back().setTexture(GameResources::starTexture);
+	}
+}
+
 ParkourValleyLevel::ParkourValleyLevel(PopUpText* popUpText) :
 	Level{ popUpText }
 {
@@ -11,17 +21,9 @@ ParkourValleyLevel::ParkourValleyLevel(PopUpText* popUpText) :
 	playerSpawnPosition = sf::Vector2f{ 3 * Constants::gridSizeF, 35 * Constants::gridSizeF };
 	doorsPosition = sf::Vector2f{ 58* Constants::gridSizeF, 23 * Constants::gridSizeF };
 
-	m_starsPositions.push_back({ 30,23 });
-	m_starsPositions.push_back({ 31,5 });
-	m_starsPositions.push_back({ 33,16 });
-
-
-	for (int iii{ 0 }; iii < m_starsPositions.size(); ++iii)
-	{
-		m_stars.push_back(sf::RectangleShape{ sf::Vector2f{Constants::gridSizeF, Constants::gridSizeF} });
-		m_stars.back().setPosition(m_starsPositions[iii].y * Constants::gridSizeF, m_starsPositions[iii].x * Constants::gridSizeF);
-		m_stars.back().setTexture(GameResources::starTexture);
-	}
+	m_starsPositions.push_back({ 115,14 });
+	m_starsPositions.push_back({ 54,15 });
+	m_starsPositions.push_back({ 1,28 });
 }
 
 ParkourValleyLevel::~ParkourValleyLevel()
@@ -75,7 +77,6 @@ bool ParkourValleyLevel::isLevelCompleted()
 
 void ParkourValleyLevel::playerStarsCollision(const sf::FloatRect& playerBounds)
 {
-
 	for (int iii{ 0 }; iii < m_stars.size(); ++iii)
 	{
 		if (playerBounds.intersects(m_stars[iii].getGlobalBounds()))
@@ -84,9 +85,12 @@ void ParkourValleyLevel::playerStarsCollision(const sf::FloatRect& playerBounds)
 			m_stars.erase(m_stars.begin() + iii);
 			--iii;
 		}
-
-		
 	}
+}
+
+void ParkourValleyLevel::resetLevel()
+{
+	this->initStars();
 }
 
 Enemy* ParkourValleyLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)

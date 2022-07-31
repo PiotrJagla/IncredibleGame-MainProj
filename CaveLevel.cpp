@@ -5,52 +5,51 @@
 
 
 
-void CaveLevel::initBombs()
+void CaveLevel::initNests()
 {
 
-	for (int iii{ 0 }; iii < m_bombsNumber; ++iii)
+	for (int iii{ 0 }; iii < m_nestsNumber; ++iii)
 	{
-		m_bombs.push_back(new Bomb{
+		m_nests.push_back(new Nest{
 			sf::Vector2f{
-				m_bombsPositions[iii].y * Constants::gridSizeF,
-				m_bombsPositions[iii].x * Constants::gridSizeF }}
+				m_nestsPositions[iii].y * Constants::gridSizeF,
+				m_nestsPositions[iii].x * Constants::gridSizeF }}
 		);
 	}
 }
 
-void CaveLevel::initBombsPositions()
+void CaveLevel::initNestsPositions()
 {
-	m_bombsPositions.push_back(sf::Vector2i{ 2,99 });
-	m_bombsPositions.push_back(sf::Vector2i{ 2,101 });
-	m_bombsPositions.push_back(sf::Vector2i{ 4,119 });
-	m_bombsPositions.push_back(sf::Vector2i{ 5,43 });
-	m_bombsPositions.push_back(sf::Vector2i{ 5,68 });
-	m_bombsPositions.push_back(sf::Vector2i{ 6,8 });
-	m_bombsPositions.push_back(sf::Vector2i{ 6,9 });
-	m_bombsPositions.push_back(sf::Vector2i{ 8,4 });
-	m_bombsPositions.push_back(sf::Vector2i{ 11,30 });
-	m_bombsPositions.push_back(sf::Vector2i{ 18,2 });
-	m_bombsPositions.push_back(sf::Vector2i{ 19,52 });
-	m_bombsPositions.push_back(sf::Vector2i{ 19,57 });
-	m_bombsPositions.push_back(sf::Vector2i{ 24,84 });
-	m_bombsPositions.push_back(sf::Vector2i{ 28,36 });
-	m_bombsPositions.push_back(sf::Vector2i{ 28,76 });
-	m_bombsPositions.push_back(sf::Vector2i{ 30,13 });
-	m_bombsPositions.push_back(sf::Vector2i{ 33,13 });
-	m_bombsPositions.push_back(sf::Vector2i{ 33,107 });
-	m_bombsPositions.push_back(sf::Vector2i{ 35,76 });
-	m_bombsPositions.push_back(sf::Vector2i{ 36,2 });
-	m_bombsPositions.push_back(sf::Vector2i{ 36,75 });
-	m_bombsPositions.push_back(sf::Vector2i{ 36,106 });
-	this->shufflePosition();
+	m_nestsPositions.push_back(sf::Vector2i{ 2,99 });
+	m_nestsPositions.push_back(sf::Vector2i{ 2,101 });
+	m_nestsPositions.push_back(sf::Vector2i{ 4,119 });
+	m_nestsPositions.push_back(sf::Vector2i{ 5,43 });
+	m_nestsPositions.push_back(sf::Vector2i{ 5,68 });
+	m_nestsPositions.push_back(sf::Vector2i{ 6,8 });
+	m_nestsPositions.push_back(sf::Vector2i{ 6,9 });
+	m_nestsPositions.push_back(sf::Vector2i{ 8,4 });
+	m_nestsPositions.push_back(sf::Vector2i{ 11,30 });
+	m_nestsPositions.push_back(sf::Vector2i{ 18,2 });
+	m_nestsPositions.push_back(sf::Vector2i{ 19,52 });
+	m_nestsPositions.push_back(sf::Vector2i{ 19,57 });
+	m_nestsPositions.push_back(sf::Vector2i{ 24,84 });
+	m_nestsPositions.push_back(sf::Vector2i{ 28,36 });
+	m_nestsPositions.push_back(sf::Vector2i{ 28,76 });
+	m_nestsPositions.push_back(sf::Vector2i{ 30,13 });
+	m_nestsPositions.push_back(sf::Vector2i{ 33,13 });
+	m_nestsPositions.push_back(sf::Vector2i{ 33,107 });
+	m_nestsPositions.push_back(sf::Vector2i{ 35,76 });
+	m_nestsPositions.push_back(sf::Vector2i{ 36,2 });
+	m_nestsPositions.push_back(sf::Vector2i{ 36,75 });
+	m_nestsPositions.push_back(sf::Vector2i{ 36,106 });
 }
 
 void CaveLevel::shufflePosition()
 {
-	for (int iii{ 0 }; iii < m_bombsPositions.size(); ++iii)
+	for (int iii{ 0 }; iii < m_nestsPositions.size(); ++iii)
 	{
-		int randomNumber{ getRandomInt(0,m_bombsPositions.size() - 1) };
-		std::swap(m_bombsPositions[iii], m_bombsPositions[randomNumber]);
+		int randomNumber{ getRandomInt(0,m_nestsPositions.size() - 1) };
+		std::swap(m_nestsPositions[iii], m_nestsPositions[randomNumber]);
 	}
 }
 
@@ -58,14 +57,14 @@ void CaveLevel::shufflePosition()
 CaveLevel::CaveLevel(PopUpText* popUpText) :
 	Level{popUpText}
 {
-	m_bombsNumber = 1;
+	m_nestsNumber = 1;
 	tileMapNumber = 2;
+	m_maxEnemies = 6;
 	levelType = Type::Cave;
 	doorsPosition = sf::Vector2f{ 60 * Constants::gridSizeF, 35 * Constants::gridSizeF };
 	playerSpawnPosition = sf::Vector2f{4 * Constants::gridSizeF, 32 * Constants::gridSizeF};
 
-	this->initBombsPositions();
-	this->initBombs();
+	this->initNestsPositions();
 }
 
 CaveLevel::~CaveLevel()
@@ -78,7 +77,6 @@ CaveLevel::~CaveLevel()
 
 void CaveLevel::initBackground(sf::RectangleShape& background, sf::Texture& backgroundTexture)
 {
-
 	sf::VideoMode screenSize{ sf::VideoMode::getDesktopMode() };
 
 
@@ -111,27 +109,28 @@ void CaveLevel::bombsBulletsCollision(std::vector<RangeWeapon::Bullet*>& bullets
 		bool doesCollisionOccur{ false };
 		sf::Vector2f bulletPosition{bullets[bulletIndex]->m_bullet.getPosition() };
 
-		for (int iii{ 0 }; iii < m_bombs.size(); ++iii)
+		for (int iii{ 0 }; iii < m_nests.size(); ++iii)
 		{
-			if (abs(m_bombs[iii]->m_sprite->getPosition().x - bulletPosition.x) <= 300.0f &&
-				abs(m_bombs[iii]->m_sprite->getPosition().y - bulletPosition.y) <= 300.0f)
+			if (abs(m_nests[iii]->m_sprite->getPosition().x - bulletPosition.x) <= 300.0f &&
+				abs(m_nests[iii]->m_sprite->getPosition().y - bulletPosition.y) <= 300.0f)
 			{
-				if (bullets[bulletIndex]->m_bullet.getGlobalBounds().intersects(m_bombs[iii]->m_sprite->getGlobalBounds()))
+				if (bullets[bulletIndex]->m_bullet.getGlobalBounds().intersects(m_nests[iii]->m_sprite->getGlobalBounds()))
 				{
 					doesCollisionOccur = true;
 					delete bullets[bulletIndex];
 					bullets.erase(bullets.begin() + bulletIndex);
 					--bulletIndex;
 					
-					m_bombs[iii]->m_currentHP -= Constants::rifleDamage;
+					m_nests[iii]->m_currentHP -= Constants::rifleDamage;
 				}
 			}
 
-			if (m_bombs[iii]->m_currentHP <= 0)
+			if (m_nests[iii]->m_currentHP <= 0)
 			{
+
 				m_popUpText->showText("Nest Destroyed", 1900.0f, true);
-				delete m_bombs[iii];
-				m_bombs.erase(m_bombs.begin() + iii);
+				delete m_nests[iii];
+				m_nests.erase(m_nests.begin() + iii);
 				--iii;
 			}
 
@@ -271,17 +270,24 @@ void CaveLevel::render(sf::RenderTarget* target, const sf::Vector2f& lightSource
 	target->draw(triangle, 3, sf::TriangleFan);
 }
 
-void CaveLevel::renderBombs(sf::RenderTarget* target)
+void CaveLevel::renderNests(sf::RenderTarget* target, bool addBlendMode)
 {
-	for (auto& bomb : m_bombs)
+	for (auto& bomb : m_nests)
 	{
-		target->draw(*bomb->m_sprite);
+		if (addBlendMode == true)
+		{
+			target->draw(*bomb->m_sprite, sf::BlendMultiply);
+		}
+		else
+		{
+			target->draw(*bomb->m_sprite);
+		}
 	}
 }
 
 bool CaveLevel::isLevelCompleted()
 {
-	if (m_bombs.empty() == true)
+	if (m_nests.empty() == true)
 	{
 		return true;
 	}
@@ -291,24 +297,29 @@ bool CaveLevel::isLevelCompleted()
 	}
 }
 
+void CaveLevel::resetLevel()
+{
+	this->shufflePosition();
+	this->initNests();
+}
+
 Enemy* CaveLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)
 {
-	if (spawnTimer.getElapsedTime() > spawnTimer.getTimeMAX())
+	if (spawnTimer.getElapsedTime() > spawnTimer.getTimeMAX() &&
+		enemies.size() <= m_maxEnemies)
 	{
 		//return nullptr;
 
-		//int spawnRandomEnemy{ getRandomInt(1,100) };
-
-		for (int iii{ 0 }; iii < m_bombs.size(); ++iii)
+		for (int iii{ 0 }; iii < m_nests.size(); ++iii)
 		{
-			enemies.push_back(new Enemy{ *GameResources::blackCometTexture });
-			enemies.back()->setBasicFrame(sf::IntRect{ 110,110,619,619 });
-			enemies.back()->setScale(Constants::cometScale);
-			enemies.back()->setMaxHP(Constants::cometMaxHP);
+			enemies.push_back(new Enemy{ *GameResources::birdTexture });
+			enemies.back()->setBasicFrame(sf::IntRect{ 1,1,65,63 });
+			enemies.back()->setScale(Constants::birdScale);
+			enemies.back()->setMaxHP(Constants::birdMaxHP);
 			enemies.back()->giveEnemyType(Enemy::Type::flying);
 			enemies.back()->whatIsThisEnemy(Enemy::AllEnemies::bird);
-			enemies.back()->setSingleAnimationBounds(1000.0f, 100.0f, 100000.0f);
-			enemies.back()->setPosition( m_bombs[iii]->m_sprite->getPosition());
+			enemies.back()->setSingleAnimationBounds(70.0f, 640.0f, 100.0f);
+			enemies.back()->setPosition(m_nests[iii]->m_sprite->getPosition());
 		}
 		
 

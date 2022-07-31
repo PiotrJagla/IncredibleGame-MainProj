@@ -91,6 +91,9 @@
     <ClCompile Include="ParkourValleyLevel.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
+    <ClCompile Include="BossLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuState.h">
@@ -178,6 +181,9 @@
       <Filter>Libraries\GUI</Filter>
     </ClInclude>
     <ClInclude Include="ParkourValleyLevel.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="BossLevel.h">
       <Filter>Levels</Filter>
     </ClInclude>
   </ItemGroup>

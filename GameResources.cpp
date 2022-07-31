@@ -13,11 +13,10 @@ sf::Texture* GameResources::batTexture = new sf::Texture;
 sf::Texture* GameResources::playerTexture = new sf::Texture;
 sf::Texture* GameResources::birdTexture = new sf::Texture;
 sf::Texture* GameResources::stoneTexture = new sf::Texture;
-sf::Texture* GameResources::blackCometTexture = new sf::Texture;
 sf::Texture* GameResources::doorTexture = new sf::Texture;
-sf::Texture* GameResources::blackBombTexture = new sf::Texture;
 sf::Texture* GameResources::starTexture = new sf::Texture;
 sf::Texture* GameResources::spikeTexture = new sf::Texture;
+sf::Texture* GameResources::nestTexture = new sf::Texture;
 
 void GameResources::initFont()
 {
@@ -86,24 +85,19 @@ void GameResources::initTextures()
 		std::cout << "GAME RESOURCES:: Stone texture could not load\n";
 	}
 	
-	if (!GameResources::blackCometTexture->loadFromFile("Textures/blackCometTexture.png"))
-	{
-		std::cout << "GAME RESOURCES:: Comet texture could not load\n"; 
-	}
-
 	if (!GameResources::doorTexture->loadFromFile("Textures/doorTexture.png"))
 	{
 		std::cout << "GAME RESOURCES:: Door texture could not load\n";
 	}
 
-	if (!GameResources::blackBombTexture->loadFromFile("Textures/blackBombTexture.jpg"))
-	{
-		std::cout << "GAME RESOURCES:: Black bomb texture could not load\n";
-	}
-
 	if (!GameResources::starTexture->loadFromFile("Textures/starTexture.png"))
 	{
 		std::cout << "GAME RESOURCES:: Star texture could not load\n";
+	}
+
+	if (!GameResources::nestTexture->loadFromFile("Textures/nestTexture.png"))
+	{
+		std::cout << "GAME RESOURCES:: Nest texture could not load\n";
 	}
 }
 
@@ -127,8 +121,7 @@ void GameResources::deleteResources()
 	delete GameResources::playerTexture;
 	delete GameResources::birdTexture;
 	delete GameResources::stoneTexture;
-	delete GameResources::blackCometTexture;
 	delete GameResources::doorTexture;
-	delete GameResources::blackBombTexture;
 	delete GameResources::starTexture;
+	delete GameResources::nestTexture;
 }

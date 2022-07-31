@@ -11,6 +11,7 @@
 #include "Level.h"
 #include "ValleyLevel.h"
 #include "CaveLevel.h"
+#include "BossLevel.h"
 #include "ParkourValleyLevel.h"
 
 class GameState : public State
@@ -18,10 +19,13 @@ class GameState : public State
 private:
 	//Levels
 	std::stack<Level*> m_levels;
+	Level* m_currentLevel;
 	bool m_isLevelCompleted;
 	sf::RectangleShape m_nextLevelDoors;
 	CaveLevel* m_caveLevel;
 	ValleyLevel* m_valleyLevel;
+	BossLevel* m_bossLevel;
+	
 
 	//GUI
 	std::map<sf::String, Button*> m_buttons;
@@ -78,6 +82,8 @@ public:
 	void caveLevelUpdate();
 	void valleyLevelUpdate();
 	void parkourLevelUpdate();
+	void bossLevelUpdate();
+	
 
 	//Buttons
 	void updateButtons(sf::RenderWindow* window);
@@ -114,17 +120,20 @@ public:
 	//Render
 	void render(sf::RenderTarget* target = nullptr) override;
 	void renderButtons(sf::RenderTarget* target);
-	void renderCreatures(sf::RenderTarget* target);
+	void renderCreatures(sf::RenderTarget* target, bool addBlendMode = false);
 	void renderGUI(sf::RenderTarget* target);
 	void renderItems(sf::RenderTarget* target);
 	void caveLevelRender(sf::RenderTarget* target);
 	void valleyLevelRender(sf::RenderTarget* target);
 	void parkourValleyLevelRender(sf::RenderTarget* target);
+	void bossLevelRender(sf::RenderTarget* target);
 
 	void checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY);
 	void checkPlayerCameraBounds();
 	bool isPlayerDead();
 	void deleteDeadEnemy();
+	void resetLevel();
+	void setLevelAfterBoss();
 	
 };
 

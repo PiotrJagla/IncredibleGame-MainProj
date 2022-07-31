@@ -204,20 +204,36 @@ bool Enemy::bulletCollision(sf::FloatRect bulletBounds)
 	return false;
 }
 
-void Enemy::render(sf::RenderTarget* target)
+void Enemy::render(sf::RenderTarget* target, bool addBlendMode)
 {
-	target->draw(*m_sprite);
-	this->renderHPbar(target);
+	if(addBlendMode == true)
+		target->draw(*m_sprite, sf::BlendMultiply);
+	else
+		target->draw(*m_sprite);
+	
+	this->renderHPbar(target, addBlendMode);
 	//m_hitboxComponent->drawHitbx(target);
 }
 
-void Enemy::renderHPbar(sf::RenderTarget* target)
+void Enemy::renderHPbar(sf::RenderTarget* target,bool addBlendMode)
 {
-	if (m_whatEnemy != AllEnemies::bird)
+	/*if (m_whatEnemy != AllEnemies::bird)
+	{
+		target->draw(m_HPbarBackground);
+		target->draw(m_HPbar);
+	}*/
+
+	if (addBlendMode == true)
+	{
+		target->draw(m_HPbarBackground, sf::BlendMultiply);
+		target->draw(m_HPbar, sf::BlendMultiply);
+	}
+	else
 	{
 		target->draw(m_HPbarBackground);
 		target->draw(m_HPbar);
 	}
+
 }
 
 void Enemy::tileCollision(std::vector<Tile>& tilesToCheckCollision)

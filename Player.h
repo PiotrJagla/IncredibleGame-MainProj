@@ -28,7 +28,7 @@ public:
 	void updateAnimationComponent() override;
 	void updateHitboxComponent() override;
 
-	void render(sf::RenderTarget* target) override;
+	void render(sf::RenderTarget* target, bool addBlendMode = false) override;
 	void renderHearts(sf::RenderTarget* target);
 	void renderPlayer(sf::RenderTarget* target);
 

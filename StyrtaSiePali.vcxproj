@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="AuxiliaryVariables.cpp" />
+    <ClCompile Include="BossLevel.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CaveLevel.cpp" />
     <ClCompile Include="Creature.cpp" />
@@ -196,6 +197,7 @@
   <ItemGroup>
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="AuxiliaryVariables.h" />
+    <ClInclude Include="BossLevel.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CaveLevel.h" />
     <ClInclude Include="Creature.h" />

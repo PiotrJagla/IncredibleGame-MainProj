@@ -263,6 +263,7 @@ namespace Algorithms
 
 		Tile* firstShortestPathTile{ endTile };
 
+
 		while (firstShortestPathTile->parentTile != nullptr && firstShortestPathTile->parentTile->parentTile != nullptr)
 		{
 

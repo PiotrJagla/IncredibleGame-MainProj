@@ -10,7 +10,8 @@ public:
 	{
 		Cave,
 		Valley,
-		ParkourValley
+		ParkourValley,
+		BossLevel
 	};
 private:
 
@@ -19,7 +20,7 @@ protected:
 
 public:
 	Level(PopUpText* popUpText);
-	~Level();
+	virtual ~Level();
 
 	virtual void initBackground(sf::RectangleShape& background, sf::Texture& backgroundTexture) = 0;
 
@@ -30,6 +31,10 @@ public:
 	virtual bool isLevelCompleted() = 0;
 
 	virtual Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) = 0;
+
+	//W resetLevel mo¿na dodaæ mechanike coraz trudniejszych poziomów
+	virtual void resetLevel() = 0;
+
 
 	//Variables
 	int tileMapNumber;

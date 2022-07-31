@@ -58,7 +58,7 @@ public:
 	virtual void updateAnimationComponent() = 0;
 	virtual void updateHitboxComponent() = 0;
 
-	virtual void render(sf::RenderTarget* target) = 0;
+	virtual void render(sf::RenderTarget* target, bool addBlendMode = false) = 0;
 
 	virtual void updateCollision() = 0;
 

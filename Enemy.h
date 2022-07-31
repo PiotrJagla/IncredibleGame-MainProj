@@ -57,8 +57,8 @@ public:
 	bool bulletCollision(sf::FloatRect bulletBounds);
 
 	//Render
-	void render(sf::RenderTarget* target) override;
-	void renderHPbar(sf::RenderTarget* target);
+	void render(sf::RenderTarget* target, bool addBlendMode = false) override;
+	void renderHPbar(sf::RenderTarget* target, bool addBlendMode = false);
 
 	void tileCollision(std::vector<Tile>& tilesToCheckCollision) override;
 

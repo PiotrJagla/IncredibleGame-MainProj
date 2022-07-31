@@ -8,7 +8,7 @@ private:
 	std::vector<sf::Vector2i> m_starsPositions;
 	std::vector<sf::RectangleShape> m_stars;
 	
-
+	void initStars();
 public:
 	ParkourValleyLevel(PopUpText* popUpText);
 	~ParkourValleyLevel();
@@ -23,6 +23,7 @@ public:
 	bool isLevelCompleted() override;
 
 	void playerStarsCollision(const sf::FloatRect& playerBounds);
+	void resetLevel() override;
 
 	Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) override;
 };

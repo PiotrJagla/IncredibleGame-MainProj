@@ -149,7 +149,7 @@ void Player::updateHitboxComponent()
 }
 
 //Render
-void Player::render(sf::RenderTarget* target)
+void Player::render(sf::RenderTarget* target, bool addBlendMode)
 {
 	this->renderPlayer(target);
 	//m_hitboxComponent->drawHitbx(target);

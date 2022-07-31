@@ -17,6 +17,10 @@ Tile::Tile()
 
 	//m_tile.setFillColor(sf::Color::Transparent);
 	m_tile.setSize(sf::Vector2f{ Constants::gridSizeF, Constants::gridSizeF });
+	isVisited = false;
+	globalGoal = INFINITY;
+	distanceToStart = INFINITY;
+	parentTile = nullptr;
 
 }
 

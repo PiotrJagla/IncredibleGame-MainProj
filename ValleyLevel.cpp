@@ -72,6 +72,11 @@ bool ValleyLevel::isLevelCompleted()
 	}
 }
 
+void ValleyLevel::resetLevel()
+{
+	killedMonsters = 0;
+}
+
 Enemy* ValleyLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)
 {
 	if (spawnTimer.getElapsedTime() > spawnTimer.getTimeMAX())

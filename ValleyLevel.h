@@ -18,6 +18,7 @@ public:
 		const sf::Vector2f& viewCenter) override;
 
 	bool isLevelCompleted() override;
+	void resetLevel() override;
 
 	Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) override;
 };

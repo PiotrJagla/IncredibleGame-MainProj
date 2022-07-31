@@ -56,7 +56,7 @@ void GameState::initPlayer()
 	m_player->setScale(sf::Vector2f{Constants::playerScale});
 	m_player->setJumpingAndFallingFrame(sf::IntRect{ 5,136,50,58 }, sf::IntRect{ 5,200,50,58 });
 	m_player->setAnimationStateBounds(65.0f, 210.0f, 72.0f, 65.0f, 125.0f, 5.0f);
-	m_player->respawn(m_levels.top()->playerSpawnPosition);
+	m_player->respawn(m_currentLevel->playerSpawnPosition);
 	m_creatures.push_back(m_player);
 	
 
@@ -67,13 +67,13 @@ void GameState::initPlayer()
 
 void GameState::initBackground()
 {
-	m_levels.top()->initBackground(m_background, m_backgroundTexture);
+	m_currentLevel->initBackground(m_background, m_backgroundTexture);
 	this->moveBackgroundProportionallyToMap();
 }
 
 void GameState::initTileMap()
 {
-	m_tileMap = new TileMap{m_levels.top()->tileMapNumber};
+	m_tileMap = new TileMap{m_currentLevel->tileMapNumber};
 }
 
 void GameState::initVariables()
@@ -92,11 +92,12 @@ void GameState::initLevels()
 	m_caveLevel = new CaveLevel{ m_popUpText };
 	m_valleyLevel = new ValleyLevel{ m_popUpText };
 	m_parkourValleyLevel = new ParkourValleyLevel{ m_popUpText };
+	m_bossLevel = new BossLevel{ m_popUpText };
 
-	m_levels.push(m_valleyLevel);
+	m_currentLevel = m_valleyLevel;
 	m_nextLevelDoors.setSize(sf::Vector2f{ Constants::gridSizeF, Constants::gridSizeF * 2.0f });
 	m_nextLevelDoors.setTexture(GameResources::doorTexture);
-	m_nextLevelDoors.setPosition(40 * Constants::gridSizeF, 19 * Constants::gridSizeF);
+	m_nextLevelDoors.setPosition(m_currentLevel->doorsPosition);
 }
 
 //Constructors / Descructors
@@ -134,6 +135,7 @@ GameState::~GameState()
 	delete m_parkourValleyLevel;
 	delete m_caveLevel;
 	delete m_valleyLevel;
+	delete m_bossLevel;
 }
 
 
@@ -196,25 +198,30 @@ void GameState::updateInput()
 void GameState::levelDependentUpdate()
 {
 
-	if (m_levels.top()->levelType == Level::Type::Cave)
+	if (m_currentLevel->levelType == Level::Type::Cave)
 	{
 		this->caveLevelUpdate();
 	}
-	else if (m_levels.top()->levelType == Level::Type::Valley)
+	else if (m_currentLevel->levelType == Level::Type::Valley)
 	{
 		this->valleyLevelUpdate();
 	}
-	else if (m_levels.top()->levelType == Level::Type::ParkourValley)
+	else if (m_currentLevel->levelType == Level::Type::ParkourValley)
 	{
 		this->parkourLevelUpdate();
 	}
+	else if (m_currentLevel->levelType == Level::Type::BossLevel)
+	{
+		this->bossLevelUpdate();
+	}
 
 	this->isLevelCompleted();
+	m_currentLevel->update();
 }
 
 void GameState::isLevelCompleted()
 {
-	if (m_isLevelCompleted == false && m_levels.top()->isLevelCompleted() == true)
+	if (m_isLevelCompleted == false && m_currentLevel->isLevelCompleted() == true)
 	{
 		m_popUpText->showText("Go to doors", 1900.0f, true);
 		m_isLevelCompleted = true;
@@ -222,11 +229,11 @@ void GameState::isLevelCompleted()
 
 	if (m_isLevelCompleted == true)
 	{
-		if (m_levels.top()->levelType == Level::Type::Cave)
+		if (m_currentLevel->levelType == Level::Type::Cave)
 		{
 
 		}
-		else if (m_levels.top()->levelType == Level::Type::Valley)
+		else if (m_currentLevel->levelType == Level::Type::Valley)
 		{
 
 		}
@@ -241,39 +248,17 @@ void GameState::isLevelCompleted()
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			{
-				if (m_levels.top()->levelType == Level::Type::Valley)
+				if (m_currentLevel->levelType != Level::Type::BossLevel)
 				{
-					m_levels.push(m_caveLevel);
-					m_levels.top()->initBackground(m_background, m_backgroundTexture);
-					m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-					m_popUpText->showText("Find and destroy nests", 1900.0f, true);
-					m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
+					m_bossLevel->previousLevel = m_currentLevel->levelType;
+					m_currentLevel =m_bossLevel;
+					m_popUpText->showText("Kill Boss", 1900.0f, true);
 				}
-				else if (m_levels.top()->levelType == Level::Type::Cave)
+				else
 				{
-					m_levels.push(m_parkourValleyLevel);
-					m_levels.top()->initBackground(m_background, m_backgroundTexture);
-					m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-					m_popUpText->showText("Find and collect Stars", 1900.0f, true);
-					m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
+					this->setLevelAfterBoss();
 				}
-				else if (m_levels.top()->levelType == Level::Type::ParkourValley)
-				{
-					m_levels.pop();
-					m_levels.pop();
-					m_levels.top()->initBackground(m_background, m_backgroundTexture);
-					m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-					m_player->respawn(m_levels.top()->playerSpawnPosition);
-					m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
-
-				}
-
-
-				m_player->respawn(m_levels.top()->playerSpawnPosition);
-				this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
-				this->deleteAllEnemies();
-				m_enemySpawnTimer.setMAXtime(3000.0f);
-				m_isLevelCompleted = false;
+				this->resetLevel();
 			}
 		}
 	}
@@ -291,6 +276,17 @@ void GameState::valleyLevelUpdate()
 void GameState::parkourLevelUpdate()
 {
 	m_parkourValleyLevel->playerStarsCollision(m_player->getGlobalBounds());
+
+	
+	if (Geometry::isPointOutsideScreen(m_player->getPosition(), m_playerCamera.getCenter()) == true)
+	{
+		m_player->getDamage(1000000);
+	}
+}
+
+void GameState::bossLevelUpdate()
+{
+	m_bossLevel->bulletsBossCollision(m_rifle->getFiredBulletsVector());
 }
 
 void GameState::updateButtons(sf::RenderWindow* window)
@@ -322,30 +318,23 @@ void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
 	}
 	else if (m_pauseMenu->isButtonPressed("goToAnotherLevel", window))
 	{
-		if (m_levels.top()->levelType == Level::Type::Valley)
+		if (m_currentLevel->levelType == Level::Type::Valley)
 		{
-			m_levels.push(m_caveLevel);
+			m_currentLevel =m_caveLevel;
 			m_popUpText->showText("Destroy all nests", 1900.0f, true);
 		}
-		else if (m_levels.top()->levelType == Level::Type::Cave)
+		else if (m_currentLevel->levelType == Level::Type::Cave)
 		{
-			m_levels.push(m_parkourValleyLevel);
+			m_currentLevel =m_parkourValleyLevel;
 			m_popUpText->showText("Collect all stars", 1900.0f, true);
 		}
-		else if (m_levels.top()->levelType == Level::Type::ParkourValley)
+		else if (m_currentLevel->levelType == Level::Type::ParkourValley)
 		{
 			m_levels.pop();
 			m_levels.pop();
 			m_popUpText->showText("Kill all monsters", 1900.0f, true);
 		}
-
-		m_tileMap->changeTileMap(m_levels.top()->tileMapNumber);
-		m_levels.top()->initBackground(m_background, m_backgroundTexture);
-		m_player->respawn(m_levels.top()->playerSpawnPosition);
-		m_nextLevelDoors.setPosition(m_levels.top()->doorsPosition);
-		this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
-		this->deleteAllEnemies();
-		m_enemySpawnTimer.setMAXtime(3000.0f);
+		this->resetLevel();
 	}
 }
 
@@ -359,8 +348,10 @@ void GameState::updateAfterDeathMenuButtons(sf::RenderWindow* window)
 	else if (m_afterDeathMenu->isButtonPressed("respawnButton", window))
 	{
 
-		m_player->respawn(m_levels.top()->playerSpawnPosition);
+		m_player->respawn(m_currentLevel->playerSpawnPosition);
 		this->deleteAllEnemies();
+		m_currentLevel->resetLevel();
+		m_isLevelCompleted = false;
 	}
 }
 
@@ -623,11 +614,11 @@ void GameState::updateEnemySpawn()
 {
 	if (m_isLevelCompleted == false)
 	{
-		Enemy* newEnemy{ m_levels.top()->spawnEnemies(m_enemySpawnTimer, m_enemies) };
+		Enemy* newEnemy{ m_currentLevel->spawnEnemies(m_enemySpawnTimer, m_enemies) };
 
 		if (newEnemy != nullptr)
 		{
-			if(m_levels.top()->levelType == Level::Type::Valley)
+			if(m_currentLevel->levelType == Level::Type::Valley)
 				m_enemies.back()->spawnEnemy(m_tileMap->getTileMap());
 
 			m_creatures.push_back(newEnemy);
@@ -672,17 +663,21 @@ void GameState::calculateCollisionBounds(sf::Vector2f point, int& fromX, int& to
 void GameState::render(sf::RenderTarget* target)
 {
 
-	if (m_levels.top()->levelType == Level::Type::Valley)
+	if (m_currentLevel->levelType == Level::Type::Valley)
 	{
 		this->valleyLevelRender(target);
 	}
-	else if (m_levels.top()->levelType == Level::Type::Cave)
+	else if (m_currentLevel->levelType == Level::Type::Cave)
 	{
 		this->caveLevelRender(target);
 	}
-	else if (m_levels.top()->levelType == Level::Type::ParkourValley)
+	else if (m_currentLevel->levelType == Level::Type::ParkourValley)
 	{
 		this->parkourValleyLevelRender(target);
+	}
+	else if (m_currentLevel->levelType == Level::Type::BossLevel)
+	{
+		this->bossLevelRender(target);
 	}
 
 
@@ -713,12 +708,12 @@ void GameState::renderButtons(sf::RenderTarget* target)
 	
 }
 
-void GameState::renderCreatures(sf::RenderTarget* target)
+void GameState::renderCreatures(sf::RenderTarget* target, bool addBlendMode)
 {
 	for (int iii{ 0 } ; iii < m_creatures.size() ; ++iii)
 	{
 
-		m_creatures[iii]->render(target);
+		m_creatures[iii]->render(target, addBlendMode);
 	}
 }
 
@@ -744,7 +739,7 @@ void GameState::caveLevelRender(sf::RenderTarget* target)
 	//Render visibility polygon
 	target->setView(m_playerCamera);
 
-	m_levels.top()->render(target, m_player->getPosition(), m_playerCamera.getCenter());
+	m_currentLevel->render(target, m_player->getPosition(), m_playerCamera.getCenter());
 
 	m_window->setView(m_window->getDefaultView());
 
@@ -753,9 +748,9 @@ void GameState::caveLevelRender(sf::RenderTarget* target)
 	//Render everything else
 	target->setView(m_playerCamera);
 
-	this->renderCreatures(target);
+	this->renderCreatures(target, true);
 	this->renderItems(target);
-	m_caveLevel->renderBombs(target);
+	m_caveLevel->renderNests(target, true);
 
 	m_window->setView(m_window->getDefaultView());
 }
@@ -782,9 +777,23 @@ void GameState::parkourValleyLevelRender(sf::RenderTarget* target)
 
 	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 	this->renderCreatures(target);
-	m_levels.top()->render(target, m_player->getPosition(), m_playerCamera.getCenter());
+	m_currentLevel->render(target, m_player->getPosition(), m_playerCamera.getCenter());
 	//this->renderItems(target);
 
+
+	m_window->setView(m_window->getDefaultView());
+}
+
+void GameState::bossLevelRender(sf::RenderTarget* target)
+{
+	target->draw(m_background);
+
+	target->setView(m_playerCamera);
+
+	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
+	this->renderCreatures(target);
+	this->renderItems(target);
+	m_currentLevel->render(target, m_player->getPosition(), m_playerCamera.getCenter());
 
 	m_window->setView(m_window->getDefaultView());
 }
@@ -878,9 +887,44 @@ void GameState::deleteDeadEnemy()
 	{
 		if (m_creatures[iii]->creatureType == Creature::Type::enemy && m_creatures[iii]->getHP() <= 0)
 		{
-			m_levels.top()->killedMonsters += 1;
+			m_currentLevel->killedMonsters += 1;
 			delete m_creatures[iii];
 			m_creatures.erase(m_creatures.begin() + iii);
 		}
 	}
 }
+
+void GameState::resetLevel()
+{
+	m_tileMap->changeTileMap(m_currentLevel->tileMapNumber);
+	m_currentLevel->initBackground(m_background, m_backgroundTexture);
+	m_currentLevel->resetLevel();
+	m_player->respawn(m_currentLevel->playerSpawnPosition);
+	m_nextLevelDoors.setPosition(m_currentLevel->doorsPosition);
+
+	this->checkTileMapBounds(m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
+	this->deleteAllEnemies();
+	m_enemySpawnTimer.setMAXtime(3000.0f);
+	m_isLevelCompleted = false;
+}
+
+void GameState::setLevelAfterBoss()
+{
+	if (m_bossLevel->previousLevel == Level::Type::Valley)
+	{
+		m_currentLevel =m_caveLevel;
+		m_popUpText->showText("Find and destroy nests", 1900.0f, true);
+	}
+	else if (m_bossLevel->previousLevel == Level::Type::Cave)
+	{
+		m_currentLevel =m_parkourValleyLevel;
+		m_popUpText->showText("Jump", 1900.0f, true);
+	}
+	else if (m_bossLevel->previousLevel == Level::Type::ParkourValley)
+	{
+		m_currentLevel =m_valleyLevel;
+		m_popUpText->showText("Kill all monsters", 1900.0f, true);
+	}
+	//this->resetLevel();
+}
+
