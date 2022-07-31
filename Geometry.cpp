@@ -138,49 +138,6 @@ namespace Geometry
 		{
 			return true;
 		}
-
-
-		//Sprawdzanie czy krawêdz intersektuje z krawêdzi¹ ekranu
-		//sf::Vector2f vectorDir{
-		//		pointTwo.x - pointOne.x,
-		//		pointTwo.y - pointOne.y
-		//};
-
-		//float angle{ atan2f(vectorDir.y, vectorDir.x) };
-
-		//vectorDir.x = 1.0f * cosf(angle);
-		//vectorDir.y = 1.0f * sinf(angle);
-
-		//for (int kkk{ 0 }; kkk < 4; ++kkk)
-		//{//Left Edge, Right Edge, Up Edge, Down Edge
-		//	sf::Vector2f screenEdgeStart{};
-		//	sf::Vector2f screenEdgeEnd{};
-
-		//	if (kkk == 0) { screenEdgeStart = leftUpCorner; screenEdgeEnd = leftDownCorner; }
-		//	else if (kkk == 1) { screenEdgeStart = rightUpCorner; screenEdgeEnd = rightDownCorner; }
-		//	else if (kkk == 2) { screenEdgeStart = leftUpCorner; screenEdgeEnd = rightUpCorner; }
-		//	else if (kkk == 3) { screenEdgeStart = leftDownCorner; screenEdgeEnd = rightDownCorner; }
-
-		//	sf::Vector2f lineSegVec{
-		//		screenEdgeEnd.x - screenEdgeStart.x,
-		//		screenEdgeEnd.y - screenEdgeStart.y
-		//	};
-
-		//	if (std::fabs(lineSegVec.x - vectorDir.x) > 0.0f && std::fabs(lineSegVec.y - vectorDir.y) > 0.0f)
-		//	{
-		//		float tedge{
-		//			(vectorDir.x * (screenEdgeEnd.y - screenEdgeStart.y) +
-		//			(vectorDir.y * (screenEdgeStart.x - screenEdgeEnd.x))) / (lineSegVec.x * vectorDir.y - lineSegVec.y * vectorDir.x)
-		//		};
-
-		//		float tray{ (screenEdgeEnd.x + lineSegVec.x * tedge - screenEdgeStart.x) / vectorDir.x };
-
-		//		if (tray > 0 && tedge >= 0 && tedge <= 1.0f)
-		//		{
-		//			return false;
-		//		}
-		//	}
-		//}
 	}
 
 	bool get_line_intersection(const sf::Vector2f& pointOne, const sf::Vector2f& pointTwo,
