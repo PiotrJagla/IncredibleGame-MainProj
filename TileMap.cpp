@@ -396,13 +396,7 @@ TileMap::TileMap(int tileMapNumber)
 
 TileMap::~TileMap()
 {
-
 	this->freeTileMapMemory();
-}
-
-void TileMap::update(sf::Vector2u& mouseGridPosition)
-{
-	//this->placeTile(mouseGridPosition);
 }
 
 void TileMap::render(sf::RenderTarget* target, int& fromX, int& toX, int& fromY,int& toY)
@@ -415,18 +409,6 @@ void TileMap::render(sf::RenderTarget* target, int& fromX, int& toX, int& fromY,
 		}
 	}
 
-	//Edges render
-	/*for (auto& edge : m_edges)
-	{
-		sf::Vertex line[] = {
-			 sf::Vertex{ sf::Vector2f{ edge.startPoint.x, edge.startPoint.y}},
-			 sf::Vertex{ sf::Vector2f{ edge.endPoint.x, edge.endPoint.y}}
-		};
-		line[0].color = sf::Color::White;
-		line[1].color = sf::Color::White;
-
-		target->draw(line, 2, sf::Lines);
-	}*/
 }
 
 void TileMap::placeTile(sf::Vector2u& mouseGridPosition)
@@ -451,9 +433,6 @@ void TileMap::freeTileMapMemory()
 
 int TileMap::size()
 {
-
-	//std::cout << "m_tileMap.size(): " << m_tileMap.size() << ' ';
-	//return m_tileMap.size();
 	return m_mapVisualization.size();
 }
 
@@ -494,10 +473,7 @@ void TileMap::addScreenEdgesToEdgeVector(const sf::Vector2f& viewCenter)
 	sf::Vector2f rightUpCorner{ leftUpCorner.x + Constants::WindowWidth , leftUpCorner.y };
 	sf::Vector2f rightDownCorner{ leftUpCorner.x + Constants::WindowWidth, leftUpCorner.y + Constants::WindowHeigth };
 
-	/*sf::Vector2f leftUpCorner{ viewCenter.x - target->getSize().x *2.0f, viewCenter.y - target->getSize().y *2.0f };
-	sf::Vector2f leftDownCorner{ leftUpCorner.x, leftUpCorner.y + target->getSize().y * 4.0f };
-	sf::Vector2f rightUpCorner{ leftUpCorner.x + target->getSize().x * 4.0f, leftUpCorner.y };
-	sf::Vector2f rightDownCorner{ leftUpCorner.x + target->getSize().x * 4.0f, leftUpCorner.y + target->getSize().y * 4.0f };*/
+
 
 	
 	m_edges[m_edges.size() - 4].startPoint = leftUpCorner;

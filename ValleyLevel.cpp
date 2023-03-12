@@ -9,7 +9,7 @@ ValleyLevel::ValleyLevel(PopUpText* popUpText) :
 {
 	tileMapNumber = 1;
 	levelType = Type::Valley;
-	monstersToKill = 0;
+	monstersToKill = 4;
 	m_popUpText->showText("Kill All Monsters", 1900.0f, true);
 	doorsPosition = sf::Vector2f{ 40 * Constants::gridSizeF, 19 * Constants::gridSizeF };
 	playerSpawnPosition = sf::Vector2f{ 8 * Constants::gridSizeF, 26 * Constants::gridSizeF };
@@ -116,8 +116,7 @@ Enemy* ValleyLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies
 			enemies.back()->setSingleAnimationBounds(70.0f, 640.0f, 100.0f);
 
 		}
-		//enemies.back()->spawnEnemy(m_tileMap->getTileMap());
-		//m_creatures.push_back(enemies.back());
+
 		spawnTimer.restart();
 		return enemies.back();
 	}

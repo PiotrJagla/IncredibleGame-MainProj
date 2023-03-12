@@ -58,8 +58,6 @@ void State::updateMousePositions(sf::View& camera)
 	m_mouseGridPosition.x = m_mousePositionWindow.x / Constants::gridSizeU;
 	m_mouseGridPosition.y = m_mousePositionWindow.y / Constants::gridSizeU;
 
-	//std::cout << "Mouse pos screen: X: " << m_mousePositionWindow.x << " Y: " << m_mousePositionWindow.y << '\n';
-	//std::cout << "Mouse pos grid: X: " << m_mouseGridPosition.x << " Y: " << m_mouseGridPosition.y << '\n';
 }
 
 void State::pauseON()

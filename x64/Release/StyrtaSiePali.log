@@ -1,96 +1,31 @@
-﻿  AnimationComponent.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(60,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(73,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(79,24): warning C4244: "=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\AnimationComponent.cpp(92,26): warning C4244: "+=": konwersja z "float" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-  AuxiliaryVariables.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\AuxiliaryVariables.cpp(30,33): warning C4305: "inicjowanie": obcięcie z "double" do "float"
-  BossLevel.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\BossLevel.cpp(85,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
-  Button.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(19,32): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(34,69): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(34,34): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(48,69): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(48,34): warning C4244: "argument": konwersja z "T" do "T", możliwa utrata danych
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\Button.cpp(80,32): warning C4244: "argument": konwersja z "const float" do "unsigned int", możliwa utrata danych
+﻿  BossLevel.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\BossLevel.cpp(83,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
   CaveLevel.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(51,63): warning C4267: "argument": konwersja z "size_t" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(180,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
-  Creature.cpp
-  Debug.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\CaveLevel.cpp(171,24): warning C4244: "=": konwersja z "double" do "float", możliwa utrata danych
   Enemy.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(32,12): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(119,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(114,40): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   Game.cpp
-  GameResources.cpp
   GameState.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(63,60): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
 D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(63,36): warning C4244: "argument": konwersja z "const unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(628,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(609,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(631,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(612,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(634,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(615,85): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
           ]
-D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(637,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(618,30): warning C4244: "=": konwersja z "T" do "int", możliwa utrata danych
           with
           [
               T=float
@@ -98,48 +33,13 @@ D:\Program Files (x86)\GitHub\IncredibleGame\GameState.cpp(637,30): warning C424
   Geometry.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(17,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
 D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(28,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(88,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(99,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(80,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\Geometry.cpp(91,10): warning C4244: "return": konwersja z "float" do "int", możliwa utrata danych
   Headers.cpp
-  HitboxComponent.cpp
-  Item.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\Item.cpp(50,58): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
   Level.cpp
-  main.cpp
   MainMenuState.cpp
-  MeleeWeapon.cpp
-  MovementComponent.cpp
-  Trwa kompilowanie...
   ParkourValleyLevel.cpp
-  PauseMenu.cpp
-  PhysicsComponent.cpp
   Player.cpp
-  PopUpText.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\PopUpText.cpp(17,32): warning C4244: "argument": konwersja z "float" do "unsigned int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\PopUpText.cpp(46,44): warning C4244: "+=": konwersja z "float" do "sf::Uint8", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\PopUpText.cpp(97,42): warning C4244: "-=": konwersja z "float" do "sf::Uint8", możliwa utrata danych
-  RangeWeapon.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\RangeWeapon.cpp(110,25): warning C4267: "return": konwersja z "size_t" do "const int", możliwa utrata danych
-  State.cpp
-D:\Program Files (x86)\GitHub\IncredibleGame\State.cpp(48,40): warning C4244: "+=": konwersja z "T" do "T", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-          and
-          [
-              T=int
-          ]
-D:\Program Files (x86)\GitHub\IncredibleGame\State.cpp(49,40): warning C4244: "+=": konwersja z "T" do "T", możliwa utrata danych
-          with
-          [
-              T=float
-          ]
-          and
-          [
-              T=int
-          ]
-  Tile.cpp
   TileMap.cpp
 D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(206,19): warning C4244: "argument": konwersja z "T" do "const unsigned __int64", możliwa utrata danych
           with
@@ -347,15 +247,13 @@ D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(313,98): warning C4244:
 D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(325,34): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
 D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(355,93): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
 D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(355,65): warning C4244: "argument": konwersja z "unsigned int" do "float", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(457,34): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
-D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(462,28): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
-  Timer.cpp
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(436,34): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
+D:\Program Files (x86)\GitHub\IncredibleGame\TileMap.cpp(441,28): warning C4267: "return": konwersja z "size_t" do "int", możliwa utrata danych
   ValleyLevel.cpp
+  main.cpp
   Trwa generowanie kodu
-  Previous IPDB was built with incompatible compiler, fall back to full compilation.
-D:\Program Files (x86)\GitHub\IncredibleGame\Enemy.cpp(307): warning C4715: "Enemy::getEnemyDamage”: niewszystkie ścieżki kodu zwracają wartość
-D:\Program Files (x86)\GitHub\IncredibleGame\Creature.cpp(106): warning C4172: zwracanie adresu lokalnej zmiennej lub tymczasowej
-D:\Program Files (x86)\GitHub\IncredibleGame\RangeWeapon.cpp(110): warning C4172: zwracanie adresu lokalnej zmiennej lub tymczasowej
-  All 1907 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  18 of 1884 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    45 functions had inline decision re-evaluated but remain unchanged
   Zakończono generowanie kodu
   StyrtaSiePali.vcxproj -> D:\Program Files (x86)\GitHub\IncredibleGame\x64\Release\StyrtaSIePali.exe

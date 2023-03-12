@@ -75,14 +75,6 @@ namespace Geometry
 			//angleInDegrees = 360 - angleInDegrees;
 		}
 
-		/*float length{ static_cast<float>(sqrt(Ydifference * Ydifference + Xdifference * Xdifference)) };
-
-		float sin{ Ydifference / length };
-
-		float angleInRadians(asin(sin));
-
-		float angleInDegrees{ (angleInRadians * 180) / Constants::pi };*/
-
 		
 
 		return angleInDegrees;
@@ -174,7 +166,6 @@ namespace Algorithms
 		{ return nullptr; }
 
 		Tile* currentTile{ tileMap[startGridPosition.y][startGridPosition.x] };
-		//Tile* currentTile{ tileMap[24][10] };
 		Tile* startTile{ currentTile };
 
 		sf::Vector2i endGridPosition{ (int)(endPosition.x / Constants::gridSizeU), (int)(endPosition.y / Constants::gridSizeU) };
@@ -182,7 +173,7 @@ namespace Algorithms
 		{ return nullptr; }
 
 		Tile* endTile{ tileMap[endGridPosition.y][endGridPosition.x] };
-		//Tile* endTile{ tileMap[28][15] };
+
 
 		startTile->globalGoal = twoPointsDistance(startPosition, endPosition);
 		startTile->distanceToStart = 0.0f;
@@ -243,8 +234,6 @@ namespace Algorithms
 
 		while (firstShortestPathTile->parentTile != nullptr && firstShortestPathTile->parentTile->parentTile != nullptr)
 		{
-
-			//firstShortestPathTile->m_tile.setFillColor(sf::Color::Black);
 			firstShortestPathTile = firstShortestPathTile->parentTile;
 		}
 

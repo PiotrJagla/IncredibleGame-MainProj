@@ -46,8 +46,6 @@ void BossLevel::initBackground(sf::RectangleShape& background, sf::Texture& back
 		}
 	);
 
-	//this->moveBackgroundProportionallyToMap();
-
 	background.setTexture(&backgroundTexture);
 }
 
@@ -301,7 +299,7 @@ BossLevel::Boss::Boss(sf::Vector2f m_bossPosition)
 	m_sprite = new sf::Sprite{};
 	m_sprite->setPosition(m_bossPosition);
 
-	m_maxHP = 10;
+	m_maxHP = 100;
 	m_currentHP = m_maxHP;
 	m_sprite->setTexture(*GameResources::batTexture);
 	m_sprite->setTextureRect(sf::IntRect{ 2,4,139,69 });

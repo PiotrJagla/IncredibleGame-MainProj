@@ -32,7 +32,6 @@ public:
 
 	virtual Enemy* spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies) = 0;
 
-	//W resetLevel mo¿na dodaæ mechanike coraz trudniejszych poziomów
 	virtual void resetLevel() = 0;
 
 

@@ -50,11 +50,6 @@ void Enemy::shortestPathDirection(std::vector<std::vector<Tile*>>& tileMap,const
 	Tile* shortestPathFirstTile{ Algorithms::getShortestPathFirstTile(tileMap, m_sprite->getPosition(), playerPos, tileMapSize) };
 
 
-	/*std::cout << "ENEMY: ";
-	Debug::showPosition(m_sprite->getPosition().x, m_sprite->getPosition().y);
-	std::cout << "TILE: ";
-	Debug::showPosition(shortestPathFirstTile->m_tile.getPosition().x, shortestPathFirstTile->m_tile.getPosition().y);*/
-
 	if (shortestPathFirstTile != nullptr)
 	{
 		sf::Vector2f spriteTileIntersection{

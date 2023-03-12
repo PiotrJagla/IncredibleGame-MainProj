@@ -162,11 +162,9 @@ void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
 		if (m_isPaused == false)
 		{
 
-			m_tileMap->update(m_mouseGridPosition);
-			//this->updateCollision();
+
 			this->updateCreatures(timePerFrame);
 			this->updatePlayerCamera();
-			this->updateButtons(window);
 			this->updateItems(timePerFrame);
 			this->updateEnemySpawn();
 
@@ -253,7 +251,6 @@ void GameState::isLevelCompleted()
 					this->setLevelAfterBoss();
 				}
 				this->resetLevel();
-				//m_bossLevel->initBossVisibilityPolygon(m_tileMap->getEdgesVector());
 			}
 		}
 	}
@@ -283,22 +280,6 @@ void GameState::bossLevelUpdate()
 {
 	m_bossLevel->bulletsBossCollision(m_rifle->getFiredBulletsVector());
 	m_bossLevel->attackPlayer(*m_player, m_tileMap->getEdgesVector());
-}
-
-void GameState::updateButtons(sf::RenderWindow* window)
-{
-	this->updateButtonsHover(window);
-	this->updateButtonsClickDetection(window);
-}
-
-void GameState::updateButtonsHover(sf::RenderWindow* window)
-{
-
-}
-
-void GameState::updateButtonsClickDetection(sf::RenderWindow* window)
-{
-	
 }
 
 void GameState::updatePauseMenuButtons(sf::RenderWindow* window)
@@ -687,7 +668,6 @@ void GameState::render(sf::RenderTarget* target)
 	//Render GUI
 	this->renderGUI(target);
 
-	this->renderButtons(target);
 	if (m_isPaused == true)
 	{
 		m_pauseMenu->render(target);
@@ -699,10 +679,6 @@ void GameState::render(sf::RenderTarget* target)
 	}
 }
 
-void GameState::renderButtons(sf::RenderTarget* target)
-{
-	
-}
 
 void GameState::renderCreatures(sf::RenderTarget* target, bool addBlendMode)
 {
@@ -728,7 +704,6 @@ void GameState::renderItems(sf::RenderTarget* target)
 
 void GameState::caveLevelRender(sf::RenderTarget* target)
 {
-	//m_tileMap->addScreenEdgesToEdgeVector(m_playerCamera.getCenter());
 
 	m_caveLevel->calculateVisibilityPolygon(m_player->getPosition(), m_tileMap->getEdgesVector(), m_playerCamera.getCenter());
 
@@ -774,7 +749,6 @@ void GameState::parkourValleyLevelRender(sf::RenderTarget* target)
 	m_tileMap->render(target, m_renderFromX, m_renderToX, m_renderFromY, m_renderToY);
 	this->renderCreatures(target);
 	m_currentLevel->render(target, m_player->getPosition(), m_playerCamera.getCenter());
-	//this->renderItems(target);
 
 
 	m_window->setView(m_window->getDefaultView());
@@ -822,7 +796,13 @@ void GameState::checkPlayerCameraBounds()
 	m_isCameraOnLeftBound = false;
 	m_isCameraOnRightBound = false;
 
-	//X axis
+	CheckXaxis(leftCameraBound, rightCameraBound);
+	CheckYaxis(upCameraBound, downCameraBound);
+
+}
+
+void GameState::CheckXaxis(float leftCameraBound, float rightCameraBound)
+{
 	if (leftCameraBound < 0.0f)
 	{
 		m_playerCamera.setCenter(
@@ -841,8 +821,10 @@ void GameState::checkPlayerCameraBounds()
 
 		m_isCameraOnRightBound = true;
 	}
+}
 
-	//Y axis
+void GameState::CheckYaxis(float upCameraBound, float downCameraBound)
+{
 	if (upCameraBound < 0.0f)
 	{
 		m_playerCamera.setCenter(
@@ -861,7 +843,6 @@ void GameState::checkPlayerCameraBounds()
 
 		m_isCameraOnLeftBound = true;
 	}
-
 }
 
 bool GameState::isPlayerDead()

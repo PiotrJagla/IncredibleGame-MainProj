@@ -91,8 +91,6 @@ void CaveLevel::initBackground(sf::RectangleShape& background, sf::Texture& back
 		}
 	);
 
-	//this->moveBackgroundProportionallyToMap();
-
 	background.setTexture(&backgroundTexture);
 }
 
@@ -150,13 +148,6 @@ void CaveLevel::calculateVisibilityPolygon(const sf::Vector2f& lightSource, cons
 		{
 			continue;
 		}
-
-		/*if (Geometry::isVectorOutsideScreen(edges[edgei].startPoint, edges[edgei].endPoint, viewCenter))
-		{
-
-			--edgesChecked;
-			continue;
-		}*/
 
 		for (int iii{ 0 }; iii < 2; ++iii)
 		{
@@ -308,7 +299,6 @@ Enemy* CaveLevel::spawnEnemies(Timer& spawnTimer, std::vector<Enemy*>& enemies)
 	if (spawnTimer.getElapsedTime() > spawnTimer.getTimeMAX() &&
 		enemies.size() <= m_maxEnemies)
 	{
-		//return nullptr;
 
 		for (int iii{ 0 }; iii < m_nests.size(); ++iii)
 		{

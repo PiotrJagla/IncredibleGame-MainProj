@@ -130,6 +130,8 @@ public:
 
 	void checkTileMapBounds(int& fromX, int& toX, int& fromY, int& toY);
 	void checkPlayerCameraBounds();
+	void CheckXaxis(float leftCameraBound, float rightCameraBound);
+	void CheckYaxis(float upCameraBound, float downCameraBound);
 	bool isPlayerDead();
 	void deleteDeadEnemy();
 	void resetLevel();

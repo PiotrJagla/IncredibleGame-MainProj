@@ -7,7 +7,7 @@ void Game::initWindow()
 	m_window = new sf::RenderWindow{ sf::VideoMode{Constants::WindowWidth, Constants::WindowHeigth} ,
 		"Incredible Game", sf::Style::Close | sf::Style::Titlebar };
 
-	//m_window->setFramerateLimit(30);
+
 	
 }
 

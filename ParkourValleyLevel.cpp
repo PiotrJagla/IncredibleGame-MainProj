@@ -46,8 +46,6 @@ void ParkourValleyLevel::initBackground(sf::RectangleShape& background, sf::Text
 		}
 	);
 
-	//this->moveBackgroundProportionallyToMap();
-
 	background.setTexture(&backgroundTexture);
 }
 
