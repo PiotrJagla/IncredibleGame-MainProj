@@ -13,9 +13,9 @@ On first level you have to kill monsters. If enough monsters are killed you can 
 Between levels there is boss. That is a big bat that is spawning smaller bats and every few secounds big bat attacks with big shock wave on visible for bat area as there is shown below
 ![image](https://user-images.githubusercontent.com/76881722/228293237-0c3ab8ba-d100-41f7-8e81-184266ac476e.png)
 
-
-Secound level is in cave, where you have to locate and destroy a nest from where birds are spawned that are tracking you with A-star pathfinding algorithm.
-In this cave there is implemented a shadow casting algorithm, that is calculating what you can see from your position and anythind in the shadow is not visible.
+Secound level is in cave, where you have to locate and destroy a nest from where birds are spawned. In this cave there is implemented a shadow casting algorithm, that is calculating what you can see from your position and anythind in the shadow is not visible. I implemented AI for birds so that they are tracking you withn A-start path finding algorithm.
 ![image](https://user-images.githubusercontent.com/76881722/228293672-04deed4e-a657-4174-9d44-f8a75e4f5394.png)
 
+Last level is a parkour level where you have to collect 3 start. 
+![image](https://user-images.githubusercontent.com/76881722/228295880-b1d8e9e5-daec-49a6-b2f5-b79c90ea1a2e.png)
 
