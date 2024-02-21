@@ -58,8 +58,6 @@ bool RealeseDetection::mouseRealesed()
 {
 	bool isMouseLeftButtonRealesed{ RealeseDetection::mouseLeftButton };
 
-	//RealeseDetection::mouseLeftButton = false;
-
 	return isMouseLeftButtonRealesed;
 }
 
@@ -67,8 +65,6 @@ bool RealeseDetection::WRealesed()
 {
 
 	bool isWRealesed{ RealeseDetection::W };
-
-	//RealeseDetection::W = false;
 
 	return isWRealesed;
 }

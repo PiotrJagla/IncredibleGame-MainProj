@@ -173,7 +173,6 @@ void Enemy::updateAnimationComponent()
 
 void Enemy::updateHitboxComponent()
 {
-	//m_hitboxComponent->checkSceenBoundsCollision();
 	m_hitboxComponent->update();
 }
 
@@ -207,16 +206,10 @@ void Enemy::render(sf::RenderTarget* target, bool addBlendMode)
 		target->draw(*m_sprite);
 	
 	this->renderHPbar(target, addBlendMode);
-	//m_hitboxComponent->drawHitbx(target);
 }
 
 void Enemy::renderHPbar(sf::RenderTarget* target,bool addBlendMode)
 {
-	/*if (m_whatEnemy != AllEnemies::bird)
-	{
-		target->draw(m_HPbarBackground);
-		target->draw(m_HPbar);
-	}*/
 
 	if (addBlendMode == true)
 	{

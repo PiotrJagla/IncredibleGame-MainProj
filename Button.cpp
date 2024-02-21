@@ -49,7 +49,6 @@ bool Button::isButtonClicked(sf::RenderWindow* window)
 	{
 		if (RealeseDetection::mouseRealesed() == true)
 		{
-
 			return true;
 		}
 	}

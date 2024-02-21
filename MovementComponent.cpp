@@ -2,24 +2,19 @@
 #include "MovementComponent.h"
 
 //Initialization functions
-//void MovementComponent::initPhysicsComponent()
-//{
-//	m_physicsComponent = new PhysicsComponent{ m_velocity, m_direction,
-//		1500.0f, -750.0f, 2500.0f ,sf::Vector2f{900.0f, 900.0f}, m_isGrounded };
-//}
+
 
 //Constructors / Descructors
 MovementComponent::MovementComponent(sf::Vector2f& direction, sf::Vector2f& velocity,
 	sf::Sprite& sprite, float movementSpeed, bool& isGrounded)
 	:m_velocity{ velocity }, m_direction{ direction }, m_sprite{ sprite }, m_isGrounded{isGrounded}
 {
-	//m_direction = sf::Vector2f{ 0.0f,1.0f };
-	//this->initPhysicsComponent();
+
 }
 
 MovementComponent::~MovementComponent()
 {
-	//delete m_physicsComponent;
+
 }
 
 
@@ -27,13 +22,10 @@ MovementComponent::~MovementComponent()
 void MovementComponent::update(const float& timePerFrame)
 {
 	this->updateMovement(timePerFrame);
-	//m_physicsComponent->update(timePerFrame);
 }
 
 void MovementComponent::updateMovement(const float& timePerFrame)
 {
-	//m_physicsComponent->updateVelocity(timePerFrame);
-
 	this->moveSprite(timePerFrame);
 }
 

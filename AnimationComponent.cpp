@@ -8,17 +8,12 @@ AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Vector2f& velocit
 	m_idleAnimationTimer.restart();
 	m_runningAnimationTimer.restart();
 	
-	//this->setFrame(sf::IntRect{ 5,5,50,58 });
-	
 	m_animationSwitch = false;
 	m_spriteScale.x = m_sprite.getScale().x;
 	m_spriteScale.y = m_sprite.getScale().y;
 }
 
-AnimationComponent::~AnimationComponent()
-{
-
-}
+AnimationComponent::~AnimationComponent(){}
 
 
 //Pulic functions

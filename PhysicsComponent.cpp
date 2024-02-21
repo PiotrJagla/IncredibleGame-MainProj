@@ -25,7 +25,6 @@ PhysicsComponent::~PhysicsComponent()
 void PhysicsComponent::update(const float& timePerFrame,sf::Vector2f& velocity, sf::Vector2f& direction, bool& isGrounded)
 {
 	this->decelerate(timePerFrame, velocity);
-	//Debug::showVelocity(velocity.x, velocity.y);
 	this->updateVelocity(timePerFrame, velocity, direction, isGrounded);
 	this->gravity(timePerFrame, velocity, direction);
 }
