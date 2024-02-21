@@ -11,7 +11,6 @@ On first level you have to kill monsters. If enough monsters are killed you can 
 ![ezgif com-video-to-gif](https://github.com/PiotrJagla/IncredibleGame-MainProj/assets/76881722/f795e946-e229-443d-9cbe-1ac5f8ca8004)
 ![ezgif com-video-to-gif (1)](https://github.com/PiotrJagla/IncredibleGame-MainProj/assets/76881722/517d0791-0d73-4511-b062-b7314f428995)
 
-
 Between levels there is boss. That is a big bat that is spawning smaller bats and every few seconds big bat attacks with big shock wave on visible for bat area as there is shown below
 ![image](https://user-images.githubusercontent.com/76881722/228293237-0c3ab8ba-d100-41f7-8e81-184266ac476e.png)
 
@@ -21,6 +20,5 @@ Second level is in cave, where you have to locate and destroy a nest from where 
 
 The last level is a parkour level where you have to collect 3 stars. 
 ![ezgif com-video-to-gif (3)](https://github.com/PiotrJagla/IncredibleGame-MainProj/assets/76881722/0b061a1e-2388-4655-b129-a2b847399548)
-
 
 Of course there is more to it but this is just a quick overview.
