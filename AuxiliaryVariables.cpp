@@ -49,8 +49,6 @@ bool RealeseDetection::escapeRealesed()
 {
 	bool isEscapeRealesed{ RealeseDetection::Escape };
 
-	//RealeseDetection::Escape = false;
-
 	return isEscapeRealesed;
 }
 
@@ -63,7 +61,6 @@ bool RealeseDetection::mouseRealesed()
 
 bool RealeseDetection::WRealesed()
 {
-
 	bool isWRealesed{ RealeseDetection::W };
 
 	return isWRealesed;

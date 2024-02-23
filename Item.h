@@ -47,7 +47,5 @@ public:
 	void setPointerToMousePosition(sf::Vector2i& mousePositionMap);
 	void setItemType(Type itemType);
 	void setScale(float scaleX, float scaleY);
-
-
 };
 

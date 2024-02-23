@@ -171,9 +171,6 @@ void Player::renderPlayer(sf::RenderTarget* target)
 	{
 		this->blinkingAfterDamaged(target);
 	}
-	
-		
-	
 }
 
 void Player::blinkingAfterDamaged(sf::RenderTarget* target)

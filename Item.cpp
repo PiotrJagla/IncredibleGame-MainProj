@@ -77,7 +77,6 @@ void Item::itemGroundCollision(Tile& collisionTile)
 	}
 }
 
-//					ACCESORS
 const bool& Item::isItemOnGround() const
 {
 	return m_isOnGround;
@@ -98,8 +97,6 @@ const Item::Type& Item::itemType() const
 	return m_itemType;
 }
 
-
-//					MODIFIERS
 void Item::setPointerToMousePosition(sf::Vector2i& mousePositionMap)
 {
 	m_mousePositionMapPtr = &mousePositionMap;
