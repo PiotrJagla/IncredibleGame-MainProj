@@ -55,7 +55,7 @@ void Game::update()
 	if (!m_states.empty())
 	{
 		m_popUpText->update(m_timePerFrame);
-		m_states.top()->update(m_window, m_timePerFrame);
+		m_states.top()->update(m_window);
 
 		if (m_states.top()->getQuit() == true)
 		{

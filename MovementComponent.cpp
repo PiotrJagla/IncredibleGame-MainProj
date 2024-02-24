@@ -1,8 +1,6 @@
 #include "headers.h"
 #include "MovementComponent.h"
 
-//Initialization functions
-
 
 //Constructors / Descructors
 MovementComponent::MovementComponent(sf::Vector2f& direction, sf::Vector2f& velocity,

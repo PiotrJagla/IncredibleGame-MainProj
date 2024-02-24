@@ -145,27 +145,24 @@ GameState::~GameState()
 //Public functions
 
 //		@ Update @
-void GameState::update(sf::RenderWindow* window, const float& timePerFrame)
+void GameState::update(sf::RenderWindow* window)
 {
 
- 	m_enemySpawnTimer.update(timePerFrame);
+ 	m_enemySpawnTimer.update(deltaTime::deltaTime::timePerFrame);
 
 	if (this->isPlayerDead() == false)
 	{
-
 		this->updateRenderBounds();
 
-		this->updateKeyTime(timePerFrame);
+		this->updateKeyTime(deltaTime::timePerFrame);
 		this->updateInput();
 		this->updateMousePositions(m_playerCamera);
 
 		if (m_isPaused == false)
 		{
-
-
-			this->updateCreatures(timePerFrame);
+			this->updateCreatures(deltaTime::timePerFrame);
 			this->updatePlayerCamera();
-			this->updateItems(timePerFrame);
+			this->updateItems(deltaTime::timePerFrame);
 			this->updateEnemySpawn();
 
 			this->levelDependentUpdate();

@@ -75,7 +75,7 @@ public:
 	virtual ~GameState();
 
 	//Update
-	void update(sf::RenderWindow* window, const float& timePerFrame) override;
+	void update(sf::RenderWindow* window) override;
 	void updateInput();
 	void levelDependentUpdate();
 	void isLevelCompleted();

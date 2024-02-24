@@ -21,7 +21,7 @@ public:
 	virtual ~MainMenuState();
 
 	//Update
-	void update(sf::RenderWindow* window, const float& timePerFrame) override;
+	void update(sf::RenderWindow* window) override;
 
 	void updateButtons(sf::RenderWindow* window);
 	void updateButtonHover(sf::RenderWindow* window);

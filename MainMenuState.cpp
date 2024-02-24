@@ -47,7 +47,7 @@ MainMenuState::~MainMenuState()
 
 
 //Functions
-void MainMenuState::update(sf::RenderWindow* window, const float& timePerFrame)
+void MainMenuState::update(sf::RenderWindow* window)
 {
 	this->updateButtons(window);
 }

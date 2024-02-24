@@ -30,7 +30,7 @@ public:
 
 
 	//Virtal functions
-	virtual void update(sf::RenderWindow* window, const float& timePerFrame) = 0;
+	virtual void update(sf::RenderWindow* window) = 0;
 	virtual void render(sf::RenderTarget* target = nullptr) = 0;
 	virtual void updateKeyTime(const float& timePerFrame);
 
