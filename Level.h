@@ -13,8 +13,6 @@ public:
 		ParkourValley,
 		BossLevel
 	};
-private:
-
 protected:
 	PopUpText* m_popUpText;
 
@@ -35,7 +33,6 @@ public:
 	virtual void resetLevel() = 0;
 
 
-	//Variables
 	int tileMapNumber;
 	int monstersToKill;
 	int killedMonsters;
